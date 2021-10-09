@@ -1,0 +1,53 @@
+
+ROM used:   1402/87552 (1%)
+            1402/87552 (1%) including unused fragments
+
+            0.7 Average locations per line
+            7.3 Average locations per statement
+
+RAM used:   828/28672 (3%) at main() level
+            851/28672 (3%) worst case
+
+Stack used: 14 worst case (14 in main + 0 for interrupts)
+Stack size: 128
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   51    21  11  main.c
+   24     0   0  main.h
+ 1533     0   0  C:\Program Files (x86)\PICC\Devices\33EP256MU810.h
+  414   171  89  GPS.c
+----- -----
+ 2022   192 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0    318  11   10  1681 10.1  TakeGpsGPGGA
+0    156   6   12   782  8.0  GPSLatitGGA
+0    156   6   12   782  8.0  GPSLongitudeGGA
+0     96   3    5   287  5.1  rda_isr
+0    164   6    0   140  2.5  MAIN
+ Inline         0    61  1.5  @cinit1
+
+Program metrics:
+    Functions               6
+    Statements              192
+    Comments                187
+    Volume (V)              5045
+    Difficulty (D)          35.8
+    Effort to implement (E) 180528
+    Time to implement (T)   2 hours, 47 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   24
+    Maintainability (MI)    114
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-001FE   508  0  
+00200-0FFFE   890  64134  
+10000-1FFFE     0  65536  
+20000-2ABFE     0  44032  
+
+
+

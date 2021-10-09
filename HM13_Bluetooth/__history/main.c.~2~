@@ -1,0 +1,24 @@
+#include <main.h>
+
+#INT_RDA
+void  rda_isr(void) 
+{
+
+}
+
+
+
+void main()
+{
+
+
+   enable_interrupts(INT_RDA);
+   enable_interrupts(INTR_GLOBAL);
+   initBluetooth();
+
+   while(TRUE)
+   {
+      //TODO: User Code
+   }
+
+}

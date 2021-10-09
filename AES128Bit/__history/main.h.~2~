@@ -1,0 +1,11 @@
+#include <33EP256MU810.h>
+
+#FUSES NOWDT                    //No Watch Dog Timer
+#FUSES CKSFSM                   //Clock Switching is enabled, fail Safe clock monitor is enabled
+#FUSES NOBROWNOUT               //No brownout reset
+#FUSES NOJTAG                   //JTAG disabled
+
+#device ICSP=1
+#use delay(clock=96MHz,crystal=24MHz)
+
+#include "AES128.c"

@@ -1,0 +1,1218 @@
+CCS PCD C Compiler, Version 5.007, 61971               03-Eyl-21 22:25
+
+               Filename:   G:\GithubProje\PIC\HM13_Bluetooth\main.lst
+
+               ROM used:   2326 bytes (1%)
+                           Largest free fragment is 65536
+               RAM used:   318 (1%) at main() level
+                           394 (1%) worst case
+               Stack used: 36 locations
+               Stack size: 128
+
+*
+00000:  GOTO    862
+*
+0002A:  DATA    58,03,00
+.................... #include <main.h> 
+.................... #include <33EP256MU810.h> 
+.................... //////// Standard Header file for the DSPIC33EP256MU810 device //////////////// 
+.................... #device DSPIC33EP256MU810 
+*
+00200:  CLR     54
+00202:  MOV     #20C,W3
+00204:  ADD     W3,W0,W0
+00206:  TBLRDL.B[W0],W0L
+00208:  CLR.B   1
+0020A:  RETURN  
+0020C:  DATA    41,54,00
+0020E:  DATA    2B,41,00
+00210:  DATA    55,54,00
+00212:  DATA    48,3F,00
+00214:  DATA    0D,0A,00
+00216:  DATA    00,00,00
+00218:  CLR     54
+0021A:  MOV     #224,W3
+0021C:  ADD     W3,W0,W0
+0021E:  TBLRDL.B[W0],W0L
+00220:  CLR.B   1
+00222:  RETURN  
+00224:  DATA    41,54,00
+00226:  DATA    2B,41,00
+00228:  DATA    55,54,00
+0022A:  DATA    48,25,00
+0022C:  DATA    64,0D,00
+0022E:  DATA    0A,00,00
+00230:  CLR     54
+00232:  MOV     #23C,W3
+00234:  ADD     W3,W0,W0
+00236:  TBLRDL.B[W0],W0L
+00238:  CLR.B   1
+0023A:  RETURN  
+0023C:  DATA    41,54,00
+0023E:  DATA    2B,4D,00
+00240:  DATA    4F,44,00
+00242:  DATA    45,3F,00
+00244:  DATA    0D,0A,00
+00246:  DATA    00,00,00
+00248:  CLR     54
+0024A:  MOV     #254,W3
+0024C:  ADD     W3,W0,W0
+0024E:  TBLRDL.B[W0],W0L
+00250:  CLR.B   1
+00252:  RETURN  
+00254:  DATA    41,54,00
+00256:  DATA    2B,4D,00
+00258:  DATA    4F,44,00
+0025A:  DATA    45,25,00
+0025C:  DATA    64,0D,00
+0025E:  DATA    0A,00,00
+00260:  CLR     54
+00262:  MOV     #26C,W3
+00264:  ADD     W3,W0,W0
+00266:  TBLRDL.B[W0],W0L
+00268:  CLR.B   1
+0026A:  RETURN  
+0026C:  DATA    41,54,00
+0026E:  DATA    2B,4E,00
+00270:  DATA    41,4D,00
+00272:  DATA    45,3F,00
+00274:  DATA    0D,0A,00
+00276:  DATA    00,00,00
+00278:  CLR     54
+0027A:  MOV     #284,W3
+0027C:  ADD     W3,W0,W0
+0027E:  TBLRDL.B[W0],W0L
+00280:  CLR.B   1
+00282:  RETURN  
+00284:  DATA    41,54,00
+00286:  DATA    2B,4E,00
+00288:  DATA    41,4D,00
+0028A:  DATA    45,25,00
+0028C:  DATA    73,00,00
+0028E:  CLR     54
+00290:  MOV     #29A,W3
+00292:  ADD     W3,W0,W0
+00294:  TBLRDL.B[W0],W0L
+00296:  CLR.B   1
+00298:  RETURN  
+0029A:  DATA    41,54,00
+0029C:  DATA    2B,4E,00
+0029E:  DATA    41,4D,00
+002A0:  DATA    42,3F,00
+002A2:  DATA    0D,0A,00
+002A4:  DATA    00,00,00
+002A6:  CLR     54
+002A8:  MOV     #2B2,W3
+002AA:  ADD     W3,W0,W0
+002AC:  TBLRDL.B[W0],W0L
+002AE:  CLR.B   1
+002B0:  RETURN  
+002B2:  DATA    41,54,00
+002B4:  DATA    2B,4E,00
+002B6:  DATA    41,4D,00
+002B8:  DATA    42,25,00
+002BA:  DATA    73,00,00
+002BC:  CLR     54
+002BE:  MOV     #2C8,W3
+002C0:  ADD     W3,W0,W0
+002C2:  TBLRDL.B[W0],W0L
+002C4:  CLR.B   1
+002C6:  RETURN  
+002C8:  DATA    41,54,00
+002CA:  DATA    2B,50,00
+002CC:  DATA    49,4E,00
+002CE:  DATA    45,3F,00
+002D0:  DATA    0D,0A,00
+002D2:  DATA    00,00,00
+002D4:  CLR     54
+002D6:  MOV     #2E0,W3
+002D8:  ADD     W3,W0,W0
+002DA:  TBLRDL.B[W0],W0L
+002DC:  CLR.B   1
+002DE:  RETURN  
+002E0:  DATA    41,54,00
+002E2:  DATA    2B,50,00
+002E4:  DATA    49,4E,00
+002E6:  DATA    45,25,00
+002E8:  DATA    73,00,00
+002EA:  CLR     54
+002EC:  MOV     #2F6,W3
+002EE:  ADD     W3,W0,W0
+002F0:  TBLRDL.B[W0],W0L
+002F2:  CLR.B   1
+002F4:  RETURN  
+002F6:  DATA    41,54,00
+002F8:  DATA    2B,50,00
+002FA:  DATA    49,4E,00
+002FC:  DATA    42,3F,00
+002FE:  DATA    0D,0A,00
+00300:  DATA    00,00,00
+00302:  CLR     54
+00304:  MOV     #30E,W3
+00306:  ADD     W3,W0,W0
+00308:  TBLRDL.B[W0],W0L
+0030A:  CLR.B   1
+0030C:  RETURN  
+0030E:  DATA    41,54,00
+00310:  DATA    2B,50,00
+00312:  DATA    49,4E,00
+00314:  DATA    42,25,00
+00316:  DATA    73,00,00
+00318:  CLR     54
+0031A:  MOV     #324,W3
+0031C:  ADD     W3,W0,W0
+0031E:  TBLRDL.B[W0],W0L
+00320:  CLR.B   1
+00322:  RETURN  
+00324:  DATA    4D,79,00
+00326:  DATA    42,4C,00
+00328:  DATA    0D,0A,00
+0032A:  DATA    00,00,00
+0032C:  CLR     54
+0032E:  MOV     #338,W3
+00330:  ADD     W3,W0,W0
+00332:  TBLRDL.B[W0],W0L
+00334:  CLR.B   1
+00336:  RETURN  
+00338:  DATA    54,61,00
+0033A:  DATA    6C,68,00
+0033C:  DATA    61,0D,00
+0033E:  DATA    0A,00,00
+00340:  CLR     54
+00342:  MOV     #34C,W3
+00344:  ADD     W3,W0,W0
+00346:  TBLRDL.B[W0],W0L
+00348:  CLR.B   1
+0034A:  RETURN  
+0034C:  DATA    4D,79,00
+0034E:  DATA    42,4C,00
+00350:  DATA    5F,42,00
+00352:  DATA    4C,45,00
+00354:  DATA    0D,0A,00
+00356:  DATA    00,00,00
+*
+003C2:  MOV     W1,[W15++]
+003C4:  MOV     10BA,W1
+003C6:  MOV.B   W0L,[W1++]
+003C8:  CLR.B   [W1]
+003CA:  MOV     [--W15],W1
+003CC:  INC     10BA
+003CE:  RETURN  
+003D0:  MOV     W5,[W15++]
+003D2:  MOV     #C,W5
+003D4:  REPEAT  #3
+003D6:  MOV     [W5++],[W15++]
+003D8:  BTSS    W0.F
+003DA:  BRA     3F6
+003DC:  NEG     W0,W0
+003DE:  BSET    W4.8
+003E0:  BTSS    W4.F
+003E2:  BRA     3F6
+003E4:  MOV     W0,[W15++]
+003E6:  MOV     #2D,W0
+003E8:  MOV     W0,[W15++]
+003EA:  MOV     [--W15],W0
+003EC:  CALL    3C2
+003F0:  MOV     [--W15],W0
+003F2:  BCLR    W4.8
+003F4:  DEC.B   0008
+003F6:  CLR     W5
+003F8:  MOV     W0,W7
+003FA:  MOV     W4,W9
+003FC:  BCLR    W4.F
+003FE:  CP0.B   W4L
+00400:  BRA     NZ,40E
+00402:  BTSC    W9.F
+00404:  BRA     40A
+00406:  MOV     #0,W5
+00408:  BRA     42A
+0040A:  MOV     #0,W5
+0040C:  BRA     42A
+0040E:  SUB.B   W4L,#6,W5L
+00410:  BRA     NC,428
+00412:  MOV     #30,W0
+00414:  BTSS    W9.F
+00416:  MOV     #20,W0
+00418:  MOV     W0,[W15++]
+0041A:  MOV     [--W15],W0
+0041C:  CALL    3C2
+00420:  DEC     W5,W5
+00422:  BRA     NN,418
+00424:  MOV     #5,W5
+00426:  BRA     42A
+00428:  MOV     W4,W5
+0042A:  MOV     #6,W4
+0042C:  BTSC    W5.8
+0042E:  INC     W4,W4
+00430:  BSET    W5.E
+00432:  BTSC    W9.F
+00434:  BSET    W5.F
+00436:  MOV     #2710,W8
+00438:  REPEAT  #11
+0043A:  DIV.U   W7,W8
+0043C:  CALL    484
+00440:  MOV     W1,W7
+00442:  MOV     #3E8,W8
+00444:  REPEAT  #11
+00446:  DIV.U   W7,W8
+00448:  CALL    484
+0044C:  MOV     W1,W7
+0044E:  MOV     #64,W8
+00450:  REPEAT  #11
+00452:  DIV.U   W7,W8
+00454:  CALL    484
+00458:  MOV     W1,W7
+0045A:  MOV     #A,W8
+0045C:  REPEAT  #11
+0045E:  DIV.U   W7,W8
+00460:  CALL    484
+00464:  BTSS    W9.8
+00466:  BRA     474
+00468:  MOV     #2D,W0
+0046A:  MOV     W0,[W15++]
+0046C:  MOV     [--W15],W0
+0046E:  CALL    3C2
+00472:  BCLR    W9.8
+00474:  MOV     #30,W0
+00476:  ADD.B   W1L,W0L,W0L
+00478:  MOV     W0,2A
+0047A:  MOV     W0,[W15++]
+0047C:  MOV     [--W15],W0
+0047E:  CALL    3C2
+00482:  BRA     4CC
+00484:  MOV     #30,W6
+00486:  CP0     W0
+00488:  BRA     NZ,4A6
+0048A:  BTSS    W5.E
+0048C:  BRA     4BC
+0048E:  DEC     W4,W4
+00490:  CP.B    W4L,W5L
+00492:  BRA     Z,498
+00494:  BTSC.B  42.0
+00496:  RETURN  
+00498:  CP0     W0
+0049A:  BRA     NZ,4A6
+0049C:  BTSS    W5.E
+0049E:  BRA     4BC
+004A0:  BTSS    W5.F
+004A2:  MOV     #20,W6
+004A4:  BRA     4BC
+004A6:  BCLR    W5.E
+004A8:  BTSS    W9.8
+004AA:  BRA     4BC
+004AC:  MOV     W0,W10
+004AE:  MOV     #2D,W0
+004B0:  MOV     W0,[W15++]
+004B2:  MOV     [--W15],W0
+004B4:  CALL    3C2
+004B8:  BCLR    W9.8
+004BA:  MOV     W10,W0
+004BC:  ADD.B   W6L,W0L,W0L
+004BE:  MOV     W1,[W15++]
+004C0:  MOV     W0,[W15++]
+004C2:  MOV     [--W15],W0
+004C4:  CALL    3C2
+004C8:  MOV     [--W15],W1
+004CA:  RETURN  
+004CC:  MOV     #12,W5
+004CE:  REPEAT  #3
+004D0:  MOV     [--W15],[W5--]
+004D2:  MOV     [--W15],W5
+004D4:  RETURN  
+....................  
+.................... #list 
+....................  
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES CKSFSM                   //Clock Switching is enabled, fail Safe clock monitor is enabled 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES NOJTAG                   //JTAG disabled 
+....................  
+.................... #device ICSP=1 
+.................... #use delay(clock=96MHz,crystal=24MHz) 
+*
+0055E:  CP0     W0
+00560:  BTSC.B  42.1
+00562:  BRA     574
+00564:  REPEAT  #3B7B
+00566:  NOP     
+00568:  REPEAT  #3FFE
+0056A:  NOP     
+0056C:  REPEAT  #3FFE
+0056E:  NOP     
+00570:  DEC     W0,W0
+00572:  BRA     NZ,564
+00574:  RETURN  
+.................... #pin_select U1TX=PIN_D1 
+.................... #pin_select U1RX=PIN_D13 
+.................... #use rs232(UART1, baud=115200, stream=BT) 
+....................  
+.................... int1 BLDataCame=0; 
+.................... int8 sendArray[64]; 
+.................... int8 BLTReceive[100]; 
+.................... #include "HM13.c" 
+.................... #include<HM13.h> 
+.................... #ifndef HM13_H_ 
+.................... #define HM13_H_ 
+....................  
+.................... void initBluetooth(); 
+....................  
+....................  
+.................... #endif 
+....................  
+....................  
+.................... char transienBuffer[20]; 
+....................  
+.................... void writeAT(char *command) 
+.................... { 
+....................  
+....................      fprintf(BT,"%s",command); 
+*
+004D6:  MOV     10E2,W1
+004D8:  CP0.B   [W1]
+004DA:  BRA     Z,4E8
+004DC:  BTSC.B  223.1
+004DE:  BRA     4DC
+004E0:  MOV.B   [W1+#0],W0L
+004E2:  MOV.B   W0L,224
+004E4:  INC     W1,W1
+004E6:  BRA     4D8
+....................      memset(transienBuffer,'\0',20); 
+004E8:  MOV     #10A6,W1
+004EA:  MOV     #0,W2
+004EC:  REPEAT  #13
+004EE:  CLR.B   [W1++]
+004F0:  RETURN  
+....................  
+.................... } 
+....................  
+.................... void testModule() 
+.................... { 
+....................    sprintf(transienBuffer,"AT\r\n"); 
+....................    writeAT(transienBuffer); 
+.................... } 
+....................  
+.................... void queryEDRAddress() 
+.................... { 
+....................    sprintf(transienBuffer,"AT+ADDE?\r\n"); 
+....................    writeAT(transienBuffer); 
+....................  
+.................... } 
+....................  
+.................... void queryBLEAddress() 
+.................... { 
+....................    sprintf(transienBuffer,"AT+ADDB?\r\n"); 
+....................    writeAT(transienBuffer); 
+....................  
+.................... } 
+....................  
+.................... /* 
+.................... Auth 0 ===> Allow every module 
+.................... Auth 1===> every connection must with authentication. 
+.................... */ 
+.................... void QuerySet_Authentication(int1 query,int1 Auth) 
+.................... { 
+....................   if(query) 
+004F2:  CP0.B   10DC
+004F4:  BRA     Z,51C
+....................     sprintf(transienBuffer,"AT+AUTH?\r\n"); 
+004F6:  MOV     #10A6,W4
+004F8:  MOV     W4,10BA
+004FA:  MOV     #0,W1
+004FC:  MOV     W1,W0
+004FE:  CLR.B   1
+00500:  CALL    200
+00504:  INC     W1,W1
+00506:  MOV     W1,[W15++]
+00508:  MOV     W0,[W15++]
+0050A:  MOV     [--W15],W0
+0050C:  CALL    3C2
+00510:  MOV     [--W15],W1
+00512:  MOV     #9,W0
+00514:  CPSGT   W1,W0
+00516:  BRA     4FC
+00518:  GOTO    554
+....................   else 
+....................     sprintf(transienBuffer,"AT+AUTH%d\r\n",Auth);    
+0051C:  MOV     #10A6,W4
+0051E:  MOV     W4,10BA
+00520:  MOV     #0,W1
+00522:  MOV     W1,W0
+00524:  CLR.B   1
+00526:  CALL    218
+0052A:  INC     W1,W1
+0052C:  MOV     W1,[W15++]
+0052E:  MOV     W0,[W15++]
+00530:  MOV     [--W15],W0
+00532:  CALL    3C2
+00536:  MOV     [--W15],W1
+00538:  MOV     #6,W0
+0053A:  CPSGT   W1,W0
+0053C:  BRA     522
+0053E:  MOV.B   10DD,W0L
+00540:  SE      W0,W0
+00542:  MOV     #0,W4
+00544:  CALL    3D0
+00548:  MOV.B   #D,W0L
+0054A:  CALL    3C2
+0054E:  MOV.B   #A,W0L
+00550:  CALL    3C2
+....................      
+....................    writeAT(transienBuffer); 
+00554:  MOV     #10A6,W4
+00556:  MOV     W4,10E2
+00558:  CALL    4D6
+0055C:  RETURN  
+....................  
+.................... } 
+....................  
+.................... /* 
+.................... Baud- Baud Rate 
+.................... 1   - 4800 
+.................... 2   – 9600 
+.................... 3   – 19200 
+.................... 4   – 38400 
+.................... 5   – 57600 
+.................... 6   – 115200 
+.................... 7   - 230400 
+.................... */ 
+.................... void QuerySet_BaudRate(int1 query,int Baud) 
+.................... { 
+....................   if(query) 
+....................     sprintf(transienBuffer,"AT+BAUD?\r\n"); 
+....................   else 
+....................     sprintf(transienBuffer,"AT+BAUD%d\r\n",Baud);    
+....................      
+....................    writeAT(transienBuffer); 
+....................  
+.................... } 
+....................  
+.................... /*This functions delete last module from memory. */ 
+.................... void clearLastEDRDevice() 
+.................... { 
+....................   sprintf(transienBuffer,"AT+CLEAE\r\n");     
+....................   writeAT(transienBuffer); 
+.................... } 
+....................  
+.................... void clearBLEDevice() 
+.................... { 
+....................   sprintf(transienBuffer,"AT+CLEAB\r\n");     
+....................   writeAT(transienBuffer); 
+.................... } 
+....................  
+.................... /* 
+.................... P1: 0, 1,(Default: 0) 
+.................... 0: Balance mode 
+.................... 1: High speed mode  
+.................... */ 
+.................... void QuerySet_DataTransferSpeed(int1 query,int1 Speed) 
+.................... { 
+....................   if(query) 
+....................     sprintf(transienBuffer,"AT+HIGH?\r\n"); 
+....................   else 
+....................     sprintf(transienBuffer,"AT+HIGH%d\r\n",Speed);    
+....................      
+....................    writeAT(transienBuffer); 
+.................... } 
+....................  
+.................... /* 
+.................... P1: 0, 1,?, (Default: 0) 
+.................... 0: Loaded notify 0ff 
+.................... 1: Loaded notify on  
+.................... When "AT+INIT1" is setup, after module loaded, module will output 
+.................... "OK+INIT" string through UART.  
+.................... */ 
+.................... void QuerySet_LoadedNotify(int1 query,int1 On) 
+.................... { 
+....................   if(query) 
+....................     sprintf(transienBuffer,"AT+INIT?\r\n"); 
+....................   else 
+....................     sprintf(transienBuffer,"AT+INIT%d\r\n",On);    
+....................      
+....................    writeAT(transienBuffer); 
+....................  
+.................... } 
+....................  
+....................  
+.................... /* 
+.................... **AT+MODE0: Only transfer data when connection establishment. 
+.................... **AT+MODE1: Transfer data and response AT commands.  
+.................... */ 
+.................... void QuerySet_WorkMode(int1 query,int1 mode)  
+.................... { 
+....................   if(query) 
+*
+00576:  CP0.B   10DC
+00578:  BRA     Z,5A0
+....................     sprintf(transienBuffer,"AT+MODE?\r\n"); 
+0057A:  MOV     #10A6,W4
+0057C:  MOV     W4,10BA
+0057E:  MOV     #0,W1
+00580:  MOV     W1,W0
+00582:  CLR.B   1
+00584:  CALL    230
+00588:  INC     W1,W1
+0058A:  MOV     W1,[W15++]
+0058C:  MOV     W0,[W15++]
+0058E:  MOV     [--W15],W0
+00590:  CALL    3C2
+00594:  MOV     [--W15],W1
+00596:  MOV     #9,W0
+00598:  CPSGT   W1,W0
+0059A:  BRA     580
+0059C:  GOTO    5D8
+....................   else 
+....................     sprintf(transienBuffer,"AT+MODE%d\r\n",mode);    
+005A0:  MOV     #10A6,W4
+005A2:  MOV     W4,10BA
+005A4:  MOV     #0,W1
+005A6:  MOV     W1,W0
+005A8:  CLR.B   1
+005AA:  CALL    248
+005AE:  INC     W1,W1
+005B0:  MOV     W1,[W15++]
+005B2:  MOV     W0,[W15++]
+005B4:  MOV     [--W15],W0
+005B6:  CALL    3C2
+005BA:  MOV     [--W15],W1
+005BC:  MOV     #6,W0
+005BE:  CPSGT   W1,W0
+005C0:  BRA     5A6
+005C2:  MOV.B   10DD,W0L
+005C4:  SE      W0,W0
+005C6:  MOV     #0,W4
+005C8:  CALL    3D0
+005CC:  MOV.B   #D,W0L
+005CE:  CALL    3C2
+005D2:  MOV.B   #A,W0L
+005D4:  CALL    3C2
+....................      
+....................    writeAT(transienBuffer); 
+005D8:  MOV     #10A6,W4
+005DA:  MOV     W4,10E2
+005DC:  CALL    4D6
+005E0:  RETURN  
+.................... } 
+....................  
+....................  
+.................... /* 
+.................... After AT+NOTI1, module will send connect or disconnect string through 
+.................... UART when module state is change: 
+.................... OK+CONE ======== EDR connect 
+.................... OK+LSTE ========= EDR disconnect 
+.................... OK+CONB========= BLE connect 
+.................... OK+LSTB ========= BLE disconnect  
+....................  
+.................... OK+LSTA ========= except disconnect, module will reset after 500 ms.  
+.................... */ 
+.................... void QuerySet_NotifyInformation(int1 query,int1 on)  
+.................... { 
+....................   if(query) 
+....................     sprintf(transienBuffer,"AT+NOTI?\r\n"); 
+....................   else 
+....................     sprintf(transienBuffer,"AT+NOTI%d\r\n",on);    
+....................      
+....................    writeAT(transienBuffer); 
+....................  
+.................... } 
+....................  
+.................... void QuerySet_NameEDRDevice(int1 query,char *name) 
+.................... { 
+....................   if(query) 
+005E2:  CP0.B   10DC
+005E4:  BRA     Z,60C
+....................     sprintf(transienBuffer,"AT+NAME?\r\n"); 
+005E6:  MOV     #10A6,W4
+005E8:  MOV     W4,10BA
+005EA:  MOV     #0,W1
+005EC:  MOV     W1,W0
+005EE:  CLR.B   1
+005F0:  CALL    260
+005F4:  INC     W1,W1
+005F6:  MOV     W1,[W15++]
+005F8:  MOV     W0,[W15++]
+005FA:  MOV     [--W15],W0
+005FC:  CALL    3C2
+00600:  MOV     [--W15],W1
+00602:  MOV     #9,W0
+00604:  CPSGT   W1,W0
+00606:  BRA     5EC
+00608:  GOTO    644
+....................   else 
+....................     sprintf(transienBuffer,"AT+NAME%s",name); 
+0060C:  MOV     #10A6,W4
+0060E:  MOV     W4,10BA
+00610:  MOV     #0,W1
+00612:  MOV     W1,W0
+00614:  CLR.B   1
+00616:  CALL    278
+0061A:  INC     W1,W1
+0061C:  MOV     W1,[W15++]
+0061E:  MOV     W0,[W15++]
+00620:  MOV     [--W15],W0
+00622:  CALL    3C2
+00626:  MOV     [--W15],W1
+00628:  MOV     #6,W0
+0062A:  CPSGT   W1,W0
+0062C:  BRA     612
+0062E:  MOV     10DE,W1
+00630:  CP0.B   [W1]
+00632:  BRA     Z,644
+00634:  MOV     W1,[W15++]
+00636:  MOV     W1,W4
+00638:  MOV.B   [W4],W0L
+0063A:  CALL    3C2
+0063E:  MOV     [--W15],W1
+00640:  INC     W1,W1
+00642:  BRA     630
+....................    writeAT(transienBuffer); 
+00644:  MOV     #10A6,W4
+00646:  MOV     W4,10E2
+00648:  CALL    4D6
+0064C:  RETURN  
+.................... } 
+....................  
+.................... void QuerySet_NameBLEDevice(int1 query,char *name) 
+.................... { 
+....................   if(query) 
+0064E:  CP0.B   10DC
+00650:  BRA     Z,678
+....................     sprintf(transienBuffer,"AT+NAMB?\r\n"); 
+00652:  MOV     #10A6,W4
+00654:  MOV     W4,10BA
+00656:  MOV     #0,W1
+00658:  MOV     W1,W0
+0065A:  CLR.B   1
+0065C:  CALL    28E
+00660:  INC     W1,W1
+00662:  MOV     W1,[W15++]
+00664:  MOV     W0,[W15++]
+00666:  MOV     [--W15],W0
+00668:  CALL    3C2
+0066C:  MOV     [--W15],W1
+0066E:  MOV     #9,W0
+00670:  CPSGT   W1,W0
+00672:  BRA     658
+00674:  GOTO    6B0
+....................   else 
+....................     sprintf(transienBuffer,"AT+NAMB%s",name);   
+00678:  MOV     #10A6,W4
+0067A:  MOV     W4,10BA
+0067C:  MOV     #0,W1
+0067E:  MOV     W1,W0
+00680:  CLR.B   1
+00682:  CALL    2A6
+00686:  INC     W1,W1
+00688:  MOV     W1,[W15++]
+0068A:  MOV     W0,[W15++]
+0068C:  MOV     [--W15],W0
+0068E:  CALL    3C2
+00692:  MOV     [--W15],W1
+00694:  MOV     #6,W0
+00696:  CPSGT   W1,W0
+00698:  BRA     67E
+0069A:  MOV     10DE,W1
+0069C:  CP0.B   [W1]
+0069E:  BRA     Z,6B0
+006A0:  MOV     W1,[W15++]
+006A2:  MOV     W1,W4
+006A4:  MOV.B   [W4],W0L
+006A6:  CALL    3C2
+006AA:  MOV     [--W15],W1
+006AC:  INC     W1,W1
+006AE:  BRA     69C
+....................    writeAT(transienBuffer); 
+006B0:  MOV     #10A6,W4
+006B2:  MOV     W4,10E2
+006B4:  CALL    4D6
+006B8:  RETURN  
+....................  
+.................... } 
+....................  
+.................... /* 
+.................... P1: module EDR Code 
+.................... Max length: 6 
+.................... Default: 1234  
+.................... */ 
+.................... void QuerySet_EDRPinCode(int1 query,char *password) 
+.................... { 
+....................   if(query) 
+006BA:  CP0.B   10DC
+006BC:  BRA     Z,6E4
+....................     sprintf(transienBuffer,"AT+PINE?\r\n"); 
+006BE:  MOV     #10A6,W4
+006C0:  MOV     W4,10BA
+006C2:  MOV     #0,W1
+006C4:  MOV     W1,W0
+006C6:  CLR.B   1
+006C8:  CALL    2BC
+006CC:  INC     W1,W1
+006CE:  MOV     W1,[W15++]
+006D0:  MOV     W0,[W15++]
+006D2:  MOV     [--W15],W0
+006D4:  CALL    3C2
+006D8:  MOV     [--W15],W1
+006DA:  MOV     #9,W0
+006DC:  CPSGT   W1,W0
+006DE:  BRA     6C4
+006E0:  GOTO    71C
+....................   else 
+....................     sprintf(transienBuffer,"AT+PINE%s",password);   
+006E4:  MOV     #10A6,W4
+006E6:  MOV     W4,10BA
+006E8:  MOV     #0,W1
+006EA:  MOV     W1,W0
+006EC:  CLR.B   1
+006EE:  CALL    2D4
+006F2:  INC     W1,W1
+006F4:  MOV     W1,[W15++]
+006F6:  MOV     W0,[W15++]
+006F8:  MOV     [--W15],W0
+006FA:  CALL    3C2
+006FE:  MOV     [--W15],W1
+00700:  MOV     #6,W0
+00702:  CPSGT   W1,W0
+00704:  BRA     6EA
+00706:  MOV     10DE,W1
+00708:  CP0.B   [W1]
+0070A:  BRA     Z,71C
+0070C:  MOV     W1,[W15++]
+0070E:  MOV     W1,W4
+00710:  MOV.B   [W4],W0L
+00712:  CALL    3C2
+00716:  MOV     [--W15],W1
+00718:  INC     W1,W1
+0071A:  BRA     708
+....................      
+....................    writeAT(transienBuffer); 
+0071C:  MOV     #10A6,W4
+0071E:  MOV     W4,10E2
+00720:  CALL    4D6
+00724:  RETURN  
+....................  
+.................... } 
+....................  
+.................... /* 
+.................... P1: module BLE Code 
+.................... 000000~999999 
+.................... Default: 000000  
+.................... */ 
+.................... void QuerySet_BLEPinCode(int1 query,char *password) 
+.................... { 
+....................   if(query) 
+00726:  CP0.B   10DC
+00728:  BRA     Z,750
+....................     sprintf(transienBuffer,"AT+PINB?\r\n"); 
+0072A:  MOV     #10A6,W4
+0072C:  MOV     W4,10BA
+0072E:  MOV     #0,W1
+00730:  MOV     W1,W0
+00732:  CLR.B   1
+00734:  CALL    2EA
+00738:  INC     W1,W1
+0073A:  MOV     W1,[W15++]
+0073C:  MOV     W0,[W15++]
+0073E:  MOV     [--W15],W0
+00740:  CALL    3C2
+00744:  MOV     [--W15],W1
+00746:  MOV     #9,W0
+00748:  CPSGT   W1,W0
+0074A:  BRA     730
+0074C:  GOTO    788
+....................   else 
+....................     sprintf(transienBuffer,"AT+PINB%s",password);   
+00750:  MOV     #10A6,W4
+00752:  MOV     W4,10BA
+00754:  MOV     #0,W1
+00756:  MOV     W1,W0
+00758:  CLR.B   1
+0075A:  CALL    302
+0075E:  INC     W1,W1
+00760:  MOV     W1,[W15++]
+00762:  MOV     W0,[W15++]
+00764:  MOV     [--W15],W0
+00766:  CALL    3C2
+0076A:  MOV     [--W15],W1
+0076C:  MOV     #6,W0
+0076E:  CPSGT   W1,W0
+00770:  BRA     756
+00772:  MOV     10DE,W1
+00774:  CP0.B   [W1]
+00776:  BRA     Z,788
+00778:  MOV     W1,[W15++]
+0077A:  MOV     W1,W4
+0077C:  MOV.B   [W4],W0L
+0077E:  CALL    3C2
+00782:  MOV     [--W15],W1
+00784:  INC     W1,W1
+00786:  BRA     774
+....................      
+....................    writeAT(transienBuffer); 
+00788:  MOV     #10A6,W4
+0078A:  MOV     W4,10E2
+0078C:  CALL    4D6
+00790:  RETURN  
+....................  
+.................... } 
+....................  
+.................... /* 
+.................... Update fabrica configuration to now config. 
+.................... */ 
+.................... void SetupValuetoFabricaSetup() 
+.................... { 
+....................    sprintf(transienBuffer,"AT+RENEW\r\n");      
+....................    writeAT(transienBuffer); 
+.................... } 
+....................  
+.................... /*Device MAC address query*/ 
+.................... void QueryLastEDRDevice() 
+.................... { 
+....................    sprintf(transienBuffer,"AT+RADE?\r\n");      
+....................    writeAT(transienBuffer); 
+.................... } 
+....................  
+.................... void QueryLastBLEDevice() 
+.................... { 
+....................    sprintf(transienBuffer,"AT+RADB?\r\n");      
+....................    writeAT(transienBuffer); 
+.................... } 
+....................  
+.................... /* 
+.................... Master1 ===> Master device set 
+.................... */ 
+.................... void QuerySet_MasterSlave(int1 query,int1 master) 
+.................... { 
+....................   if(query) 
+....................     sprintf(transienBuffer,"AT+ROLB?\r\n"); 
+....................   else 
+....................     sprintf(transienBuffer,"AT+ROLB%d\r\n",master);   
+....................      
+....................    writeAT(transienBuffer); 
+.................... } 
+....................  
+.................... void initBluetooth() 
+.................... { 
+....................    char BLBufferF[7];char BLBufferS[7]; 
+....................    char BLBufferBLEF[7]; 
+....................    BLBufferF="MyBL\r\n"; BLBufferS="Talha\r\n"; 
+00792:  MOV     #0,W2
+00794:  MOV     #10BE,W1
+00796:  MOV     W2,W0
+00798:  CALL    318
+0079C:  MOV.B   W0L,[W1++]
+0079E:  INC     W2,W2
+007A0:  CP0.B   W0L
+007A2:  BTSS.B  42.1
+007A4:  BRA     796
+007A6:  MOV     #0,W2
+007A8:  MOV     #10C6,W1
+007AA:  MOV     W2,W0
+007AC:  CALL    32C
+007B0:  MOV.B   W0L,[W1++]
+007B2:  INC     W2,W2
+007B4:  CP0.B   W0L
+007B6:  BTSS.B  42.1
+007B8:  BRA     7AA
+....................    BLBufferBLEF="MyBL_BLE\r\n"; 
+007BA:  MOV     #0,W2
+007BC:  MOV     #10CE,W1
+007BE:  MOV     W2,W0
+007C0:  CALL    340
+007C4:  MOV.B   W0L,[W1++]
+007C6:  INC     W2,W2
+007C8:  CP0.B   W0L
+007CA:  BTSS.B  42.1
+007CC:  BRA     7BE
+....................    memset(transienBuffer,'\0',20); 
+007CE:  MOV     #10A6,W1
+007D0:  MOV     #0,W2
+007D2:  REPEAT  #13
+007D4:  CLR.B   [W1++]
+....................  
+....................  
+....................    QuerySet_Authentication(0,0);delay_ms(200);   
+007D6:  CLR.B   10DC
+007D8:  CLR.B   10DD
+007DA:  CALL    4F2
+007DE:  MOV     #C8,W0
+007E0:  CALL    55E
+....................    QuerySet_WorkMode(0,1); delay_ms(200); 
+007E4:  CLR.B   10DC
+007E6:  MOV.B   #1,W0L
+007E8:  MOV.B   W0L,10DD
+007EA:  CALL    576
+007EE:  MOV     #C8,W0
+007F0:  CALL    55E
+....................    QuerySet_NameEDRDevice(0,BLBufferF);delay_ms(200); 
+007F4:  CLR.B   10DC
+007F6:  MOV     #10BE,W4
+007F8:  MOV     W4,10DE
+007FA:  CALL    5E2
+007FE:  MOV     #C8,W0
+00800:  CALL    55E
+....................    QuerySet_NameBLEDevice(0,BLBufferBLEF);delay_ms(200); 
+00804:  CLR.B   10DC
+00806:  MOV     #10CE,W4
+00808:  MOV     W4,10DE
+0080A:  CALL    64E
+0080E:  MOV     #C8,W0
+00810:  CALL    55E
+....................    QuerySet_EDRPinCode(0,BLBufferS);delay_ms(200); 
+00814:  CLR.B   10DC
+00816:  MOV     #10C6,W4
+00818:  MOV     W4,10DE
+0081A:  CALL    6BA
+0081E:  MOV     #C8,W0
+00820:  CALL    55E
+....................    QuerySet_BLEPinCode(0,BLBufferS);delay_ms(200); 
+00824:  CLR.B   10DC
+00826:  MOV     #10C6,W4
+00828:  MOV     W4,10DE
+0082A:  CALL    726
+0082E:  MOV     #C8,W0
+00830:  CALL    55E
+....................  
+....................    enable_interrupts(INT_RDA3); 
+00834:  BSET.B  82A.2
+....................    enable_interrupts(INTR_GLOBAL);   
+00836:  BSET.B  8C3.7
+00838:  RETURN  
+....................  
+.................... } 
+.................... void sendData(int8 *message,int8 length) 
+0083A:  MOV     W5,[W15++]
+.................... { 
+....................  
+....................   for(int k=0;k<length;k++) 
+0083C:  CLR     10C2
+0083E:  MOV.B   10C0,W0L
+00840:  SE      W0,W0
+00842:  MOV     10C2,W4
+00844:  CP      W4,W0
+00846:  BRA     GE,85E
+....................   { 
+....................                                
+....................      fprintf(BT,"%c",message[k]); 
+00848:  MOV     10C2,W0
+0084A:  ADD     10BE,W0
+0084C:  MOV.B   [W0],W5L
+0084E:  BTSC.B  223.1
+00850:  BRA     84E
+00852:  PUSH    224
+00854:  MOV.B   W5L,[W15-#2]
+00856:  POP     224
+00858:  INC     10C2
+0085A:  GOTO    83E
+....................                                                             
+....................   } 
+0085E:  MOV     [--W15],W5
+00860:  RETURN  
+....................  
+.................... } 
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... #INT_RDA 
+.................... void  rda_isr(void)  
+*
+00358:  PUSH    42
+0035A:  PUSH    36
+0035C:  PUSH    54
+0035E:  MOV     W0,[W15++]
+00360:  MOV     #2,W0
+00362:  REPEAT  #C
+00364:  MOV     [W0++],[W15++]
+.................... { 
+....................    disable_interrupts(INT_RDA); 
+00366:  BCLR.B  821.3
+....................    int32 count=0; 
+....................    int32 countCycle=0; 
+00368:  CLR     1104
+0036A:  CLR     1106
+0036C:  CLR     1108
+0036E:  CLR     110A
+....................     
+....................    do 
+....................    { 
+....................       if(kbhit(BT)) 
+00370:  BTSS.B  222.0
+00372:  BRA     38E
+....................       { 
+....................           
+....................          BLTReceive[count++]=getc(BT); 
+00374:  MOV     1106,W1
+00376:  MOV     1104,W0
+00378:  INC     1104
+0037A:  BTSC.B  42.1
+0037C:  INC     1106
+0037E:  MOV     W0,W5
+00380:  MOV     W1,W6
+00382:  MOV     #1042,W4
+00384:  ADD     W5,W4,W7
+00386:  BTSS.B  222.0
+00388:  BRA     386
+0038A:  MOV     226,W0
+0038C:  MOV.B   W0L,[W7]
+....................        
+....................       } 
+....................     
+....................    }while(count<100 && countCycle<65000); 
+0038E:  MOV     1106,W4
+00390:  CP      W4,#0
+00392:  BRA     GT,3AE
+00394:  BRA     LT,39E
+00396:  MOV     1104,W4
+00398:  MOV     #64,W3
+0039A:  CP      W3,W4
+0039C:  BRA     LEU,3AE
+0039E:  MOV     110A,W4
+003A0:  CP      W4,#0
+003A2:  BRA     LT,370
+003A4:  BRA     GT,3AE
+003A6:  MOV     1108,W4
+003A8:  MOV     #FDE8,W3
+003AA:  CP      W3,W4
+003AC:  BRA     GTU,370
+....................     
+....................    BLDataCame=1; 
+003AE:  BSET.B  1000.0
+003B0:  BCLR.B  801.3
+003B2:  MOV     #1A,W0
+003B4:  REPEAT  #C
+003B6:  MOV     [--W15],[W0--]
+003B8:  MOV     [--W15],W0
+003BA:  POP     54
+003BC:  POP     36
+003BE:  POP     42
+003C0:  RETFIE  
+.................... } 
+....................  
+....................  
+....................  
+.................... void main() 
+*
+00862:  MOV     #4444,W0
+00864:  MOV     W0,844
+00866:  BSET.B  8C1.7
+00868:  MOV     #46,W0
+0086A:  MOV.B   W0L,742
+0086C:  MOV     #57,W0
+0086E:  MOV.B   W0L,742
+00870:  BCLR.B  742.6
+00872:  MOV     #4D,W0
+00874:  MOV     W0,6C4
+00876:  MOV     #100,W0
+00878:  MOV     W0,680
+0087A:  MOV     #46,W0
+0087C:  MOV.B   W0L,742
+0087E:  MOV     #57,W0
+00880:  MOV.B   W0L,742
+00882:  BSET.B  742.6
+00884:  MOV     #1,W4
+00886:  MOV     W4,744
+00888:  MOV     #16,W4
+0088A:  MOV     W4,746
+0088C:  DISI    #E
+0088E:  MOV     #103,W0
+00890:  MOV     #743,W1
+00892:  MOV     #78,W2
+00894:  MOV     #9A,W3
+00896:  MOV.B   W2L,[W1]
+00898:  MOV.B   W3L,[W1]
+0089A:  MOV.B   W0L,743
+0089C:  LSR     W0,#8,W0
+0089E:  MOV     #742,W1
+008A0:  MOV     #46,W2
+008A2:  MOV     #57,W3
+008A4:  MOV.B   W2L,[W1]
+008A6:  MOV.B   W3L,[W1]
+008A8:  MOV.B   W0L,[W1]
+008AA:  MOV     #8000,W4
+008AC:  MOV     W4,220
+008AE:  MOV     #400,W4
+008B0:  MOV     W4,222
+008B2:  MOV     #19,W4
+008B4:  MOV     W4,228
+008B6:  BCLR.B  1000.0
+008B8:  CLR     E0E
+008BA:  CLR     E1E
+008BC:  CLR     E2E
+008BE:  CLR     E3E
+008C0:  CLR     E4E
+008C2:  CLR     E5E
+008C4:  CLR     E6E
+008C6:  MOV     #6F80,W15
+008C8:  MOV     #6FFF,W0
+008CA:  MOV     W0,20
+008CC:  NOP     
+008CE:  MOV     #6F80,W15
+008D0:  MOV     #6FFF,W0
+008D2:  MOV     W0,20
+008D4:  NOP     
+.................... { 
+....................  
+....................  
+....................    enable_interrupts(INT_RDA); 
+008D6:  BSET.B  821.3
+....................    enable_interrupts(INTR_GLOBAL); 
+008D8:  BSET.B  8C3.7
+....................     
+....................    initBluetooth(); 
+008DA:  CALL    792
+....................    for(int i=0;i<64;i++) 
+008DE:  CLR     10BC
+008E0:  MOV     10BC,W4
+008E2:  MOV     #40,W3
+008E4:  CP      W3,W4
+008E6:  BRA     LE,8F8
+....................       sendArray[i]=i; 
+008E8:  MOV     #1002,W4
+008EA:  MOV     10BC,W3
+008EC:  ADD     W3,W4,W5
+008EE:  MOV     10BC,W0
+008F0:  MOV.B   W0L,[W5+#0]
+008F2:  INC     10BC
+008F4:  GOTO    8E0
+....................    while(TRUE) 
+....................    { 
+....................      sendData(sendArray,64); 
+008F8:  MOV.B   #40,W0L
+008FA:  MOV.B   W0L,10C0
+008FC:  MOV     #1002,W4
+008FE:  MOV     W4,10BE
+00900:  CALL    83A
+....................      if(BLDataCame) 
+00904:  BTSS.B  1000.0
+00906:  BRA     90A
+....................      { 
+....................         BLDataCame=0; 
+00908:  BCLR.B  1000.0
+....................         //Do whatever you want after data received via Bluetooth. 
+....................       
+....................      } 
+....................      delay_ms(100); 
+0090A:  MOV     #64,W0
+0090C:  CALL    55E
+00910:  GOTO    8F8
+....................    } 
+....................  
+.................... } 
+00914:  PWRSAV  #0
+
+Configuration Fuses:
+   Word  3L: 0033   NOWRT NOPROTECT GSSK
+          H: FF00  
+   Word  4L: 0080   FRC IESO
+          H: FF00  
+   Word  5L: 0026   HS NOOSCIO IOL1WAY CKSFSM
+          H: FF00  
+   Word  6L: 007F   WPOSTS16 WPRES128 PLLWAIT WINDIS NOWDT
+          H: FF00  
+   Word  7L: 0037   PUT128 NOBROWNOUT NOALTI2C1 NOALTI2C2
+          H: FF00  
+   Word  8L: 00D7   ICSP1 RESET_PRIMARY NOJTAG NODEBUG
+          H: FF00  
+   Word  9L: 0033   NOAWRT NOAPROTECT APLK
+          H: FF00  

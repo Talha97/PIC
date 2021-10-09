@@ -1,0 +1,592 @@
+#include<HM13.h>
+
+
+void writeAT(char *command)
+{
+
+     fprintf(BT,"%s",command);
+     memset(transienBuffer,'\0',20);
+
+}
+
+void testModule()
+{
+   sprintf(transienBuffer,"AT\r\n");
+   writeAT(transienBuffer);
+}
+
+void queryEDRAddress()
+{
+   sprintf(transienBuffer,"AT+ADDE?\r\n");
+   writeAT(transienBuffer);
+
+}
+
+void queryBLEAddress()
+{
+   sprintf(transienBuffer,"AT+ADDB?\r\n");
+   writeAT(transienBuffer);
+
+}
+
+/*
+Auth 0 ===> Allow every module
+Auth 1===> every connection must with authentication.
+*/
+void QuerySet_Authentication(int1 query,int1 Auth)
+{
+  if(query)
+    sprintf(transienBuffer,"AT+AUTH?\r\n");
+  else
+    sprintf(transienBuffer,"AT+AUTH%d\r\n",Auth);   
+    
+   writeAT(transienBuffer);
+
+}
+
+/*
+Baud- Baud Rate
+1   - 4800
+2   – 9600
+3   – 19200
+4   – 38400
+5   – 57600
+6   – 115200
+7   - 230400
+*/
+void QuerySet_BaudRate(int1 query,int Baud)
+{
+  if(query)
+    sprintf(transienBuffer,"AT+BAUD?\r\n");
+  else
+    sprintf(transienBuffer,"AT+BAUD%d\r\n",Baud);   
+    
+   writeAT(transienBuffer);
+
+}
+
+/*This functions delete last module from memory. */
+void clearLastEDRDevice()
+{
+  sprintf(transienBuffer,"AT+CLEAE\r\n");    
+  writeAT(transienBuffer);
+}
+
+void clearBLEDevice()
+{
+  sprintf(transienBuffer,"AT+CLEAB\r\n");    
+  writeAT(transienBuffer);
+}
+
+/*
+P1: 0, 1,(Default: 0)
+0: Balance mode
+1: High speed mode 
+*/
+void QuerySet_DataTransferSpeed(int1 query,int1 Speed)
+{
+  if(query)
+    sprintf(transienBuffer,"AT+HIGH?\r\n");
+  else
+    sprintf(transienBuffer,"AT+HIGH%d\r\n",Speed);   
+    
+   writeAT(transienBuffer);
+}
+
+/*
+P1: 0, 1,?, (Default: 0)
+0: Loaded notify 0ff
+1: Loaded notify on 
+When "AT+INIT1" is setup, after module loaded, module will output
+"OK+INIT" string through UART. 
+*/
+void QuerySet_LoadedNotify(int1 query,int1 On)
+{
+  if(query)
+    sprintf(transienBuffer,"AT+INIT?\r\n");
+  else
+    sprintf(transienBuffer,"AT+INIT%d\r\n",On);   
+    
+   writeAT(transienBuffer);
+
+}
+
+
+/*
+**AT+MODE0: Only transfer data when connection establishment.
+**AT+MODE1: Transfer data and response AT commands. 
+*/
+void QuerySet_WorkMode(int1 query,int1 mode) 
+{
+  if(query)
+    sprintf(transienBuffer,"AT+MODE?\r\n");
+  else
+    sprintf(transienBuffer,"AT+MODE%d\r\n",mode);   
+    
+   writeAT(transienBuffer);
+}
+
+
+/*
+After AT+NOTI1, module will send connect or disconnect string through
+UART when module state is change:
+OK+CONE ======== EDR connect
+OK+LSTE ========= EDR disconnect
+OK+CONB========= BLE connect
+OK+LSTB ========= BLE disconnect 
+
+OK+LSTA ========= except disconnect, module will reset after 500 ms. 
+*/
+void QuerySet_NotifyInformation(int1 query,int1 on) 
+{
+  if(query)
+    sprintf(transienBuffer,"AT+NOTI?\r\n");
+  else
+    sprintf(transienBuffer,"AT+NOTI%d\r\n",on);   
+    
+   writeAT(transienBuffer);
+
+}
+
+void QuerySet_NameEDRDevice(int1 query,char *name)
+{
+  if(query)
+    sprintf(transienBuffer,"AT+NAME?\r\n");
+  else
+    sprintf(transienBuffer,"AT+NAME%s",name);
+   writeAT(transienBuffer);
+}
+
+void QuerySet_NameBLEDevice(int1 query,char *name)
+{
+  if(query)
+    sprintf(transienBuffer,"AT+NAMB?\r\n");
+  else
+    sprintf(transienBuffer,"AT+NAMB%s",name);  
+   writeAT(transienBuffer);
+
+}
+
+/*
+P1: module EDR Code
+Max length: 6
+Default: 1234 
+*/
+void QuerySet_EDRPinCode(int1 query,char *password)
+{
+  if(query)
+    sprintf(transienBuffer,"AT+PINE?\r\n");
+  else
+    sprintf(transienBuffer,"AT+PINE%s",password);  
+    
+   writeAT(transienBuffer);
+
+}
+
+/*
+P1: module BLE Code
+000000~999999
+Default: 000000 
+*/
+void QuerySet_BLEPinCode(int1 query,char *password)
+{
+  if(query)
+    sprintf(transienBuffer,"AT+PINB?\r\n");
+  else
+    sprintf(transienBuffer,"AT+PINB%s",password);  
+    
+   writeAT(transienBuffer);
+
+}
+
+/*
+Update fabrica configuration to now config.
+*/
+void SetupValuetoFabricaSetup()
+{
+   sprintf(transienBuffer,"AT+RENEW\r\n");     
+   writeAT(transienBuffer);
+}
+
+/*Device MAC address query*/
+void QueryLastEDRDevice()
+{
+   sprintf(transienBuffer,"AT+RADE?\r\n");     
+   writeAT(transienBuffer);
+}
+
+void QueryLastBLEDevice()
+{
+   sprintf(transienBuffer,"AT+RADB?\r\n");     
+   writeAT(transienBuffer);
+}
+
+/*
+Master1 ===> Master device set
+*/
+void QuerySet_MasterSlave(int1 query,int1 master)
+{
+  if(query)
+    sprintf(transienBuffer,"AT+ROLB?\r\n");
+  else
+    sprintf(transienBuffer,"AT+ROLB%d\r\n",master);  
+    
+   writeAT(transienBuffer);
+}
+
+void initBluetooth()
+{
+   char BLBufferF[7];char BLBufferS[7];
+   char BLBufferBLEF[7];
+   BLBufferF="MyBL\r\n"; BLBufferS="Talha\r\n";
+   BLBufferBLEF="MyBL_BLE\r\n";
+   memset(transienBuffer,'\0',20);
+
+
+   QuerySet_Authentication(0,0);delay_ms(200);  
+   QuerySet_WorkMode(0,1); delay_ms(200);
+   QuerySet_NameEDRDevice(0,BLBufferF);delay_ms(200);
+   QuerySet_NameBLEDevice(0,BLBufferBLEF);delay_ms(200);
+   QuerySet_EDRPinCode(0,BLBufferS);delay_ms(200);
+   QuerySet_BLEPinCode(0,BLBufferS);delay_ms(200);
+
+   enable_interrupts(INT_RDA3);
+   enable_interrupts(INTR_GLOBAL);  
+
+}
+void sendData(int8 *message,int8 length)
+{
+
+  for(int k=0;k<length;k++)
+  {
+                              
+     fprintf(BT,"%c",message[k]);
+                                                           
+  }
+
+}
+
+void sendOptionsviaBluetooth()
+{
+   char buffBluetooth[64];
+   FlashInfo_Read(debugChar,16); 
+   
+   buffBluetooth[4]=optSelection;
+   for(int i=0;i<12;i++) buffBluetooth[5+i]=ops_field[i];
+   for(int i=0;i<5;i++) buffBluetooth[20+i]=debugChar[i];
+   for(int i=0;i<5;i++) buffBluetooth[25+i]=debugChar[i+5];
+   for(int i=0;i<5;i++) buffBluetooth[30+i]=debugChar[i+10];
+  
+   buffBluetooth[60] = make8(eventNumb,0);
+   buffBluetooth[61] = make8(eventNumb,1);
+   buffBluetooth[62] = make8(eventNumb,2);
+   buffBluetooth[63] = 124;
+   
+   for(int i=0;i<64;i++)  fprintf(BT,"%c",buffBluetooth[i]);    
+}
+
+void sendDataViaBLT()
+{
+   int totalReadPage=0;
+   int8 cycleNumber=0;
+   int8 eventCycle=0;
+   int1 NameSelected,IDSelected,OptionelSelected,GPSSelected=0;
+   
+   int32 memcount=0;
+   int8 lastIndex=0;
+   FlashInfo_Read(debugChar,16); 
+   
+   pack[4] = user_info_first;
+   for(int i=0; i<12; i++) 
+      pack[i+5] = ops_field[i]; 
+   
+   for(int i=0; i<5; i++)   
+      pack[i+20] = debugChar[i];
+   for(int i=0; i<5; i++)   
+      pack[i+25] = debugChar[i+5];  
+   for(int i=0; i<5; i++)   
+      pack[i+30] = debugChar[i+10]; 
+      
+   if(mem_bytes0==0)   
+      totalReadPage = (mem_block0*64+mem_page0)-11;  
+   else
+      totalReadPage = (mem_block0*64+mem_page0)-10;
+           
+
+   
+   pack[36] = totalReadPage;
+   pack[37] = mem_bytes0;
+     
+   eventNumb--;
+   
+   pack[60] = make8(eventNumb,0);
+   pack[61] = make8(eventNumb,1);
+   pack[62] = make8(eventNumb,2);
+   
+   pack[63] = 124; 
+   AESEncryptUSB(pack,64);
+   
+   sendData(pack,64);
+ 
+   delay_ms(10);
+   memset(pack,0,64);   
+  
+   IDSelected=bit_test(user_info_first,0);
+   NameSelected=bit_test(user_info_first,1);
+   OptionelSelected=bit_test(user_info_first,2);
+   GPSSelected=bit_test(user_info_first,3);   
+   
+   if(Event_pack_len<64)
+       cycleNumber=1;
+   else
+       cycleNumber=2;
+
+      
+   if(Event_pack_len<33)
+     eventCycle=2048/32;
+   else if((32<Event_pack_len)&&(Event_pack_len<65))
+     eventCycle=2048/64;
+   else if((64<Event_pack_len)&&(Event_pack_len<97))
+     eventCycle=2048/96;
+   else
+     eventCycle=2048/128;     
+
+   for(int i=0;i<totalReadPage;i++)
+   {
+       FlashRead(0,0,2048);
+       memcount=0;
+       for(int j=0;j<eventCycle;j++)
+       {
+           if( memory_Data[memcount] ==0xFF && memory_Data[memcount+1]==0xFF && memory_Data[memcount+2]==0xFF  )
+           {
+               i=totalReadPage;
+               break;
+               
+           }
+           if(cycleNumber==1)
+           {
+              lastIndex=15;
+              for(int k=0;k<15;k++)
+                pack[4+k]= memory_Data[memcount+k];
+              
+              if(NameSelected)
+              {
+                for(int k=0;k<36;k++)
+                 pack[4+lastIndex+k]=memory_Data[memcount+lastIndex+k];
+                 
+                lastIndex+=36;
+              }
+              
+              if(IDSelected)
+              {
+                for(int k=0;k<18;k++)
+                 pack[4+lastIndex+k]=memory_Data[memcount+lastIndex+k];
+                 
+                lastIndex+=18;
+              }
+              
+              if(OptionelSelected)
+              {
+                for(int k=0;k<18;k++)
+                 pack[4+lastIndex+k]=memory_Data[memcount+lastIndex+k];
+                 
+                lastIndex+=18;
+              }      
+              
+              if(GPSSelected)
+              {
+                for(int k=0;k<18;k++)
+                 pack[4+lastIndex+k]=memory_Data[memcount+lastIndex+k];
+                 
+                lastIndex+=18;
+              }  
+              
+              pack[58] = 23;
+              pack[63] = 128; 
+              AESEncryptUSB(pack,64);
+              sendData(pack,64);
+              delay_ms(10);
+              memset(pack,0,64);  
+         
+              if(Event_pack_len<33)
+                 memcount += 32; 
+              else if((32<Event_pack_len)&&(Event_pack_len<65))
+                 memcount += 64; 
+              else if((64<Event_pack_len)&&(Event_pack_len<97))
+                 memcount += 96; 
+              else
+                 memcount += 128;              
+              
+           }
+           
+           else if(cycleNumber==2)
+           {
+             lastIndex=15;
+             for(int k=0;k<15;k++)
+             pack[4+k]= memory_Data[memcount+k];
+             if(NameSelected)
+             {              
+                for(int k=0;k<36;k++)
+                  pack[4+lastIndex+k]=memory_Data[memcount+lastIndex+k];
+                  
+                lastIndex+=36;
+                pack[lastIndex+4]=23;
+                pack[63] = 128; 
+                AESEncryptUSB(pack,64);
+                sendData(pack,64);
+                delay_ms(22);
+                memset(pack,0,64); 
+                
+                lastIndex=0;
+                if(IDSelected)
+                {
+                  for(int k=0;k<18;k++)
+                    pack[4+lastIndex+k]=memory_Data[memcount+51+lastIndex+k];
+                 
+                  lastIndex+=18;
+                }
+              
+                if(OptionelSelected)
+                {
+                   for(int k=0;k<18;k++)
+                     pack[4+lastIndex+k]=memory_Data[memcount+51+lastIndex+k];
+                 
+                   lastIndex+=18;
+                }      
+              
+                if(GPSSelected)
+                {
+                  for(int k=0;k<18;k++)
+                    pack[4+lastIndex+k]=memory_Data[memcount+51+lastIndex+k];
+                 
+                   lastIndex+=18;
+                }  
+                
+                pack[58] =  23;
+                pack[63] = 129;
+                AESEncryptUSB(pack,64);
+
+                sendData(pack,64);
+                delay_ms(22);
+                memset(pack,0,64); 
+            
+   
+                if((64<Event_pack_len)&&(Event_pack_len<97))
+                 memcount += 96; 
+                else
+                 memcount += 128;                              
+
+             }
+             
+             else
+             {
+                for(int k=0;k<36;k++)
+                  pack[4+lastIndex+k]=memory_Data[memcount+lastIndex+k];
+                  
+                
+                pack[lastIndex+4]=23;
+                pack[63] = 128; 
+                AESEncryptUSB(pack,64);
+                sendData(pack,64);
+                delay_ms(10);
+                memset(pack,0,64); 
+                
+                lastIndex=0;
+               
+                  for(int k=0;k<18;k++)
+                    pack[4+lastIndex+k]=memory_Data[memcount+51+lastIndex+k];
+                 
+                  lastIndex+=18;
+                  
+                pack[58] = 23;
+                pack[63] = 129;
+                AESEncryptUSB(pack,64);
+                sendData(pack,64);
+                delay_ms(10);
+                memset(pack,0,64); 
+         
+   
+                if((64<Event_pack_len)&&(Event_pack_len<97))
+                 memcount += 96; 
+                else
+                 memcount += 128;                                          
+                 
+             
+             }
+             
+           }
+           
+        }
+       
+     }
+
+    
+     for(int k=0;k<64;k++)
+        pack[k]=131;
+       
+     sendData(pack,64);
+     delay_ms(10);
+     memset(pack,0,64); 
+     sound_buzzer(1500,250,1);
+                
+}
+
+void sendImageviaBLT()
+{
+   int counter=0;
+   while(1)
+   {
+      FlashRead(1,0,2048);
+      if( memory_Data[0]==0xFF && memory_Data[1]==0xFF && memory_Data[2]==0xFF  )
+         break;
+         
+      counter=0;
+      for(int i=0;i<32;i++)
+      {
+         for(int j=0;j<64;j++)
+         {
+            fprintf(BT,"%c",memory_Data[64*counter+j]);
+         }
+         counter++;
+         
+         delay_ms(20);
+      
+      }
+   }
+   
+   delay_ms(750); 
+   
+   for(int j=0;j<2;j++)
+   {
+      for(int i=0;i<64;i++)
+      {
+        pack[i]=131;
+      } 
+   }
+   sendData(pack,64);
+   
+}
+
+void sendMemoryviaBluetooth(int selection)
+{  
+                
+    sound_buzzer(400,150,1);
+    sendOptionsviaBluetooth();
+    for(int i=0;i<1;i++) //20
+    {
+       FlashRead(selection,0,64); //2048
+       for(int j=0;j<1;j++) //32
+       {
+          for(int k=0;k<64;k++)
+          {
+                              
+            fprintf(BT,"%c",memory_Data[64*j+k]);
+                                                           
+          }
+          
+          delay_us(1);
+        }
+                 
+     }
+
+}

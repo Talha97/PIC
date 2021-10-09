@@ -1,0 +1,9 @@
+#ifndef HM13_H_
+#define HM13_H_
+
+void start_Bluetooth();
+void initBluetooth();
+void sendOptionsviaBluetooth();
+void sendMemoryviaBluetooth();
+
+#endif

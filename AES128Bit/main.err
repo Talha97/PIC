@@ -1,0 +1,9 @@
+>>> Warning 214 "G:\GithubProje\PIC\AES128Bit\AES128.c" Line 293(1,1): Operator precedance rules may not be as intended, use () to clarify
+>>> Warning 214 "G:\GithubProje\PIC\AES128Bit\AES128.c" Line 393(1,1): Operator precedance rules may not be as intended, use () to clarify
+>>> Warning 214 "G:\GithubProje\PIC\AES128Bit\AES128.c" Line 552(1,1): Operator precedance rules may not be as intended, use () to clarify
+>>> Warning 202 "G:\GithubProje\PIC\AES128Bit\AES128.c" Line 209(24,30): Variable never used:   trans2
+>>> Warning 202 "G:\GithubProje\PIC\AES128Bit\AES128.c" Line 209(32,38): Variable never used:   trans3
+>>> Warning 202 "G:\GithubProje\PIC\AES128Bit\AES128.c" Line 474(8,16): Variable never used:   remining
+      Memory usage:   ROM=2%      RAM=4% - 4%
+      0 Errors,  6 Warnings.
+Build Successful.

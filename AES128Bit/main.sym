@@ -1,0 +1,182 @@
+W0      @SCRATCH
+W0L     _RETURN_
+W0 -W1  @READ_ROM_MEMORY.P1
+W0      @delay_us1.P2
+W0      @delay_ms1.P3
+W0 -W1  @DIV3232B.P4
+W1      @SCRATCH
+W1      @READ_PACKED_MEMORY.P1
+W1      @WRITE_PACKED_MEMORY.P2
+W2      @READ_ROM_MEMORY.P1
+W2 -W3  @DIV3232B.P2
+W2      @READ_PACKED_MEMORY.P3
+W2      @WRITE_PACKED_MEMORY.P4
+W3      @READ_PACKED_MEMORY.P1
+W3      @READ_ROM_MEMORY.P2
+W3      @WRITE_PACKED_MEMORY.P3
+A85.0   C1OUT
+A85.1   C1ENV
+A8D.0   C2OUT
+A8D.1   C2ENV
+A95.0   C3OUT
+A95.1   C3ENV
+1000-107F rawArray
+1080-10FF encryptedArray
+1100-110F decryptedArray
+1110-120F SBOX
+1210-130F INV_SBOX
+1310-131F Key
+1320-1321 KeyCounter
+1322-1325 tempArray
+1326-1335 message
+1336-1345 CryptedData
+1346-1355 stateMatrix
+1356-1365 reverseStateMatrix
+1366-1375 DecryptedData
+1376-1377 counter
+1378-1387 rawData
+1388-1389 MAIN.i
+138A-138B AESEncrypt.arrayS
+138A-138B AESDecrypte.cryptedDatas
+138C-138D AESDecrypte.arraySize
+138C-138D AESEncrypt.arraySize
+138E-138F AESDecrypte.destinationArray
+138E-138F AESEncrypt.destinationArray
+1390-1391 AESEncrypt.i
+1390-1391 AESDecrypte.division
+1392-1393 AESEncrypt.j
+1392-1393 AESDecrypte.remining
+1394-1395 AESEncrypt.division
+1394-13A3 AESDecrypte.transientArray
+1396-1397 AESEncrypt.remining
+1398-1399 AESEncrypt.cryptedCount
+13A2-13A3 MixColumns.i
+13A2-13A3 Subbytes.i
+13A2-13A3 convertDataToState.i
+13A2-13A3 ShiftRows.temp
+13A2-13A3 convertStateToData.count
+13A4-13A5 Subbytes.j
+13A4-13A5 ShiftRows.temp2
+13A4-13A5 mixSubCol.section
+13A4-13A5 AddRoundKey.selection
+13A4-13A5 convertStateToData.i
+13A4-13A5 AESDecrypte.k
+13A4-13A5 convertDataToState.j
+13A6-13A9 convertDataToState.i
+13A6.0  mixSubCol.mul2control
+13A6-13A7 AddRoundKey.i
+13A6-13A7 AESDecrypte.l
+13A6-13A7 convertStateToData.j
+13A6.1  mixSubCol.mul3control
+13A8-13A9 AESDecrypte.i
+13A8-13A9 AddRoundKey.j
+13A8-13A9 mixSubCol.temp0
+13AA-13AD AddRoundKey.i
+13AA-13AB AESDecrypte.j
+13AA-13AB mixSubCol.temp1
+13AC-13AD mixSubCol.temp2
+13AE-13AF mixSubCol.temp3
+13B0-13B1 mixSubCol.trans0
+13B2-13B3 mixSubCol.trans1
+13B4-13B5 mixSubCol.trans2
+13B6-13B7 mixSubCol.trans3
+13B8-13BF mixSubCol.tempArray
+13BC-13BD ReverseSubBytes.i
+13BC-13BD InvAddRoundKey.selection
+13BC-13BD ReverseMixColumns.i
+13BC-13BD ConvReverseToData.count
+13BC-13BD ReverseShift.temp
+13BC-13BD ConvertDataToReverseArray.arrayNew
+13BE-13BF ConvReverseToData.i
+13BE-13BF ReverseShift.temp2
+13BE-13BF ConvertDataToReverseArray.i
+13BE-13BF ReverseSubBytes.j
+13BE-13BF InvAddRoundKey.i
+13C0-13C1 InvAddRoundKey.j
+13C0-13C1 ConvReverseToData.j
+13C0-13C1 ConvertDataToReverseArray.j
+13C0-13C1 mixSubCol.i
+13C2-13C3 miniReverseMix.section
+13C2-13C5 mixSubCol.i
+13C4-13C5 miniReverseMix.trans0
+13C6-13C7 miniReverseMix.trans1
+13C8-13C9 miniReverseMix.trans2
+13CA-13CB miniReverseMix.trans3
+13CC-13D3 miniReverseMix.temp
+13D4-13D5 miniReverseMix.i
+13E2    mul11.a
+13E2-13E3 mul14.a
+13E2-13E3 mul13.a
+13E2    mult9.a
+13E4-13E5 mul14.temp
+13E4-13E5 mult9.temp
+13E4-13E5 mul11.temp
+13E4-13E5 mul13.temp
+13E6-13E7 mul13.i
+13E6-13E7 mul11.i
+13E6-13E7 mult9.i
+13EA    mul2.a
+13EB.0  mul2.control
+6F80-6FFF Stack
+
+ROM Allocation:
+000200  GeneralKey.call
+00021C  GeneralKey.data
+000292  convertDataToState
+0002F2  AddRoundKey
+000374  Subbytes
+0003E2  ShiftRows
+000430  mixSubCol
+00061A  MixColumns
+000634  convertStateToData
+000672  AESEncrypt
+00079A  ConvertDataToReverseArray
+0007DE  InvAddRoundKey
+000844  ReverseShift
+00088E  ReverseSubBytes
+0008FC  mul2
+00093E  mul14
+000974  mul11
+0009B2  mul13
+0009EA  mult9
+000A16  miniReverseMix
+000B30  ReverseMixColumns
+000B50  ConvReverseToData
+000B8E  AESDecrypte
+000C4E  @cinit1
+000C4E  MAIN
+000C88  @cinit2
+
+Project Directory:
+    G:\GithubProje\PIC\AES128Bit\
+
+Project Files:
+    main.c                                                  [03-Eyl-21 21:59  CRC=B90DAFA4]
+    main.h                                                  [03-Eyl-21 21:50  CRC=F4181C73]
+    C:\Program Files (x86)\PICC\Devices\33EP256MU810.h      [21-Haz-13 16:06  CRC=22D64E91]
+    AES128.c                                                [03-Eyl-21 22:01  CRC=026CD1B7]
+
+Source signature=D4D5BE16
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      DSPIC33EP256MU810
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: SIGNED: 8,16,32
+    Float,Double:   32,64
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

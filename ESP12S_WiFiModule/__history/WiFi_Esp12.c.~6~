@@ -1,0 +1,250 @@
+#include<stdarg.h>
+int8 buffercounter=0;
+int32 lenghtofMem=0;
+int32 lenghtofMemImage=0;
+
+int1 waitAnswer()
+{
+   
+   timeOutWiFi=0;
+   while(timeOutWiFi<2)
+   {
+      if(wifi_data_geldi)
+      {
+      
+        for(int i=0;i<100;i++)
+        {
+            if(wifi_data[i][0]=='O' && wifi_data[i+1][0]=='K')
+             {     
+                sound_buzzer(50,150,1);
+                
+                for(int i=0;i<100;i++) wifi_data[i][0]='\0';
+                wifi_data_geldi=0;
+                return 1;
+             }
+        }
+      
+      }
+   }
+   wifi_data_geldi=0;
+   return 0;
+}
+
+void writeATCommand(char *command)
+{
+
+     fprintf(WiFi,"%s",command);
+     fprintf(WiFi,"%s","\r\n");
+
+}
+
+int1 resetESP()
+{       
+       sprintf(transienBuffer,"AT+RST");
+       writeATCommand(transienBuffer);
+       delay_ms(1500);
+       return 1;
+       
+}
+
+int1 connectModule()
+{
+   transienBuffer="AT";
+   writeATCommand(transienBuffer);
+  
+   return 1;
+   
+   
+}
+
+
+void selectMode(int selection)
+{
+   
+   sprintf(transienBuffer,"AT+CWMODE=%d",selection);
+   writeATCommand(transienBuffer);
+       
+}
+int1 selectUsage(int selection)
+{
+      sprintf(transienBuffer,"AT+CIPMODE=%d",selection);
+      writeATCommand(transienBuffer);
+        
+      return True;
+
+}
+
+int1 selectMultipleOrSingle(int selection)
+{
+      sprintf(transienBuffer,"AT+CIPMUX=%d",selection);
+      writeATCommand(transienBuffer);
+      
+      return True;
+}
+
+int1 connectWifi(char *username, char *password)
+{   
+   char connectionBuffer[80];   
+   sprintf(connectionBuffer,"AT+CWJAP=\"%s\",\"%s\"\r\n",wifiID,wifiPassword);
+   fprintf(WiFi,"%s",connectionBuffer);
+
+   return True;
+
+}
+
+
+int1 accessPoint()
+{
+   fprintf(WIFI,"%s","AT+CWSAP=\"");
+   fprintf(WIFI,"%s","Armas");       //Access Point name. Can changable.
+   fprintf(WIFI,"%s","\",\"");   
+   fprintf(WIFI,"%s","12345678");
+   fprintf(WIFI,"%s","\",6,4\r\n");
+    
+   return True;
+      
+}
+
+int1 enableDHCP(int select1,int select2)
+{
+      sprintf(transienBuffer,"AT+CWDHCP_CUR=%d,%d",select1,select2);
+      writeATCommand(transienBuffer);
+     
+      return True;
+
+}
+
+int1 setSTA()
+{
+
+     transienBuffer="AT+CIPSTA=\"192.168.0.80\""; // Write IP Address whatever you want
+     writeATCommand(transienBuffer);
+     return 1;
+
+}
+int1 setTimeout(int timeout)
+{
+
+      sprintf(transienBuffer,"AT+CIPSTO=%d",timeout);
+      writeATCommand(transienBuffer);
+      
+      return True;
+      
+}
+
+int1 queryTimeout()
+{
+
+      sprintf(transienBuffer,"AT+CIPSTO?");
+      writeATCommand(transienBuffer);
+       
+      return True;
+      
+}
+
+
+int1 serverMode(int selection,int port)
+{
+      selectMode(3); //1->Station 2->Access Point 3-> Both
+      if(!waitAnswer()) return 0;
+      
+      selectMultipleOrSingle(1);//0->Single 1->Multiple
+      if(!waitAnswer()) return 0;
+      
+      sprintf(transienBuffer,"AT+CIPSERVER=%d,%d",1,1234);
+      writeATCommand(transienBuffer);
+      if(!waitAnswer()) return 0;
+     
+      setTimeout(180);
+      if(!waitAnswer()) return 0;
+         
+      return 1;
+
+}
+
+
+int1 sendDataviaESP(int8 *message,int ID,int length)
+{       
+      sprintf(transienBuffer,"AT+CIPSEND=%d,%d",ID,length);
+      writeATCommand(transienBuffer);
+      delay_ms(1);
+      if(length==2048)
+      {
+         for(int i=0;i<4;i++)
+         {
+           for(int j=0;j<512;j++)
+           {
+              fprintf(WIFI,"%c",message[512*i+j]);
+           
+           }
+           delay_ms(2);
+   
+         }
+      }
+      
+      else
+      {
+           for(int j=0;j<length;j++)
+           {
+              fprintf(WIFI,"%c",message[j]);
+           
+           }     
+      
+      }
+              
+      return 1;
+}
+
+
+void nullSend()
+{
+      sprintf(transienBuffer,"AT+CIPSEND=%d,%d",0,64);
+      writeATCommand(transienBuffer);
+      delay_ms(1);
+      
+      for(int i=0;i<64;i++)
+      {
+         fprintf(WiFi,"%c",131);
+      }
+
+}
+
+
+int1 connectESP()
+{
+
+   sound_buzzer(500,150,1);
+   
+   connectModule();
+   if(!waitAnswer()) return 0;
+   selectMode(3);                //1->Station 2->Access Point 3-> Both
+   if(!waitAnswer()) return 0;
+   selectMultipleOrSingle(1);    //0->Single 1->Multiple
+   if(!waitAnswer()) return 0;    
+   accessPoint();
+   if(!waitAnswer()) return 0;
+   setSTA();
+   if(!waitAnswer()) return 0;
+   queryTimeout();
+   if(!waitAnswer()) return 0;
+   if(!serverMode(1,1234)) return 0;
+
+   return 1;
+}
+
+void listAll()
+{
+      transienBuffer="AT+CWLAP";
+      writeATCommand(transienBuffer);
+
+}
+
+
+int1 closeWiFiConnection()
+{
+    transienBuffer="AT+CWQAP";
+    writeATCommand(transienBuffer);
+    if(!waitAnswer()) return False;
+    return True;
+    
+}

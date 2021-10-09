@@ -1,0 +1,6 @@
+>>> Warning 202 "G:\GithubProje\PIC\ESP12S_WiFiModule\Wifi_ESP12.c" Line 2(6,19): Variable never used:   buffercounter
+>>> Warning 202 "G:\GithubProje\PIC\ESP12S_WiFiModule\Wifi_ESP12.c" Line 3(7,18): Variable never used:   lenghtofMem
+>>> Warning 202 "G:\GithubProje\PIC\ESP12S_WiFiModule\Wifi_ESP12.c" Line 4(7,23): Variable never used:   lenghtofMemImage
+      Memory usage:   ROM=2%      RAM=22% - 23%
+      0 Errors,  3 Warnings.
+Build Successful.

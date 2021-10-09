@@ -1,0 +1,78 @@
+
+ROM used:   2326/87552 (1%)
+            2326/87552 (1%) including unused fragments
+
+            1.2 Average locations per line
+            22.6 Average locations per statement
+
+RAM used:   318/28672 (1%) at main() level
+            394/28672 (1%) worst case
+
+Stack used: 36 worst case (36 in main + 0 for interrupts)
+Stack size: 128
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   49    20  19  main.c
+   19     0   0  main.h
+ 1533     0   0  C:\Program Files (x86)\PICC\Devices\33EP256MU810.h
+  270    83  81  HM13.c
+    8     0   0  HM13.h
+----- -----
+ 1879   103 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     24   1    2             @delay_ms1
+0     28   1    2    88  1.9  writeAT
+0     14   0    1    42  1.4  @SPRINTF
+0    108   2    2   127  2.8  QuerySet_Authentication
+0     24   1    0   127  2.8  @const1014
+0     24   1    0   127  2.8  @const1015
+0    262   6    0   127  2.8  @PRINTFD16_1005
+0    108   2    2   127  2.8  QuerySet_WorkMode
+0     24   1    0     5  1.0  @const1041
+0     24   1    0   230  4.5  @const1042
+0    108   2    3   136  3.1  QuerySet_NameEDRDevice
+0     24   1    0             @const1051
+0     22   0    0             @const1052
+0    108   2    3   136  3.1  QuerySet_NameBLEDevice
+0     24   1    0             @const1056
+0     22   0    0             @const1057
+0    108   2    3   136  3.1  QuerySet_EDRPinCode
+0     24   1    0             @const1061
+0     22   0    0             @const1062
+0    108   2    3   136  3.1  QuerySet_BLEPinCode
+0     24   1    0             @const1066
+0     22   0    0             @const1067
+0    168   4   21   620  2.9  initBluetooth
+0     20   0    0             @const1082
+0     20   0    0             @const1083
+0     24   1    0             @const1084
+0     40   1    5   152  4.4  sendData
+0    106   2    7   242  5.3  rda_isr
+0    180   4    3   279  5.1  MAIN
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               17
+    Statements              103
+    Comments                246
+    Volume (V)              5126
+    Difficulty (D)          51.2
+    Effort to implement (E) 262529
+    Time to implement (T)   4 hours, 3 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   15
+    Maintainability (MI)    93
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-001FE   508  0  
+00200-0FFFE  1814  63210  
+10000-1FFFE     0  65536  
+20000-2ABFE     0  44032  
+
+
+

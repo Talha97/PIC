@@ -1,0 +1,4 @@
+>>> Warning 229 "G:\GithubProje\PIC\GPS\GPS.c" Line 288(1,1): Subscript out of range
+      Memory usage:   ROM=1%      RAM=3% - 3%
+      0 Errors,  1 Warnings.
+Build Successful.

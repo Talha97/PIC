@@ -1,0 +1,2204 @@
+CCS PCD C Compiler, Version 5.007, 61971               03-Eyl-21 22:01
+
+               Filename:   G:\GithubProje\PIC\AES128Bit\main.lst
+
+               ROM used:   3744 bytes (2%)
+                           Largest free fragment is 65536
+               RAM used:   1035 (4%) at main() level
+                           1132 (4%) worst case
+               Stack used: 34 locations
+               Stack size: 128
+
+*
+00000:  GOTO    C4E
+.................... #include <main.h> 
+.................... #include <33EP256MU810.h> 
+.................... //////// Standard Header file for the DSPIC33EP256MU810 device //////////////// 
+.................... #device DSPIC33EP256MU810 
+*
+00200:  CLR     54
+00202:  MOV     #76,W3
+00204:  SUB     W0,W3,W3
+00206:  BRA     C,212
+00208:  MOV     #21C,W3
+0020A:  ADD     W3,W0,W0
+0020C:  TBLRDL.B[W0],W0L
+0020E:  CLR.B   1
+00210:  RETURN  
+00212:  MOV     #21C,W0
+00214:  ADD     W3,W3,W3
+00216:  ADD     W3,W0,W3
+00218:  TBLRDH  [W3],W0
+0021A:  RETURN  
+0021C:  DATA    54,41,26
+0021E:  DATA    49,52,37
+00220:  DATA    D6,97,11
+00222:  DATA    DE,8C,A6
+00224:  DATA    CC,5B,80
+00226:  DATA    85,09,B7
+00228:  DATA    0D,56,D2
+0022A:  DATA    D3,DA,74
+0022C:  DATA    8E,D8,F4
+0022E:  DATA    0B,D1,43
+00230:  DATA    3F,E7,C6
+00232:  DATA    EC,3D,B2
+00234:  DATA    D6,31,46
+00236:  DATA    DD,E0,05
+00238:  DATA    E2,D3,48
+0023A:  DATA    0E,EE,56
+0023C:  DATA    4B,98,4B
+0023E:  DATA    96,78,4C
+00240:  DATA    2F,B7,48
+00242:  DATA    21,59,1E
+00244:  DATA    F3,44,55
+00246:  DATA    65,3C,19
+00248:  DATA    41,53,2C
+0024A:  DATA    4E,41,32
+0024C:  DATA    68,3B,67
+0024E:  DATA    75,34,7E
+00250:  DATA    7D,46,2D
+00252:  DATA    33,07,1F
+00254:  DATA    BC,FA,78
+00256:  DATA    C9,CE,06
+00258:  DATA    0C,F6,7A
+0025A:  DATA    3F,F1,65
+0025C:  DATA    2A,DC,1D
+0025E:  DATA    E3,12,1B
+00260:  DATA    E7,3B,44
+00262:  DATA    D8,CA,21
+00264:  DATA    65,5E,3C
+00266:  DATA    86,4C,27
+00268:  DATA    FF,A1,63
+0026A:  DATA    27,6B,42
+0026C:  DATA    56,F7,7E
+0026E:  DATA    D0,BB,59
+00270:  DATA    4C,BB,82
+00272:  DATA    6B,D0,C0
+00274:  DATA    4C,45,BE
+00276:  DATA    43,4C,E7
+00278:  DATA    65,20,AA
+0027A:  DATA    63,2F,6A
+0027C:  DATA    B1,91,D4
+0027E:  DATA    F2,DD,33
+00280:  DATA    42,D3,16
+00282:  DATA    21,FC,7C
+00284:  DATA    2D,FE,A8
+00286:  DATA    DF,23,9B
+00288:  DATA    82,7C,DD
+0028A:  DATA    A3,80,A1
+0028C:  DATA    4E,32,09
+0028E:  DATA    91,11,92
+00290:  DATA    85,B7,00
+....................  
+.................... #list 
+....................  
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES CKSFSM                   //Clock Switching is enabled, fail Safe clock monitor is enabled 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES NOJTAG                   //JTAG disabled 
+....................  
+.................... #device ICSP=1 
+.................... #use delay(clock=96MHz,crystal=24MHz) 
+....................  
+.................... int8 rawArray[128]; 
+.................... int8 encryptedArray[128]; 
+.................... int8 decryptedArray[16]; 
+....................  
+.................... int8 SBOX[16][16] =  
+.................... { 
+....................   //0     1    2      3     4    5     6     7      8    9     A      B    C     D     E     F 
+....................   { 0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76 }, 
+....................   { 0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0 }, 
+....................   { 0xb7, 0xfd, 0x93, 0x26, 0x36, 0x3f, 0xf7, 0xcc, 0x34, 0xa5, 0xe5, 0xf1, 0x71, 0xd8, 0x31, 0x15 }, 
+....................   { 0x04, 0xc7, 0x23, 0xc3, 0x18, 0x96, 0x05, 0x9a, 0x07, 0x12, 0x80, 0xe2, 0xeb, 0x27, 0xb2, 0x75 }, 
+....................   { 0x09, 0x83, 0x2c, 0x1a, 0x1b, 0x6e, 0x5a, 0xa0, 0x52, 0x3b, 0xd6, 0xb3, 0x29, 0xe3, 0x2f, 0x84 }, 
+....................   { 0x53, 0xd1, 0x00, 0xed, 0x20, 0xfc, 0xb1, 0x5b, 0x6a, 0xcb, 0xbe, 0x39, 0x4a, 0x4c, 0x58, 0xcf }, 
+....................   { 0xd0, 0xef, 0xaa, 0xfb, 0x43, 0x4d, 0x33, 0x85, 0x45, 0xf9, 0x02, 0x7f, 0x50, 0x3c, 0x9f, 0xa8 }, 
+....................   { 0x51, 0xa3, 0x40, 0x8f, 0x92, 0x9d, 0x38, 0xf5, 0xbc, 0xb6, 0xda, 0x21, 0x10, 0xff, 0xf3, 0xd2 }, 
+....................   { 0xcd, 0x0c, 0x13, 0xec, 0x5f, 0x97, 0x44, 0x17, 0xc4, 0xa7, 0x7e, 0x3d, 0x64, 0x5d, 0x19, 0x73 }, 
+....................   { 0x60, 0x81, 0x4f, 0xdc, 0x22, 0x2a, 0x90, 0x88, 0x46, 0xee, 0xb8, 0x14, 0xde, 0x5e, 0x0b, 0xdb }, 
+....................   { 0xe0, 0x32, 0x3a, 0x0a, 0x49, 0x06, 0x24, 0x5c, 0xc2, 0xd3, 0xac, 0x62, 0x91, 0x95, 0xe4, 0x79 }, 
+....................   { 0xe7, 0xc8, 0x37, 0x6d, 0x8d, 0xd5, 0x4e, 0xa9, 0x6c, 0x56, 0xf4, 0xea, 0x65, 0x7a, 0xae, 0x08 }, 
+....................   { 0xba, 0x78, 0x25, 0x2e, 0x1c, 0xa6, 0xb4, 0xc6, 0xe8, 0xdd, 0x74, 0x1f, 0x4b, 0xbd, 0x8b, 0x8a }, 
+....................   { 0x70, 0x3e, 0xb5, 0x66, 0x48, 0x03, 0xf6, 0x0e, 0x61, 0x35, 0x57, 0xb9, 0x86, 0xc1, 0x1d, 0x9e }, 
+....................   { 0xe1, 0xf8, 0x98, 0x11, 0x69, 0xd9, 0x8e, 0x94, 0x9b, 0x1e, 0x87, 0xe9, 0xce, 0x55, 0x28, 0xdf }, 
+....................   { 0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16 } 
+....................    
+.................... }; 
+....................  
+....................  
+.................... int8 INV_SBOX[16][16] =  
+.................... { 
+....................   { 0x52, 0x09, 0x6a, 0xd5, 0x30, 0x36, 0xa5, 0x38, 0xbf, 0x40, 0xa3, 0x9e, 0x81, 0xf3, 0xd7, 0xfb }, 
+....................   { 0x7c, 0xe3, 0x39, 0x82, 0x9b, 0x2f, 0xff, 0x87, 0x34, 0x8e, 0x43, 0x44, 0xc4, 0xde, 0xe9, 0xcb }, 
+....................   { 0x54, 0x7b, 0x94, 0x32, 0xa6, 0xc2, 0x23, 0x3d, 0xee, 0x4c, 0x95, 0x0b, 0x42, 0xfa, 0xc3, 0x4e }, 
+....................   { 0x08, 0x2e, 0xa1, 0x66, 0x28, 0xd9, 0x24, 0xb2, 0x76, 0x5b, 0xa2, 0x49, 0x6d, 0x8b, 0xd1, 0x25 }, 
+....................   { 0x72, 0xf8, 0xf6, 0x64, 0x86, 0x68, 0x98, 0x16, 0xd4, 0xa4, 0x5c, 0xcc, 0x5d, 0x65, 0xb6, 0x92 }, 
+....................   { 0x6c, 0x70, 0x48, 0x50, 0xfd, 0xed, 0xb9, 0xda, 0x5e, 0x15, 0x46, 0x57, 0xa7, 0x8d, 0x9d, 0x84 }, 
+....................   { 0x90, 0xd8, 0xab, 0x00, 0x8c, 0xbc, 0xd3, 0x0a, 0xf7, 0xe4, 0x58, 0x05, 0xb8, 0xb3, 0x45, 0x06 }, 
+....................   { 0xd0, 0x2c, 0x1e, 0x8f, 0xca, 0x3f, 0x0f, 0x02, 0xc1, 0xaf, 0xbd, 0x03, 0x01, 0x13, 0x8a, 0x6b }, 
+....................   { 0x3a, 0x91, 0x11, 0x41, 0x4f, 0x67, 0xdc, 0xea, 0x97, 0xf2, 0xcf, 0xce, 0xf0, 0xb4, 0xe6, 0x73 }, 
+....................   { 0x96, 0xac, 0x74, 0x22, 0xe7, 0xad, 0x35, 0x85, 0xe2, 0xf9, 0x37, 0xe8, 0x1c, 0x75, 0xdf, 0x6e }, 
+....................   { 0x47, 0xf1, 0x1a, 0x71, 0x1d, 0x29, 0xc5, 0x89, 0x6f, 0xb7, 0x62, 0x0e, 0xaa, 0x18, 0xbe, 0x1b }, 
+....................   { 0xfc, 0x56, 0x3e, 0x4b, 0xc6, 0xd2, 0x79, 0x20, 0x9a, 0xdb, 0xc0, 0xfe, 0x78, 0xcd, 0x5a, 0xf4 }, 
+....................   { 0x1f, 0xdd, 0xa8, 0x33, 0x88, 0x07, 0xc7, 0x31, 0xb1, 0x12, 0x10, 0x59, 0x27, 0x80, 0xec, 0x5f }, 
+....................   { 0x60, 0x51, 0x7f, 0xa9, 0x19, 0xb5, 0x4a, 0x0d, 0x2d, 0xe5, 0x7a, 0x9f, 0x93, 0xc9, 0x9c, 0xef }, 
+....................   { 0xa0, 0xe0, 0x3b, 0x4d, 0xae, 0x2a, 0xf5, 0xb0, 0xc8, 0xeb, 0xbb, 0x3c, 0x83, 0x53, 0x99, 0x61 }, 
+....................   { 0x17, 0x2b, 0x04, 0x7e, 0xba, 0x77, 0xd6, 0x26, 0xe1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0c, 0x7d } 
+....................  }; 
+.................... #include "AES128.c" 
+.................... /* 
+....................   Date:03.05.2021 
+....................   AUTHOR:TALHA SEVÝNÇ 
+....................  
+.................... */ 
+....................  
+.................... #define clockCycle 1//150000 
+.................... #define numberRound 10 
+....................  
+.................... const int8 GeneralKey[4][44] = 
+.................... {  
+....................  { 0x54, 0x41, 0x49, 0x52, 0xd6, 0x97, 0xde, 0x8c, 0xcc, 0x5b, 0x85, 0x9, 0xd, 0x56, 0xd3, 0xda, 0x8e, 0xd8, 0xb, 0xd1, 0x3f, 0xe7, 0xec, 0x3d, 0xd6, 0x31, 0xdd, 0xe0, 0xe2, 0xd3, 0xe, 0xee, 0x4b, 0x98, 0x96, 0x78, 0x2f, 0xb7, 0x21, 0x59, 0xf3, 0x44, 0x65, 0x3c}, 
+....................  { 0x41, 0x53, 0x4e, 0x41, 0x68, 0x3b, 0x75, 0x34, 0x7d, 0x46, 0x33, 0x7, 0xbc, 0xfa, 0xc9, 0xce, 0xc, 0xf6, 0x3f, 0xf1, 0x2a, 0xdc, 0xe3, 0x12, 0xe7, 0x3b, 0xd8, 0xca, 0x65, 0x5e, 0x86, 0x4c, 0xff, 0xa1, 0x27, 0x6b, 0x56, 0xf7, 0xd0, 0xbb, 0x4c, 0xbb, 0x6b, 0xd0}, 
+....................  { 0x4c, 0x45, 0x43, 0x4c, 0x65, 0x20, 0x63, 0x2f, 0xb1, 0x91, 0xf2, 0xdd, 0x42, 0xd3, 0x21, 0xfc, 0x2d, 0xfe, 0xdf, 0x23, 0x82, 0x7c, 0xa3, 0x80, 0x4e, 0x32, 0x91, 0x11, 0x85, 0xb7, 0x26, 0x37, 0x11, 0xa6, 0x80, 0xb7, 0xd2, 0x74, 0xf4, 0x43, 0xc6, 0xb2, 0x46, 0x5}, 
+....................  { 0x48, 0x56, 0x4b, 0x4c, 0x48, 0x1e, 0x55, 0x19, 0x2c, 0x32, 0x67, 0x7e, 0x2d, 0x1f, 0x78, 0x6, 0x7a, 0x65, 0x1d, 0x1b, 0x44, 0x21, 0x3c, 0x27, 0x63, 0x42, 0x7e, 0x59, 0x82, 0xc0, 0xbe, 0xe7, 0xaa, 0x6a, 0xd4, 0x33, 0x16, 0x7c, 0xa8, 0x9b, 0xdd, 0xa1, 0x9, 0x92} 
+.................... }; 
+....................  
+....................  
+....................  
+.................... int8 Key[4][4] = { {  0x54,0x41,0x49,0x52  },{  0x41,0x53,0x4E,0x41  },{ 0x4C,0x45,0x43,0x4C }, { 0x48,0x56,0x4B,0x4C } }; 
+.................... const int8 Rcon[11] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36 };  
+....................  
+....................  
+.................... int KeyCounter = 0; 
+....................  
+.................... int8 tempArray[4]; 
+.................... int8 message[16]    ; 
+.................... int8 CryptedData[16]; 
+.................... int8 stateMatrix[4][4]; 
+....................  
+.................... int8 reverseStateMatrix[4][4]; 
+.................... int8 DecryptedData[16]; 
+....................  
+.................... void convertDataToState(); 
+.................... void AESEncrypt(int8 *arrayS,int arraySize,int8 *destinationArray); 
+.................... void Subbytes(void); 
+.................... void ShiftRows(void); 
+.................... void MixColumns(void); 
+.................... void mixSubCol(int section); 
+.................... void AddRoundKey(int selection); 
+.................... void KeyExtension(void); 
+.................... void GFunction(int8 *lastWord, int selection); 
+.................... void convertStateToData(); 
+....................  
+....................  
+.................... void ConvReverseToData(); 
+.................... void miniReverseMix(int section); 
+.................... void ReverseShift(); 
+.................... void ReverseSubBytes(); 
+.................... void ReverseMixColumns(); 
+.................... void AESDecrypte(int8 *cryptedDatas,int16 arraySize,int8 *destinationArray); 
+.................... void ConvertDataToReverseArray(int8 *arrayNew); 
+....................  
+....................  
+.................... int8 mul14(int8 a); 
+.................... int8 mul13(int8 a); 
+.................... int8 mul11(int8 a); 
+.................... int8 mult9(int8 a); 
+.................... int8 mul2 (int8 a); 
+.................... int8 mul3 (int8 a); 
+.................... void clear(); 
+....................  
+.................... int counter=0; 
+.................... int8 rawData[16]; 
+....................  
+.................... void clear() 
+.................... { 
+....................    int i=0; 
+....................    for ( i = 0; i < 16; i++) message[i] = 0; 
+....................    for ( i = 0; i < 16; i++) rawData[i] = 0;    
+.................... } 
+....................  
+.................... int8 mul2(int8 a) 
+.................... { 
+....................    if (a > 255) a = a & 0x0FF; 
+*
+008FC:  MOV.B   13EA,W0L
+008FE:  SE      W0,W0
+00900:  MOV     #FF,W4
+00902:  CP      W4,W0
+00904:  BRA     GE,90E
+00906:  MOV.B   13EA,W0L
+00908:  SE      W0,W0
+0090A:  AND     #FF,W0
+0090C:  MOV.B   W0L,13EA
+....................    int1 control = a >> 7; 
+0090E:  MOV.B   13EA,W0L
+00910:  CLR.B   1
+00912:  CLR.B   1
+00914:  LSR     W0,#7,W0
+00916:  BCLR.B  13EB.0
+00918:  BTSC.B  0.0
+0091A:  BSET.B  13EB.0
+....................    a = a << 1; 
+0091C:  MOV.B   13EA,W0L
+0091E:  CLR.B   1
+00920:  SL      W0,#1,W0
+00922:  MOV.B   W0L,13EA
+....................    a = a & 0x0FF; 
+00924:  MOV.B   13EA,W0L
+00926:  SE      W0,W0
+00928:  AND     #FF,W0
+0092A:  MOV.B   W0L,13EA
+....................    if (control)  a = a ^ 0x1B; 
+0092C:  BTSS.B  13EB.0
+0092E:  BRA     938
+00930:  MOV.B   13EA,W0L
+00932:  SE      W0,W0
+00934:  XOR     W0,#1B,W0
+00936:  MOV.B   W0L,13EA
+....................    return a; 
+00938:  MOV.B   13EA,W0L
+0093A:  MOV.B   W0L,0
+0093C:  RETURN  
+....................  
+.................... } 
+....................  
+.................... int8 mul3(int8 a) 
+.................... { 
+....................    return mul2(a) ^ a; 
+.................... } 
+....................  
+....................  
+....................  
+.................... int8 mul14(int a) 
+0093E:  PUSH    13E2
+00940:  POP     13E4
+.................... { 
+....................    int temp = a; 
+....................    temp = mul2(temp); 
+00942:  MOV.B   13E4,W0L
+00944:  MOV.B   W0L,13EA
+00946:  CALL    8FC
+0094A:  SE      W0,W0
+0094C:  MOV     W0,13E4
+....................    temp ^= a; 
+0094E:  MOV     13E2,W0
+00950:  XOR     13E4
+....................    temp = mul2(temp); 
+00952:  MOV.B   13E4,W0L
+00954:  MOV.B   W0L,13EA
+00956:  CALL    8FC
+0095A:  SE      W0,W0
+0095C:  MOV     W0,13E4
+....................    temp ^= a; 
+0095E:  MOV     13E2,W0
+00960:  XOR     13E4
+....................    temp = mul2(temp); 
+00962:  MOV.B   13E4,W0L
+00964:  MOV.B   W0L,13EA
+00966:  CALL    8FC
+0096A:  SE      W0,W0
+0096C:  MOV     W0,13E4
+....................    return temp; 
+0096E:  MOV.B   13E4,W0L
+00970:  MOV.B   W0L,0
+00972:  RETURN  
+....................  
+.................... } 
+....................  
+.................... int8 mul13(int a) 
+*
+009B2:  PUSH    13E2
+009B4:  POP     13E4
+.................... { 
+....................    int temp = a; 
+....................    temp = mul2(temp); 
+009B6:  MOV.B   13E4,W0L
+009B8:  MOV.B   W0L,13EA
+009BA:  CALL    8FC
+009BE:  SE      W0,W0
+009C0:  MOV     W0,13E4
+....................    temp ^= a; 
+009C2:  MOV     13E2,W0
+009C4:  XOR     13E4
+....................    for (int i = 0; i < 2; i++) temp = mul2(temp); 
+009C6:  CLR     13E6
+009C8:  MOV     13E6,W4
+009CA:  CP      W4,#2
+009CC:  BRA     GE,9E0
+009CE:  MOV.B   13E4,W0L
+009D0:  MOV.B   W0L,13EA
+009D2:  CALL    8FC
+009D6:  SE      W0,W0
+009D8:  MOV     W0,13E4
+009DA:  INC     13E6
+009DC:  GOTO    9C8
+....................    temp ^= a; 
+009E0:  MOV     13E2,W0
+009E2:  XOR     13E4
+....................    return temp; 
+009E4:  MOV.B   13E4,W0L
+009E6:  MOV.B   W0L,0
+009E8:  RETURN  
+....................  
+.................... } 
+....................  
+....................  
+.................... int8 mul11(int8 a) 
+*
+00974:  MOV.B   13E2,W0L
+00976:  SE      W0,W0
+00978:  MOV     W0,13E4
+.................... { 
+....................    int temp = a; 
+....................    for (int i = 0; i < 2; i++) temp = mul2(temp); 
+0097A:  CLR     13E6
+0097C:  MOV     13E6,W4
+0097E:  CP      W4,#2
+00980:  BRA     GE,994
+00982:  MOV.B   13E4,W0L
+00984:  MOV.B   W0L,13EA
+00986:  CALL    8FC
+0098A:  SE      W0,W0
+0098C:  MOV     W0,13E4
+0098E:  INC     13E6
+00990:  GOTO    97C
+....................    temp ^= a; 
+00994:  MOV.B   13E2,W0L
+00996:  SE      W0,W0
+00998:  XOR     13E4
+....................    temp = mul2(temp); 
+0099A:  MOV.B   13E4,W0L
+0099C:  MOV.B   W0L,13EA
+0099E:  CALL    8FC
+009A2:  SE      W0,W0
+009A4:  MOV     W0,13E4
+....................    temp ^= a; 
+009A6:  MOV.B   13E2,W0L
+009A8:  SE      W0,W0
+009AA:  XOR     13E4
+....................    return temp; 
+009AC:  MOV.B   13E4,W0L
+009AE:  MOV.B   W0L,0
+009B0:  RETURN  
+....................  
+....................  
+.................... } 
+....................  
+.................... int8 mult9(int8 a) 
+*
+009EA:  MOV.B   13E2,W0L
+009EC:  SE      W0,W0
+009EE:  MOV     W0,13E4
+.................... { 
+....................    int temp = a; 
+....................    for (int i = 0; i < 3; i++)   temp = mul2(temp); 
+009F0:  CLR     13E6
+009F2:  MOV     13E6,W4
+009F4:  CP      W4,#3
+009F6:  BRA     GE,A0A
+009F8:  MOV.B   13E4,W0L
+009FA:  MOV.B   W0L,13EA
+009FC:  CALL    8FC
+00A00:  SE      W0,W0
+00A02:  MOV     W0,13E4
+00A04:  INC     13E6
+00A06:  GOTO    9F2
+....................    temp = a ^ temp; 
+00A0A:  MOV.B   13E2,W0L
+00A0C:  SE      W0,W0
+00A0E:  XOR     13E4
+....................    return temp; 
+00A10:  MOV.B   13E4,W0L
+00A12:  MOV.B   W0L,0
+00A14:  RETURN  
+....................     
+....................  
+.................... } 
+....................  
+....................  
+....................  
+....................  
+.................... void convertDataToState() 
+*
+00292:  MOV     W5,[W15++]
+00294:  MOV     W6,[W15++]
+.................... { 
+....................    for (int i = 0; i < 4; i++) 
+00296:  CLR     13A2
+00298:  MOV     13A2,W4
+0029A:  CP      W4,#4
+0029C:  BRA     GE,2EC
+....................       for (int j = 0; j < 4; j++) 
+0029E:  CLR     13A4
+002A0:  MOV     13A4,W4
+002A2:  CP      W4,#4
+002A4:  BRA     GE,2E6
+....................       { 
+....................          stateMatrix[i][j] = rawData[4 * j + i]; 
+002A6:  MOV     13A2,W4
+002A8:  MUL.UU  W4,#4,W0
+002AA:  MOV     W0,W5
+002AC:  MOV     W5,W0
+002AE:  ADD     13A4,W0
+002B0:  MOV     #1346,W4
+002B2:  ADD     W0,W4,W5
+002B4:  MOV     13A4,W4
+002B6:  MUL.UU  W4,#4,W6
+002B8:  MOV     W6,W0
+002BA:  ADD     13A2,W0
+002BC:  MOV     W0,W6
+002BE:  MOV     #1378,W4
+002C0:  ADD     W6,W4,W0
+002C2:  MOV.B   [W0],[W5]
+....................          for(int32 i=0;i<clockCycle;i++); 
+002C4:  CLR     13A6
+002C6:  CLR     13A8
+002C8:  MOV     13A8,W4
+002CA:  CP      W4,#0
+002CC:  BRA     GT,2E0
+002CE:  BRA     LT,2D6
+002D0:  MOV     13A6,W4
+002D2:  CP      W4,#1
+002D4:  BRA     C,2E0
+002D6:  INC     13A6
+002D8:  BTSC.B  42.1
+002DA:  INC     13A8
+002DC:  GOTO    2C8
+002E0:  INC     13A4
+002E2:  GOTO    2A0
+002E6:  INC     13A2
+002E8:  GOTO    298
+....................           
+....................       } 
+002EC:  MOV     [--W15],W6
+002EE:  MOV     [--W15],W5
+002F0:  RETURN  
+.................... } 
+....................  
+.................... void convertStateToData() 
+*
+00634:  MOV     W5,[W15++]
+00636:  MOV     W6,[W15++]
+00638:  CLR     13A2
+.................... { 
+....................    int count = 0; 
+....................    for (int i = 0; i < 4; i++) 
+0063A:  CLR     13A4
+0063C:  MOV     13A4,W4
+0063E:  CP      W4,#4
+00640:  BRA     GE,66C
+....................    {   for (int j = 0; j < 4; j++) 
+00642:  CLR     13A6
+00644:  MOV     13A6,W4
+00646:  CP      W4,#4
+00648:  BRA     GE,666
+....................       { 
+....................          CryptedData[count] = stateMatrix[j][i]; 
+0064A:  MOV     #1336,W4
+0064C:  MOV     13A2,W3
+0064E:  ADD     W3,W4,W5
+00650:  MOV     13A6,W4
+00652:  MUL.UU  W4,#4,W6
+00654:  MOV     W6,W0
+00656:  ADD     13A4,W0
+00658:  MOV     #1346,W4
+0065A:  ADD     W0,W4,W0
+0065C:  MOV.B   [W0],[W5]
+....................          count++; 
+0065E:  INC     13A2
+00660:  INC     13A6
+00662:  GOTO    644
+....................          
+....................       } 
+00666:  INC     13A4
+00668:  GOTO    63C
+....................    } 
+0066C:  MOV     [--W15],W6
+0066E:  MOV     [--W15],W5
+00670:  RETURN  
+.................... } 
+....................  
+.................... void Subbytes(void) 
+*
+00374:  MOV     W5,[W15++]
+00376:  MOV     W6,[W15++]
+00378:  MOV     W7,[W15++]
+0037A:  MOV     W8,[W15++]
+.................... { 
+....................    for (int i = 0; i < 4; i++) 
+0037C:  CLR     13A2
+0037E:  MOV     13A2,W4
+00380:  CP      W4,#4
+00382:  BRA     GE,3D8
+....................    { 
+....................       for (int j = 0; j < 4; j++) 
+00384:  CLR     13A4
+00386:  MOV     13A4,W4
+00388:  CP      W4,#4
+0038A:  BRA     GE,3D2
+....................       {    
+....................           
+....................          stateMatrix[i][j] = SBOX[ stateMatrix[i][j] >>4 ][stateMatrix[i][j] & 0x0F]; //SBOX[ level ]*(SBOX+level);  
+0038C:  MOV     13A2,W4
+0038E:  MUL.UU  W4,#4,W0
+00390:  MOV     W0,W5
+00392:  MOV     W5,W0
+00394:  ADD     13A4,W0
+00396:  MOV     #1346,W4
+00398:  ADD     W0,W4,W5
+0039A:  MOV     13A2,W4
+0039C:  MUL.UU  W4,#4,W6
+0039E:  MOV     W6,W0
+003A0:  ADD     13A4,W0
+003A2:  MOV     #1346,W4
+003A4:  ADD     W0,W4,W0
+003A6:  MOV.B   [W0],W6L
+003A8:  CLR.B   D
+003AA:  CLR.B   D
+003AC:  LSR     W6,#4,W6
+003AE:  SL      W6,#4,W6
+003B0:  MOV     13A2,W4
+003B2:  MUL.UU  W4,#4,W0
+003B4:  MOV     W0,W7
+003B6:  MOV     W7,W0
+003B8:  ADD     13A4,W0
+003BA:  MOV     #1346,W4
+003BC:  ADD     W0,W4,W0
+003BE:  MOV.B   [W0],W7L
+003C0:  SE      W7,W7
+003C2:  AND     W7,#F,W7
+003C4:  ADD     W7,W6,W0
+003C6:  MOV     #1110,W4
+003C8:  ADD     W0,W4,W0
+003CA:  MOV.B   [W0],[W5]
+003CC:  INC     13A4
+003CE:  GOTO    386
+....................  
+....................       } 
+003D2:  INC     13A2
+003D4:  GOTO    37E
+....................    } 
+003D8:  MOV     [--W15],W8
+003DA:  MOV     [--W15],W7
+003DC:  MOV     [--W15],W6
+003DE:  MOV     [--W15],W5
+003E0:  RETURN  
+.................... } 
+.................... void ShiftRows() 
+003E2:  CLR     13A2
+003E4:  CLR     13A4
+.................... { 
+....................    int temp  = 0; 
+....................    int temp2 = 0; 
+....................  
+....................    temp = stateMatrix[1][0]; 
+003E6:  MOV.B   134A,W0L
+003E8:  SE      W0,W0
+003EA:  MOV     W0,13A2
+....................    stateMatrix[1][0]= stateMatrix[1][1]; 
+003EC:  MOV.B   134B,W0L
+003EE:  MOV.B   W0L,134A
+....................    stateMatrix[1][1] = stateMatrix[1][2]; 
+003F0:  MOV.B   134C,W0L
+003F2:  MOV.B   W0L,134B
+....................    stateMatrix[1][2] = stateMatrix[1][3]; 
+003F4:  MOV.B   134D,W0L
+003F6:  MOV.B   W0L,134C
+....................    stateMatrix[1][3] = temp; 
+003F8:  MOV.B   13A2,W0L
+003FA:  MOV.B   W0L,134D
+....................     
+....................    temp = stateMatrix[2][0]; 
+003FC:  MOV.B   134E,W0L
+003FE:  SE      W0,W0
+00400:  MOV     W0,13A2
+....................    temp2 = stateMatrix[2][1]; 
+00402:  MOV.B   134F,W0L
+00404:  SE      W0,W0
+00406:  MOV     W0,13A4
+....................    stateMatrix[2][0] = stateMatrix[2][2]; 
+00408:  MOV.B   1350,W0L
+0040A:  MOV.B   W0L,134E
+....................    stateMatrix[2][1] = stateMatrix[2][3]; 
+0040C:  MOV.B   1351,W0L
+0040E:  MOV.B   W0L,134F
+....................    stateMatrix[2][2] = temp; 
+00410:  MOV.B   13A2,W0L
+00412:  MOV.B   W0L,1350
+....................    stateMatrix[2][3] = temp2; 
+00414:  MOV.B   13A4,W0L
+00416:  MOV.B   W0L,1351
+....................  
+....................    temp = stateMatrix[3][3]; 
+00418:  MOV.B   1355,W0L
+0041A:  SE      W0,W0
+0041C:  MOV     W0,13A2
+....................    stateMatrix[3][3] = stateMatrix[3][2]; 
+0041E:  MOV.B   1354,W0L
+00420:  MOV.B   W0L,1355
+....................    stateMatrix[3][2] = stateMatrix[3][1]; 
+00422:  MOV.B   1353,W0L
+00424:  MOV.B   W0L,1354
+....................    stateMatrix[3][1] = stateMatrix[3][0]; 
+00426:  MOV.B   1352,W0L
+00428:  MOV.B   W0L,1353
+....................    stateMatrix[3][0] = temp; 
+0042A:  MOV.B   13A2,W0L
+0042C:  MOV.B   W0L,1352
+0042E:  RETURN  
+.................... } 
+....................  
+....................  
+....................  
+.................... void mixSubCol(int section) 
+00430:  MOV     W5,[W15++]
+00432:  MOV     W6,[W15++]
+00434:  MOV     W7,[W15++]
+00436:  BCLR.B  13A6.0
+00438:  BCLR.B  13A6.1
+.................... { 
+....................     
+....................    int1 mul2control = 0; 
+....................    int1 mul3control = 0; 
+....................    int temp0, temp1, temp2, temp3; 
+....................    int trans0, trans1, trans2, trans3; 
+....................    int tempArray[4]; 
+....................  
+....................    for (int i = 0; i < 4;i++)  
+0043A:  CLR     13C0
+0043C:  MOV     13C0,W4
+0043E:  CP      W4,#4
+00440:  BRA     GE,482
+....................    { 
+....................       tempArray[i] = stateMatrix[i][section - 1]; 
+00442:  MOV     13C0,W4
+00444:  MUL.UU  W4,#2,W0
+00446:  MOV     #13B8,W4
+00448:  ADD     W0,W4,W5
+0044A:  MOV     13C0,W4
+0044C:  MUL.UU  W4,#4,W6
+0044E:  MOV     13A4,W4
+00450:  SUB     W4,#1,W7
+00452:  ADD     W7,W6,W0
+00454:  MOV     #1346,W4
+00456:  ADD     W0,W4,W0
+00458:  MOV     W0,W4
+0045A:  MOV.B   [W4],W0L
+0045C:  SE      W0,W0
+0045E:  MOV     W0,[W5]
+....................       for(int32 i=0;i<clockCycle;i++); 
+00460:  CLR     13C2
+00462:  CLR     13C4
+00464:  MOV     13C4,W4
+00466:  CP      W4,#0
+00468:  BRA     GT,47C
+0046A:  BRA     LT,472
+0046C:  MOV     13C2,W4
+0046E:  CP      W4,#1
+00470:  BRA     C,47C
+00472:  INC     13C2
+00474:  BTSC.B  42.1
+00476:  INC     13C4
+00478:  GOTO    464
+0047C:  INC     13C0
+0047E:  GOTO    43C
+....................     
+....................    } 
+....................     
+....................    /*Ilk dongu.*/ 
+....................     
+....................    mul2control = (tempArray[0] >> 7); 
+00482:  MOV     13B8,W0
+00484:  LSR     W0,#7,W0
+00486:  BCLR.B  13A6.0
+00488:  BTSC.B  0.0
+0048A:  BSET.B  13A6.0
+....................    mul3control = (tempArray[1] >> 7); 
+0048C:  MOV     13BA,W0
+0048E:  LSR     W0,#7,W0
+00490:  BCLR.B  13A6.1
+00492:  BTSC.B  0.0
+00494:  BSET.B  13A6.1
+....................    trans0=tempArray[0] << 1;    
+00496:  PUSH    13B8
+00498:  POP     13B0
+0049A:  SL      13B0
+....................    if (mul2control) trans0 ^= 0x1B; 
+0049C:  BTSS.B  13A6.0
+0049E:  BRA     4A6
+004A0:  MOV     13B0,W0
+004A2:  XOR     W0,#1B,W0
+004A4:  MOV     W0,13B0
+....................    trans0 &= 0xFF; 
+004A6:  MOV     13B0,W4
+004A8:  AND     #FF,W4
+004AA:  MOV     W4,13B0
+....................    trans1 = tempArray[1] << 1; 
+004AC:  PUSH    13BA
+004AE:  POP     13B2
+004B0:  SL      13B2
+....................    if (mul3control) trans1 ^= 0x1B; 
+004B2:  BTSS.B  13A6.1
+004B4:  BRA     4BC
+004B6:  MOV     13B2,W0
+004B8:  XOR     W0,#1B,W0
+004BA:  MOV     W0,13B2
+....................    trans1 ^= tempArray[1]; 
+004BC:  MOV     13BA,W0
+004BE:  XOR     13B2
+....................    trans1 &= 0xFF; 
+004C0:  MOV     13B2,W4
+004C2:  AND     #FF,W4
+004C4:  MOV     W4,13B2
+....................  
+....................    temp0 = trans0 ^ trans1^tempArray[2] ^ tempArray[3]; 
+004C6:  MOV     13B0,W0
+004C8:  XOR     13B2,W0
+004CA:  MOV     W0,W5
+004CC:  MOV     W5,W0
+004CE:  XOR     13BC,W0
+004D0:  MOV     W0,W5
+004D2:  PUSH    13BE
+004D4:  POP     13A8
+004D6:  MOV     W5,W0
+004D8:  XOR     13A8
+....................     
+....................    /*Ikinci dongu.*/ 
+....................  
+....................    mul2control = (tempArray[1] >> 7); 
+004DA:  MOV     13BA,W0
+004DC:  LSR     W0,#7,W0
+004DE:  BCLR.B  13A6.0
+004E0:  BTSC.B  0.0
+004E2:  BSET.B  13A6.0
+....................    mul3control = (tempArray[2] >> 7); 
+004E4:  MOV     13BC,W0
+004E6:  LSR     W0,#7,W0
+004E8:  BCLR.B  13A6.1
+004EA:  BTSC.B  0.0
+004EC:  BSET.B  13A6.1
+....................    trans0 = tempArray[1] << 1; 
+004EE:  PUSH    13BA
+004F0:  POP     13B0
+004F2:  SL      13B0
+....................    if (mul2control) trans0 ^= 0x1B; 
+004F4:  BTSS.B  13A6.0
+004F6:  BRA     4FE
+004F8:  MOV     13B0,W0
+004FA:  XOR     W0,#1B,W0
+004FC:  MOV     W0,13B0
+....................    trans0 &= 0xFF; 
+004FE:  MOV     13B0,W4
+00500:  AND     #FF,W4
+00502:  MOV     W4,13B0
+....................    trans1 = tempArray[2] << 1; 
+00504:  PUSH    13BC
+00506:  POP     13B2
+00508:  SL      13B2
+....................    if (mul3control) trans1 ^= 0x1B; 
+0050A:  BTSS.B  13A6.1
+0050C:  BRA     514
+0050E:  MOV     13B2,W0
+00510:  XOR     W0,#1B,W0
+00512:  MOV     W0,13B2
+....................    trans1 ^= tempArray[2]; 
+00514:  MOV     13BC,W0
+00516:  XOR     13B2
+....................    trans1 &= 0xFF; 
+00518:  MOV     13B2,W4
+0051A:  AND     #FF,W4
+0051C:  MOV     W4,13B2
+....................  
+....................    temp1 = trans0 ^ trans1 ^ tempArray[0] ^ tempArray[3]; 
+0051E:  MOV     13B0,W0
+00520:  XOR     13B2,W0
+00522:  MOV     W0,W5
+00524:  MOV     W5,W0
+00526:  XOR     13B8,W0
+00528:  MOV     W0,W5
+0052A:  PUSH    13BE
+0052C:  POP     13AA
+0052E:  MOV     W5,W0
+00530:  XOR     13AA
+....................  
+....................    /*Ucuncu dongu.*/ 
+....................  
+....................    mul2control = (tempArray[2] >> 7); 
+00532:  MOV     13BC,W0
+00534:  LSR     W0,#7,W0
+00536:  BCLR.B  13A6.0
+00538:  BTSC.B  0.0
+0053A:  BSET.B  13A6.0
+....................    mul3control = (tempArray[3] >> 7); 
+0053C:  MOV     13BE,W0
+0053E:  LSR     W0,#7,W0
+00540:  BCLR.B  13A6.1
+00542:  BTSC.B  0.0
+00544:  BSET.B  13A6.1
+....................    trans0 = tempArray[2] << 1; 
+00546:  PUSH    13BC
+00548:  POP     13B0
+0054A:  SL      13B0
+....................    if (mul2control) trans0 ^= 0x1B; 
+0054C:  BTSS.B  13A6.0
+0054E:  BRA     556
+00550:  MOV     13B0,W0
+00552:  XOR     W0,#1B,W0
+00554:  MOV     W0,13B0
+....................    trans0 &= 0xFF; 
+00556:  MOV     13B0,W4
+00558:  AND     #FF,W4
+0055A:  MOV     W4,13B0
+....................    trans1 = tempArray[3] << 1; 
+0055C:  PUSH    13BE
+0055E:  POP     13B2
+00560:  SL      13B2
+....................    if (mul3control) trans1 ^= 0x1B; 
+00562:  BTSS.B  13A6.1
+00564:  BRA     56C
+00566:  MOV     13B2,W0
+00568:  XOR     W0,#1B,W0
+0056A:  MOV     W0,13B2
+....................    trans1 ^= tempArray[3]; 
+0056C:  MOV     13BE,W0
+0056E:  XOR     13B2
+....................    trans1 &= 0xFF; 
+00570:  MOV     13B2,W4
+00572:  AND     #FF,W4
+00574:  MOV     W4,13B2
+....................    temp2 = trans0 ^ trans1^tempArray[0] ^ tempArray[1]; 
+00576:  MOV     13B0,W0
+00578:  XOR     13B2,W0
+0057A:  MOV     W0,W5
+0057C:  MOV     W5,W0
+0057E:  XOR     13B8,W0
+00580:  MOV     W0,W5
+00582:  PUSH    13BA
+00584:  POP     13AC
+00586:  MOV     W5,W0
+00588:  XOR     13AC
+....................  
+....................    /*Dorduncu dongu.*/ 
+....................  
+....................    mul2control = (tempArray[3] >> 7); 
+0058A:  MOV     13BE,W0
+0058C:  LSR     W0,#7,W0
+0058E:  BCLR.B  13A6.0
+00590:  BTSC.B  0.0
+00592:  BSET.B  13A6.0
+....................    mul3control = (tempArray[0] >> 7); 
+00594:  MOV     13B8,W0
+00596:  LSR     W0,#7,W0
+00598:  BCLR.B  13A6.1
+0059A:  BTSC.B  0.0
+0059C:  BSET.B  13A6.1
+....................    trans0 = tempArray[3] << 1; 
+0059E:  PUSH    13BE
+005A0:  POP     13B0
+005A2:  SL      13B0
+....................    if (mul2control) trans0 ^= 0x1B; 
+005A4:  BTSS.B  13A6.0
+005A6:  BRA     5AE
+005A8:  MOV     13B0,W0
+005AA:  XOR     W0,#1B,W0
+005AC:  MOV     W0,13B0
+....................    trans0 &=0xFF; 
+005AE:  MOV     13B0,W4
+005B0:  AND     #FF,W4
+005B2:  MOV     W4,13B0
+....................    trans1 = tempArray[0] << 1; 
+005B4:  PUSH    13B8
+005B6:  POP     13B2
+005B8:  SL      13B2
+....................    if (mul3control) trans1 ^= 0x1B; 
+005BA:  BTSS.B  13A6.1
+005BC:  BRA     5C4
+005BE:  MOV     13B2,W0
+005C0:  XOR     W0,#1B,W0
+005C2:  MOV     W0,13B2
+....................    trans1 ^= tempArray[0]; 
+005C4:  MOV     13B8,W0
+005C6:  XOR     13B2
+....................    trans1 &= 0xFF; 
+005C8:  MOV     13B2,W4
+005CA:  AND     #FF,W4
+005CC:  MOV     W4,13B2
+....................    temp3 = trans0 ^ trans1^tempArray[1] ^ tempArray[2]; 
+005CE:  MOV     13B0,W0
+005D0:  XOR     13B2,W0
+005D2:  MOV     W0,W5
+005D4:  MOV     W5,W0
+005D6:  XOR     13BA,W0
+005D8:  MOV     W0,W5
+005DA:  PUSH    13BC
+005DC:  POP     13AE
+005DE:  MOV     W5,W0
+005E0:  XOR     13AE
+....................  
+....................    stateMatrix[0][section - 1] = temp0; 
+005E2:  MOV     13A4,W4
+005E4:  SUB     W4,#1,W5
+005E6:  MOV     #1346,W4
+005E8:  ADD     W5,W4,W6
+005EA:  MOV     13A8,W0
+005EC:  MOV.B   W0L,[W6+#0]
+....................    stateMatrix[1][section - 1] = temp1; 
+005EE:  MOV     13A4,W4
+005F0:  SUB     W4,#1,W5
+005F2:  MOV     #134A,W4
+005F4:  ADD     W5,W4,W6
+005F6:  MOV     13AA,W0
+005F8:  MOV.B   W0L,[W6+#0]
+....................    stateMatrix[2][section - 1] = temp2; 
+005FA:  MOV     13A4,W4
+005FC:  SUB     W4,#1,W5
+005FE:  MOV     #134E,W4
+00600:  ADD     W5,W4,W6
+00602:  MOV     13AC,W0
+00604:  MOV.B   W0L,[W6+#0]
+....................    stateMatrix[3][section - 1] = temp3; 
+00606:  MOV     13A4,W4
+00608:  SUB     W4,#1,W5
+0060A:  MOV     #1352,W4
+0060C:  ADD     W5,W4,W6
+0060E:  MOV     13AE,W0
+00610:  MOV.B   W0L,[W6+#0]
+00612:  MOV     [--W15],W7
+00614:  MOV     [--W15],W6
+00616:  MOV     [--W15],W5
+00618:  RETURN  
+....................  
+....................  
+.................... } 
+....................  
+....................  
+.................... void MixColumns() 
+.................... { 
+....................    for (int i = 1; i < 5;i++) mixSubCol(i); 
+0061A:  MOV     #1,W4
+0061C:  MOV     W4,13A2
+0061E:  MOV     13A2,W4
+00620:  CP      W4,#5
+00622:  BRA     GE,632
+00624:  PUSH    13A2
+00626:  POP     13A4
+00628:  CALL    430
+0062C:  INC     13A2
+0062E:  GOTO    61E
+00632:  RETURN  
+.................... } 
+....................  
+.................... void AddRoundKey(int selection) 
+*
+002F2:  MOV     W5,[W15++]
+002F4:  MOV     W6,[W15++]
+002F6:  MOV     W7,[W15++]
+002F8:  MOV     W8,[W15++]
+.................... { 
+....................    for (int i = 0; i < 4; i++) 
+002FA:  CLR     13A6
+002FC:  MOV     13A6,W4
+002FE:  CP      W4,#4
+00300:  BRA     GE,36A
+....................    { 
+....................       for (int j = 0; j < 4; j++) 
+00302:  CLR     13A8
+00304:  MOV     13A8,W4
+00306:  CP      W4,#4
+00308:  BRA     GE,364
+....................       { 
+....................          stateMatrix[i][j] = stateMatrix[i][j] ^ GeneralKey[i][4 * selection + j]; 
+0030A:  MOV     13A6,W4
+0030C:  MUL.UU  W4,#4,W0
+0030E:  MOV     W0,W5
+00310:  MOV     W5,W0
+00312:  ADD     13A8,W0
+00314:  MOV     #1346,W4
+00316:  ADD     W0,W4,W5
+00318:  MOV     13A6,W4
+0031A:  MUL.UU  W4,#4,W6
+0031C:  MOV     W6,W0
+0031E:  ADD     13A8,W0
+00320:  MOV     #1346,W4
+00322:  ADD     W0,W4,W0
+00324:  MOV.B   [W0],W6L
+00326:  MOV     13A6,W4
+00328:  MOV     #2C,W3
+0032A:  MUL.SS  W4,W3,W0
+0032C:  MOV     W0,W7
+0032E:  MOV     13A4,W4
+00330:  MUL.UU  W4,#4,W8
+00332:  MOV     W8,W0
+00334:  ADD     13A8,W0
+00336:  MOV     W0,W8
+00338:  ADD     W8,W7,W0
+0033A:  CALL    200
+0033E:  XOR.B   W6L,W0L,W0L
+00340:  MOV.B   W0L,[W5]
+....................          for(int32 i=0;i<clockCycle;i++); 
+00342:  CLR     13AA
+00344:  CLR     13AC
+00346:  MOV     13AC,W4
+00348:  CP      W4,#0
+0034A:  BRA     GT,35E
+0034C:  BRA     LT,354
+0034E:  MOV     13AA,W4
+00350:  CP      W4,#1
+00352:  BRA     C,35E
+00354:  INC     13AA
+00356:  BTSC.B  42.1
+00358:  INC     13AC
+0035A:  GOTO    346
+0035E:  INC     13A8
+00360:  GOTO    304
+....................       } 
+00364:  INC     13A6
+00366:  GOTO    2FC
+....................    } 
+0036A:  MOV     [--W15],W8
+0036C:  MOV     [--W15],W7
+0036E:  MOV     [--W15],W6
+00370:  MOV     [--W15],W5
+00372:  RETURN  
+.................... } 
+....................  
+.................... void AESEncrypt(int8 *arrayS, int arraySize,int8 *destinationArray) 
+*
+00672:  MOV     W5,[W15++]
+00674:  MOV     W6,[W15++]
+00676:  CLR     1392
+00678:  MOV     138C,W4
+0067A:  MOV     #10,W3
+0067C:  REPEAT  #11
+0067E:  DIV.S   W4,W3
+00680:  MOV     W0,1394
+00682:  MOV     138C,W4
+00684:  MOV     #10,W3
+00686:  REPEAT  #11
+00688:  DIV.S   W4,W3
+0068A:  MOV     W1,1396
+.................... { 
+....................     
+....................    int i,j=0; 
+....................     
+....................    int division = arraySize / 16; 
+....................    int remining = arraySize % 16; 
+....................    for ( i = 0; i <= division; i++) 
+0068C:  CLR     1390
+0068E:  MOV     1390,W0
+00690:  MOV     1394,W4
+00692:  CP      W4,W0
+00694:  BRA     LT,794
+....................    { 
+....................       if ((i == division && remining == 0))  
+00696:  MOV     1390,W0
+00698:  CP      1394
+0069A:  BRA     NZ,6A4
+0069C:  CP0     1396
+0069E:  BRA     NZ,6A4
+....................          break; 
+006A0:  GOTO    794
+....................  
+....................       if (i != division || (i==division && remining==0)) 
+006A4:  MOV     1390,W0
+006A6:  CP      1394
+006A8:  BRA     NZ,6B4
+006AA:  MOV     1390,W0
+006AC:  CP      1394
+006AE:  BRA     NZ,6DC
+006B0:  CP0     1396
+006B2:  BRA     NZ,6DC
+....................       { 
+....................          for ( j = 0; j < 16; j++)         rawData[j] = arrayS[i*16+j]; 
+006B4:  CLR     1392
+006B6:  MOV     1392,W4
+006B8:  CP      W4,#10
+006BA:  BRA     GE,6D8
+006BC:  MOV     #1378,W4
+006BE:  MOV     1392,W3
+006C0:  ADD     W3,W4,W5
+006C2:  MOV     1390,W4
+006C4:  MUL.UU  W4,#10,W6
+006C6:  MOV     W6,W0
+006C8:  ADD     1392,W0
+006CA:  MOV     W0,W6
+006CC:  MOV     W6,W0
+006CE:  ADD     138A,W0
+006D0:  MOV.B   [W0],[W5]
+006D2:  INC     1392
+006D4:  GOTO    6B6
+....................       } 
+006D8:  GOTO    720
+....................  
+....................       else if(remining!=0) 
+006DC:  CP0     1396
+006DE:  BRA     Z,720
+....................       { 
+....................          for ( j = 0; j < remining; j++)            rawData[j] = arrayS[i * 16 + j]; 
+006E0:  CLR     1392
+006E2:  MOV     1392,W0
+006E4:  MOV     1396,W4
+006E6:  CP      W4,W0
+006E8:  BRA     LE,706
+006EA:  MOV     #1378,W4
+006EC:  MOV     1392,W3
+006EE:  ADD     W3,W4,W5
+006F0:  MOV     1390,W4
+006F2:  MUL.UU  W4,#10,W6
+006F4:  MOV     W6,W0
+006F6:  ADD     1392,W0
+006F8:  MOV     W0,W6
+006FA:  MOV     W6,W0
+006FC:  ADD     138A,W0
+006FE:  MOV.B   [W0],[W5]
+00700:  INC     1392
+00702:  GOTO    6E2
+....................          for ( j = (remining + 1); j < 16; j++)     rawData[j] = 0; 
+00706:  MOV     1396,W4
+00708:  ADD     W4,#1,W4
+0070A:  MOV     W4,1392
+0070C:  MOV     1392,W4
+0070E:  CP      W4,#10
+00710:  BRA     GE,720
+00712:  MOV     #1378,W4
+00714:  MOV     1392,W3
+00716:  ADD     W3,W4,W5
+00718:  CLR.B   [W5]
+0071A:  INC     1392
+0071C:  GOTO    70C
+....................       } 
+....................        
+....................      
+....................        
+....................       convertDataToState(); 
+00720:  CALL    292
+....................       AddRoundKey(0); 
+00724:  CLR     13A4
+00726:  CALL    2F2
+....................  
+....................       for ( i = 0; i < 9; i++) 
+0072A:  CLR     1390
+0072C:  MOV     1390,W4
+0072E:  CP      W4,#9
+00730:  BRA     GE,750
+....................       { 
+....................  
+....................          Subbytes();   
+00732:  CALL    374
+....................   
+....................          ShiftRows();  
+00736:  CALL    3E2
+....................  
+....................          MixColumns();  
+0073A:  CALL    61A
+....................           
+....................          AddRoundKey(i + 1); 
+0073E:  MOV     1390,W4
+00740:  ADD     W4,#1,W4
+00742:  MOV     W4,W5
+00744:  MOV     W5,13A4
+00746:  CALL    2F2
+0074A:  INC     1390
+0074C:  GOTO    72C
+....................           
+....................         
+....................       } 
+....................  
+....................  
+....................       Subbytes(); 
+00750:  CALL    374
+....................        
+....................       ShiftRows(); 
+00754:  CALL    3E2
+....................        
+....................       AddRoundKey(10); 
+00758:  MOV     #A,W4
+0075A:  MOV     W4,13A4
+0075C:  CALL    2F2
+....................        
+....................       convertStateToData(); 
+00760:  CALL    634
+....................        
+....................       counter=0; 
+00764:  CLR     1376
+....................        
+....................       for(int cryptedCount=0; cryptedCount<16; cryptedCount++) 
+00766:  CLR     1398
+00768:  MOV     1398,W4
+0076A:  CP      W4,#10
+0076C:  BRA     GE,78E
+....................          destinationArray[16*i+cryptedCount]=CryptedData[cryptedCount]; 
+0076E:  MOV     1390,W4
+00770:  MUL.UU  W4,#10,W0
+00772:  MOV     W0,W5
+00774:  MOV     W5,W0
+00776:  ADD     1398,W0
+00778:  MOV     W0,W5
+0077A:  MOV     W5,W0
+0077C:  ADD     138E,W0
+0077E:  MOV     W0,W6
+00780:  MOV     #1336,W4
+00782:  MOV     1398,W3
+00784:  ADD     W3,W4,W0
+00786:  MOV.B   [W0],[W6]
+00788:  INC     1398
+0078A:  GOTO    768
+0078E:  INC     1390
+00790:  GOTO    68E
+....................  
+....................             
+....................    } 
+00794:  MOV     [--W15],W6
+00796:  MOV     [--W15],W5
+00798:  RETURN  
+.................... } 
+....................  
+....................  
+.................... void ConvertDataToReverseArray(int8 *arrayNew) 
+0079A:  MOV     W5,[W15++]
+0079C:  MOV     W6,[W15++]
+.................... { 
+....................  
+....................     for(int i=0;i<4;i++) 
+0079E:  CLR     13BE
+007A0:  MOV     13BE,W4
+007A2:  CP      W4,#4
+007A4:  BRA     GE,7D8
+....................     {    for (int j = 0; j < 4; j++) 
+007A6:  CLR     13C0
+007A8:  MOV     13C0,W4
+007AA:  CP      W4,#4
+007AC:  BRA     GE,7D2
+....................         { 
+....................           reverseStateMatrix[i][j] = arrayNew[4*j+i];           
+007AE:  MOV     13BE,W4
+007B0:  MUL.UU  W4,#4,W0
+007B2:  MOV     W0,W5
+007B4:  MOV     W5,W0
+007B6:  ADD     13C0,W0
+007B8:  MOV     #1356,W4
+007BA:  ADD     W0,W4,W5
+007BC:  MOV     13C0,W4
+007BE:  MUL.UU  W4,#4,W6
+007C0:  MOV     W6,W0
+007C2:  ADD     13BE,W0
+007C4:  MOV     W0,W6
+007C6:  MOV     W6,W0
+007C8:  ADD     13BC,W0
+007CA:  MOV.B   [W0],[W5]
+007CC:  INC     13C0
+007CE:  GOTO    7A8
+....................  
+....................         } 
+007D2:  INC     13BE
+007D4:  GOTO    7A0
+....................     } 
+007D8:  MOV     [--W15],W6
+007DA:  MOV     [--W15],W5
+007DC:  RETURN  
+.................... } 
+....................  
+.................... void ConvReverseToData() 
+*
+00B50:  MOV     W5,[W15++]
+00B52:  MOV     W6,[W15++]
+00B54:  CLR     13BC
+.................... { 
+....................    int count = 0; 
+....................    for (int i = 0; i < 4; i++) 
+00B56:  CLR     13BE
+00B58:  MOV     13BE,W4
+00B5A:  CP      W4,#4
+00B5C:  BRA     GE,B88
+....................    { 
+....................       for (int j = 0; j < 4; j++) 
+00B5E:  CLR     13C0
+00B60:  MOV     13C0,W4
+00B62:  CP      W4,#4
+00B64:  BRA     GE,B82
+....................       {  
+....................          DecryptedData[count] = reverseStateMatrix[j][i];  
+00B66:  MOV     #1366,W4
+00B68:  MOV     13BC,W3
+00B6A:  ADD     W3,W4,W5
+00B6C:  MOV     13C0,W4
+00B6E:  MUL.UU  W4,#4,W6
+00B70:  MOV     W6,W0
+00B72:  ADD     13BE,W0
+00B74:  MOV     #1356,W4
+00B76:  ADD     W0,W4,W0
+00B78:  MOV.B   [W0],[W5]
+....................          count++;  
+00B7A:  INC     13BC
+00B7C:  INC     13C0
+00B7E:  GOTO    B60
+....................       } 
+00B82:  INC     13BE
+00B84:  GOTO    B58
+....................    } 
+00B88:  MOV     [--W15],W6
+00B8A:  MOV     [--W15],W5
+00B8C:  RETURN  
+....................  
+.................... } 
+....................  
+....................  
+.................... void InvAddRoundKey(int selection) 
+*
+007DE:  MOV     W5,[W15++]
+007E0:  MOV     W6,[W15++]
+007E2:  MOV     W7,[W15++]
+007E4:  MOV     W8,[W15++]
+.................... { 
+....................    for (int i = 0; i < 4; i++) 
+007E6:  CLR     13BE
+007E8:  MOV     13BE,W4
+007EA:  CP      W4,#4
+007EC:  BRA     GE,83A
+....................    { 
+....................       for (int j = 0; j < 4; j++) 
+007EE:  CLR     13C0
+007F0:  MOV     13C0,W4
+007F2:  CP      W4,#4
+007F4:  BRA     GE,834
+....................       { 
+....................          reverseStateMatrix[i][j] = reverseStateMatrix[i][j] ^ GeneralKey[i][4 * selection + j]; 
+007F6:  MOV     13BE,W4
+007F8:  MUL.UU  W4,#4,W0
+007FA:  MOV     W0,W5
+007FC:  MOV     W5,W0
+007FE:  ADD     13C0,W0
+00800:  MOV     #1356,W4
+00802:  ADD     W0,W4,W5
+00804:  MOV     13BE,W4
+00806:  MUL.UU  W4,#4,W6
+00808:  MOV     W6,W0
+0080A:  ADD     13C0,W0
+0080C:  MOV     #1356,W4
+0080E:  ADD     W0,W4,W0
+00810:  MOV.B   [W0],W6L
+00812:  MOV     13BE,W4
+00814:  MOV     #2C,W3
+00816:  MUL.SS  W4,W3,W0
+00818:  MOV     W0,W7
+0081A:  MOV     13BC,W4
+0081C:  MUL.UU  W4,#4,W8
+0081E:  MOV     W8,W0
+00820:  ADD     13C0,W0
+00822:  MOV     W0,W8
+00824:  ADD     W8,W7,W0
+00826:  CALL    200
+0082A:  XOR.B   W6L,W0L,W0L
+0082C:  MOV.B   W0L,[W5]
+0082E:  INC     13C0
+00830:  GOTO    7F0
+....................       } 
+00834:  INC     13BE
+00836:  GOTO    7E8
+....................    } 
+0083A:  MOV     [--W15],W8
+0083C:  MOV     [--W15],W7
+0083E:  MOV     [--W15],W6
+00840:  MOV     [--W15],W5
+00842:  RETURN  
+.................... } 
+....................  
+....................  
+.................... void ReverseShift() 
+.................... { 
+....................    int temp,temp2; 
+....................  
+....................    temp = reverseStateMatrix[1][3]; 
+00844:  MOV.B   135D,W0L
+00846:  SE      W0,W0
+00848:  MOV     W0,13BC
+....................    reverseStateMatrix[1][3] = reverseStateMatrix[1][2]; 
+0084A:  MOV.B   135C,W0L
+0084C:  MOV.B   W0L,135D
+....................    reverseStateMatrix[1][2] = reverseStateMatrix[1][1]; 
+0084E:  MOV.B   135B,W0L
+00850:  MOV.B   W0L,135C
+....................    reverseStateMatrix[1][1] = reverseStateMatrix[1][0]; 
+00852:  MOV.B   135A,W0L
+00854:  MOV.B   W0L,135B
+....................    reverseStateMatrix[1][0] = temp; 
+00856:  MOV.B   13BC,W0L
+00858:  MOV.B   W0L,135A
+....................  
+....................    temp  = reverseStateMatrix[2][2]; 
+0085A:  MOV.B   1360,W0L
+0085C:  SE      W0,W0
+0085E:  MOV     W0,13BC
+....................    temp2 = reverseStateMatrix[2][3]; 
+00860:  MOV.B   1361,W0L
+00862:  SE      W0,W0
+00864:  MOV     W0,13BE
+....................    reverseStateMatrix[2][3] = reverseStateMatrix[2][1]; 
+00866:  MOV.B   135F,W0L
+00868:  MOV.B   W0L,1361
+....................    reverseStateMatrix[2][2] = reverseStateMatrix[2][0]; 
+0086A:  MOV.B   135E,W0L
+0086C:  MOV.B   W0L,1360
+....................    reverseStateMatrix[2][1] = temp2; 
+0086E:  MOV.B   13BE,W0L
+00870:  MOV.B   W0L,135F
+....................    reverseStateMatrix[2][0] = temp; 
+00872:  MOV.B   13BC,W0L
+00874:  MOV.B   W0L,135E
+....................  
+....................    temp = reverseStateMatrix[3][0]; 
+00876:  MOV.B   1362,W0L
+00878:  SE      W0,W0
+0087A:  MOV     W0,13BC
+....................    reverseStateMatrix[3][0] = reverseStateMatrix[3][1]; 
+0087C:  MOV.B   1363,W0L
+0087E:  MOV.B   W0L,1362
+....................    reverseStateMatrix[3][1] = reverseStateMatrix[3][2]; 
+00880:  MOV.B   1364,W0L
+00882:  MOV.B   W0L,1363
+....................    reverseStateMatrix[3][2] = reverseStateMatrix[3][3]; 
+00884:  MOV.B   1365,W0L
+00886:  MOV.B   W0L,1364
+....................    reverseStateMatrix[3][3] = temp;     
+00888:  MOV.B   13BC,W0L
+0088A:  MOV.B   W0L,1365
+0088C:  RETURN  
+....................  
+.................... } 
+....................  
+.................... void ReverseSubBytes() 
+0088E:  MOV     W5,[W15++]
+00890:  MOV     W6,[W15++]
+00892:  MOV     W7,[W15++]
+00894:  MOV     W8,[W15++]
+.................... { 
+....................     
+....................    for (int i = 0; i < 4; i++) 
+00896:  CLR     13BC
+00898:  MOV     13BC,W4
+0089A:  CP      W4,#4
+0089C:  BRA     GE,8F2
+....................    { 
+....................       for (int j = 0; j < 4; j++) 
+0089E:  CLR     13BE
+008A0:  MOV     13BE,W4
+008A2:  CP      W4,#4
+008A4:  BRA     GE,8EC
+....................       { 
+....................          reverseStateMatrix[i][j] = INV_SBOX[ reverseStateMatrix[i][j] >> 4 ][ reverseStateMatrix[i][j] & 0x0F ]; 
+008A6:  MOV     13BC,W4
+008A8:  MUL.UU  W4,#4,W0
+008AA:  MOV     W0,W5
+008AC:  MOV     W5,W0
+008AE:  ADD     13BE,W0
+008B0:  MOV     #1356,W4
+008B2:  ADD     W0,W4,W5
+008B4:  MOV     13BC,W4
+008B6:  MUL.UU  W4,#4,W6
+008B8:  MOV     W6,W0
+008BA:  ADD     13BE,W0
+008BC:  MOV     #1356,W4
+008BE:  ADD     W0,W4,W0
+008C0:  MOV.B   [W0],W6L
+008C2:  CLR.B   D
+008C4:  CLR.B   D
+008C6:  LSR     W6,#4,W6
+008C8:  SL      W6,#4,W6
+008CA:  MOV     13BC,W4
+008CC:  MUL.UU  W4,#4,W0
+008CE:  MOV     W0,W7
+008D0:  MOV     W7,W0
+008D2:  ADD     13BE,W0
+008D4:  MOV     #1356,W4
+008D6:  ADD     W0,W4,W0
+008D8:  MOV.B   [W0],W7L
+008DA:  SE      W7,W7
+008DC:  AND     W7,#F,W7
+008DE:  ADD     W7,W6,W0
+008E0:  MOV     #1210,W4
+008E2:  ADD     W0,W4,W0
+008E4:  MOV.B   [W0],[W5]
+008E6:  INC     13BE
+008E8:  GOTO    8A0
+....................       } 
+008EC:  INC     13BC
+008EE:  GOTO    898
+....................    } 
+008F2:  MOV     [--W15],W8
+008F4:  MOV     [--W15],W7
+008F6:  MOV     [--W15],W6
+008F8:  MOV     [--W15],W5
+008FA:  RETURN  
+....................  
+.................... } 
+....................  
+....................  
+....................  
+.................... void miniReverseMix(int section) 
+*
+00A16:  MOV     W5,[W15++]
+00A18:  MOV     W6,[W15++]
+00A1A:  MOV     W7,[W15++]
+.................... { 
+....................  
+....................    int trans0, trans1, trans2, trans3; 
+....................    int temp[4]; 
+....................  
+....................    for (int i = 0; i < 4; i++) temp[i] = reverseStateMatrix[i][section - 1]; 
+00A1C:  CLR     13D4
+00A1E:  MOV     13D4,W4
+00A20:  CP      W4,#4
+00A22:  BRA     GE,A48
+00A24:  MOV     13D4,W4
+00A26:  MUL.UU  W4,#2,W0
+00A28:  MOV     #13CC,W4
+00A2A:  ADD     W0,W4,W5
+00A2C:  MOV     13D4,W4
+00A2E:  MUL.UU  W4,#4,W6
+00A30:  MOV     13C2,W4
+00A32:  SUB     W4,#1,W7
+00A34:  ADD     W7,W6,W0
+00A36:  MOV     #1356,W4
+00A38:  ADD     W0,W4,W0
+00A3A:  MOV     W0,W4
+00A3C:  MOV.B   [W4],W0L
+00A3E:  SE      W0,W0
+00A40:  MOV     W0,[W5]
+00A42:  INC     13D4
+00A44:  GOTO    A1E
+....................  
+....................    trans0 = mul14(temp[0]) ^ mul11(temp[1]) ^ mul13(temp[2]) ^ mult9(temp[3]); 
+00A48:  PUSH    13CC
+00A4A:  POP     13E2
+00A4C:  CALL    93E
+00A50:  MOV.B   W0L,W5L
+00A52:  MOV.B   13CE,W0L
+00A54:  MOV.B   W0L,13E2
+00A56:  CALL    974
+00A5A:  XOR.B   W5L,W0L,W5L
+00A5C:  PUSH    13D0
+00A5E:  POP     13E2
+00A60:  CALL    9B2
+00A64:  XOR.B   W5L,W0L,W5L
+00A66:  MOV.B   13D2,W0L
+00A68:  MOV.B   W0L,13E2
+00A6A:  CALL    9EA
+00A6E:  XOR.B   W5L,W0L,W0L
+00A70:  SE      W0,W0
+00A72:  MOV     W0,13C4
+....................    trans1 = mult9(temp[0]) ^ mul14(temp[1]) ^ mul11(temp[2]) ^ mul13(temp[3]); 
+00A74:  MOV.B   13CC,W0L
+00A76:  MOV.B   W0L,13E2
+00A78:  CALL    9EA
+00A7C:  MOV.B   W0L,W5L
+00A7E:  PUSH    13CE
+00A80:  POP     13E2
+00A82:  CALL    93E
+00A86:  XOR.B   W5L,W0L,W5L
+00A88:  MOV.B   13D0,W0L
+00A8A:  MOV.B   W0L,13E2
+00A8C:  CALL    974
+00A90:  XOR.B   W5L,W0L,W5L
+00A92:  PUSH    13D2
+00A94:  POP     13E2
+00A96:  CALL    9B2
+00A9A:  XOR.B   W5L,W0L,W0L
+00A9C:  SE      W0,W0
+00A9E:  MOV     W0,13C6
+....................    trans2 = mul13(temp[0]) ^ mult9(temp[1]) ^ mul14(temp[2]) ^ mul11(temp[3]); 
+00AA0:  PUSH    13CC
+00AA2:  POP     13E2
+00AA4:  CALL    9B2
+00AA8:  MOV.B   W0L,W5L
+00AAA:  MOV.B   13CE,W0L
+00AAC:  MOV.B   W0L,13E2
+00AAE:  CALL    9EA
+00AB2:  XOR.B   W5L,W0L,W5L
+00AB4:  PUSH    13D0
+00AB6:  POP     13E2
+00AB8:  CALL    93E
+00ABC:  XOR.B   W5L,W0L,W5L
+00ABE:  MOV.B   13D2,W0L
+00AC0:  MOV.B   W0L,13E2
+00AC2:  CALL    974
+00AC6:  XOR.B   W5L,W0L,W0L
+00AC8:  SE      W0,W0
+00ACA:  MOV     W0,13C8
+....................    trans3 = mul11(temp[0]) ^ mul13(temp[1]) ^ mult9(temp[2]) ^ mul14(temp[3]); 
+00ACC:  MOV.B   13CC,W0L
+00ACE:  MOV.B   W0L,13E2
+00AD0:  CALL    974
+00AD4:  MOV.B   W0L,W5L
+00AD6:  PUSH    13CE
+00AD8:  POP     13E2
+00ADA:  CALL    9B2
+00ADE:  XOR.B   W5L,W0L,W5L
+00AE0:  MOV.B   13D0,W0L
+00AE2:  MOV.B   W0L,13E2
+00AE4:  CALL    9EA
+00AE8:  XOR.B   W5L,W0L,W5L
+00AEA:  PUSH    13D2
+00AEC:  POP     13E2
+00AEE:  CALL    93E
+00AF2:  XOR.B   W5L,W0L,W0L
+00AF4:  SE      W0,W0
+00AF6:  MOV     W0,13CA
+....................  
+....................    reverseStateMatrix[0][section - 1] = trans0; 
+00AF8:  MOV     13C2,W4
+00AFA:  SUB     W4,#1,W5
+00AFC:  MOV     #1356,W4
+00AFE:  ADD     W5,W4,W6
+00B00:  MOV     13C4,W0
+00B02:  MOV.B   W0L,[W6+#0]
+....................    reverseStateMatrix[1][section - 1] = trans1; 
+00B04:  MOV     13C2,W4
+00B06:  SUB     W4,#1,W5
+00B08:  MOV     #135A,W4
+00B0A:  ADD     W5,W4,W6
+00B0C:  MOV     13C6,W0
+00B0E:  MOV.B   W0L,[W6+#0]
+....................    reverseStateMatrix[2][section - 1] = trans2; 
+00B10:  MOV     13C2,W4
+00B12:  SUB     W4,#1,W5
+00B14:  MOV     #135E,W4
+00B16:  ADD     W5,W4,W6
+00B18:  MOV     13C8,W0
+00B1A:  MOV.B   W0L,[W6+#0]
+....................    reverseStateMatrix[3][section - 1] = trans3; 
+00B1C:  MOV     13C2,W4
+00B1E:  SUB     W4,#1,W5
+00B20:  MOV     #1362,W4
+00B22:  ADD     W5,W4,W6
+00B24:  MOV     13CA,W0
+00B26:  MOV.B   W0L,[W6+#0]
+00B28:  MOV     [--W15],W7
+00B2A:  MOV     [--W15],W6
+00B2C:  MOV     [--W15],W5
+00B2E:  RETURN  
+....................  
+.................... } 
+....................  
+....................  
+.................... void ReverseMixColumns() 
+00B30:  MOV     W5,[W15++]
+.................... { 
+....................    for (int i = 0; i < 4; i++)  
+00B32:  CLR     13BC
+00B34:  MOV     13BC,W4
+00B36:  CP      W4,#4
+00B38:  BRA     GE,B4C
+....................    { miniReverseMix(i + 1); } 
+00B3A:  MOV     13BC,W4
+00B3C:  ADD     W4,#1,W4
+00B3E:  MOV     W4,W5
+00B40:  MOV     W5,13C2
+00B42:  CALL    A16
+00B46:  INC     13BC
+00B48:  GOTO    B34
+00B4C:  MOV     [--W15],W5
+00B4E:  RETURN  
+....................     
+.................... } 
+....................  
+....................  
+....................  
+....................  
+.................... void AESDecrypte(int8 *cryptedDatas,int16 arraySize,int8 *destinationArray) 
+*
+00B8E:  MOV     W5,[W15++]
+00B90:  MOV     W6,[W15++]
+00B92:  MOV     138C,W4
+00B94:  MOV     #10,W3
+00B96:  REPEAT  #11
+00B98:  DIV.S   W4,W3
+00B9A:  MOV     W0,1390
+00B9C:  MOV     138C,W4
+00B9E:  MOV     #10,W3
+00BA0:  REPEAT  #11
+00BA2:  DIV.S   W4,W3
+00BA4:  MOV     W1,1392
+.................... { 
+....................     
+....................    int division = arraySize / 16; 
+....................    int remining = arraySize % 16; 
+....................    int8 transientArray[16]; 
+....................     
+....................    for(int k=0;k<=division;k++) 
+00BA6:  CLR     13A4
+00BA8:  MOV     13A4,W0
+00BAA:  MOV     1390,W4
+00BAC:  CP      W4,W0
+00BAE:  BRA     LT,C48
+....................    { 
+....................       for(int l=0;l<16;l++) 
+00BB0:  CLR     13A6
+00BB2:  MOV     13A6,W4
+00BB4:  CP      W4,#10
+00BB6:  BRA     GE,BD4
+....................          transientArray[l]=cryptedDatas[16*k+l]; 
+00BB8:  MOV     #1394,W4
+00BBA:  MOV     13A6,W3
+00BBC:  ADD     W3,W4,W5
+00BBE:  MOV     13A4,W4
+00BC0:  MUL.UU  W4,#10,W6
+00BC2:  MOV     W6,W0
+00BC4:  ADD     13A6,W0
+00BC6:  MOV     W0,W6
+00BC8:  MOV     W6,W0
+00BCA:  ADD     138A,W0
+00BCC:  MOV.B   [W0],[W5]
+00BCE:  INC     13A6
+00BD0:  GOTO    BB2
+....................   
+....................       ConvertDataToReverseArray(transientArray); 
+00BD4:  MOV     #1394,W4
+00BD6:  MOV     W4,13BC
+00BD8:  CALL    79A
+....................       InvAddRoundKey(numberRound); 
+00BDC:  MOV     #A,W4
+00BDE:  MOV     W4,13BC
+00BE0:  CALL    7DE
+....................     
+....................       for (int i = (numberRound-1) ; i > 0; i--) 
+00BE4:  MOV     #9,W4
+00BE6:  MOV     W4,13A8
+00BE8:  MOV     13A8,W4
+00BEA:  CP      W4,#0
+00BEC:  BRA     LE,C08
+....................       { 
+....................          ReverseShift();    
+00BEE:  CALL    844
+....................          ReverseSubBytes(); 
+00BF2:  CALL    88E
+....................          InvAddRoundKey(i); 
+00BF6:  PUSH    13A8
+00BF8:  POP     13BC
+00BFA:  CALL    7DE
+....................          ReverseMixColumns(); 
+00BFE:  CALL    B30
+00C02:  DEC     13A8
+00C04:  GOTO    BE8
+....................     
+....................       } 
+....................     
+....................       ReverseShift(); 
+00C08:  CALL    844
+....................       ReverseSubBytes(); 
+00C0C:  CALL    88E
+....................       InvAddRoundKey(0); 
+00C10:  CLR     13BC
+00C12:  CALL    7DE
+....................       ConvReverseToData(); 
+00C16:  CALL    B50
+....................        
+....................       for(int j=0;j<16;j++) 
+00C1A:  CLR     13AA
+00C1C:  MOV     13AA,W4
+00C1E:  CP      W4,#10
+00C20:  BRA     GE,C42
+....................         destinationArray[16*k+j]=decryptedData[j]; 
+00C22:  MOV     13A4,W4
+00C24:  MUL.UU  W4,#10,W0
+00C26:  MOV     W0,W5
+00C28:  MOV     W5,W0
+00C2A:  ADD     13AA,W0
+00C2C:  MOV     W0,W5
+00C2E:  MOV     W5,W0
+00C30:  ADD     138E,W0
+00C32:  MOV     W0,W6
+00C34:  MOV     #1366,W4
+00C36:  MOV     13AA,W3
+00C38:  ADD     W3,W4,W0
+00C3A:  MOV.B   [W0],[W6]
+00C3C:  INC     13AA
+00C3E:  GOTO    C1C
+00C42:  INC     13A4
+00C44:  GOTO    BA8
+....................    } 
+00C48:  MOV     [--W15],W6
+00C4A:  MOV     [--W15],W5
+00C4C:  RETURN  
+.................... } 
+....................  
+....................  
+.................... void GFunction(int8 *lastWord, int selection) 
+.................... { 
+....................    int temp = lastWord[0]; 
+....................    tempArray[0] = lastWord[1]; 
+....................    tempArray[1] = lastWord[2]; 
+....................    tempArray[2] = lastWord[3]; 
+....................    tempArray[3] = temp; 
+....................  
+....................    tempArray[0] = SBOX[tempArray[0]]; 
+....................    tempArray[1] = SBOX[tempArray[1]]; 
+....................    tempArray[2] = SBOX[tempArray[2]]; 
+....................    tempArray[3] = SBOX[tempArray[3]]; 
+....................  
+....................    tempArray[0] = tempArray[0] ^ Rcon[selection]; 
+....................    tempArray[1] ^= 0x00; 
+....................    tempArray[2] ^= 0x00; 
+....................    tempArray[3] ^= 0x00; 
+....................  
+....................  
+.................... } 
+....................  
+....................  
+.................... void KeyExtension() 
+.................... { 
+....................    int tempArray2[4]; 
+....................    int tempArray3[4]; 
+....................    int i,a=0; 
+....................    for ( i = 0; i < 4; i++) 
+....................       for (int j = 0; j < 4; j++) 
+....................          GeneralKey[i][j] = Key[i][j]; 
+....................  
+....................    int select = 3; 
+....................    for ( i = 4; i < 4 * numberRound + 4; i++) 
+....................    { 
+....................       if (i % 4 == 0) 
+....................       { 
+....................          for ( a = 0; a < 4; a++) tempArray2[a] = GeneralKey[a][select]; 
+....................          for ( a = 0; a < 4; a++) tempArray3[a] = GeneralKey[a][select - 3]; 
+....................          GFunction(tempArray2, KeyCounter); 
+....................          for ( a = 0; a < 4; a++)  
+....................             GeneralKey[a][select + 1] = tempArray[a] ^ tempArray3[a]; 
+....................          select += 4; 
+....................          KeyCounter++; 
+....................       } 
+....................  
+....................       else 
+....................       { 
+....................          for ( a = 0; a < 4; a++) GeneralKey[a][i] = GeneralKey[a][i - 1] ^ GeneralKey[a][i - 4]; 
+....................  
+....................       } 
+....................    } 
+....................  
+.................... } 
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... void main() 
+00C4E:  BSET.B  8C1.7
+00C50:  MOV     #1,W4
+00C52:  MOV     W4,744
+00C54:  MOV     #16,W4
+00C56:  MOV     W4,746
+00C58:  DISI    #E
+00C5A:  MOV     #103,W0
+00C5C:  MOV     #743,W1
+00C5E:  MOV     #78,W2
+00C60:  MOV     #9A,W3
+00C62:  MOV.B   W2L,[W1]
+00C64:  MOV.B   W3L,[W1]
+00C66:  MOV.B   W0L,743
+00C68:  LSR     W0,#8,W0
+00C6A:  MOV     #742,W1
+00C6C:  MOV     #46,W2
+00C6E:  MOV     #57,W3
+00C70:  MOV.B   W2L,[W1]
+00C72:  MOV.B   W3L,[W1]
+00C74:  MOV.B   W0L,[W1]
+00C76:  CLR     1320
+00C78:  CLR     1376
+00C7A:  CLR     E0E
+00C7C:  CLR     E1E
+00C7E:  CLR     E2E
+00C80:  CLR     E3E
+00C82:  CLR     E4E
+00C84:  CLR     E5E
+00C86:  CLR     E6E
+00C88:  MOV     #6F80,W15
+00C8A:  MOV     #6FFF,W0
+00C8C:  MOV     W0,20
+00C8E:  NOP     
+00C90:  BRA     E12
+00C92:  DATA    82,10,11
+00C94:  DATA    10,63,7C
+00C96:  DATA    77,7B,F2
+00C98:  DATA    6B,6F,C5
+00C9A:  DATA    30,01,67
+00C9C:  DATA    2B,FE,D7
+00C9E:  DATA    AB,76,CA
+00CA0:  DATA    82,C9,7D
+00CA2:  DATA    FA,59,47
+00CA4:  DATA    F0,AD,D4
+00CA6:  DATA    A2,AF,9C
+00CA8:  DATA    A4,72,C0
+00CAA:  DATA    B7,FD,93
+00CAC:  DATA    26,36,3F
+00CAE:  DATA    F7,CC,34
+00CB0:  DATA    A5,E5,F1
+00CB2:  DATA    71,D8,31
+00CB4:  DATA    15,04,C7
+00CB6:  DATA    23,C3,18
+00CB8:  DATA    96,05,9A
+00CBA:  DATA    07,12,80
+00CBC:  DATA    E2,EB,27
+00CBE:  DATA    B2,75,09
+00CC0:  DATA    83,2C,1A
+00CC2:  DATA    1B,6E,5A
+00CC4:  DATA    A0,52,3B
+00CC6:  DATA    D6,B3,29
+00CC8:  DATA    E3,2F,84
+00CCA:  DATA    53,D1,00
+00CCC:  DATA    ED,20,FC
+00CCE:  DATA    B1,5B,6A
+00CD0:  DATA    CB,BE,39
+00CD2:  DATA    4A,4C,58
+00CD4:  DATA    CF,D0,EF
+00CD6:  DATA    AA,FB,43
+00CD8:  DATA    4D,33,85
+00CDA:  DATA    45,F9,02
+00CDC:  DATA    7F,50,3C
+00CDE:  DATA    9F,A8,51
+00CE0:  DATA    A3,40,8F
+00CE2:  DATA    92,9D,38
+00CE4:  DATA    F5,BC,B6
+00CE6:  DATA    DA,21,10
+00CE8:  DATA    FF,F3,D2
+00CEA:  DATA    CD,0C,13
+00CEC:  DATA    EC,5F,97
+00CEE:  DATA    44,17,C4
+00CF0:  DATA    A7,7E,3D
+00CF2:  DATA    64,5D,19
+00CF4:  DATA    73,60,81
+00CF6:  DATA    4F,DC,22
+00CF8:  DATA    2A,90,88
+00CFA:  DATA    46,EE,B8
+00CFC:  DATA    14,DE,5E
+00CFE:  DATA    0B,DB,E0
+00D00:  DATA    32,3A,0A
+00D02:  DATA    49,06,24
+00D04:  DATA    5C,C2,D3
+00D06:  DATA    AC,62,91
+00D08:  DATA    95,E4,79
+00D0A:  DATA    E7,C8,37
+00D0C:  DATA    6D,8D,D5
+00D0E:  DATA    4E,A9,6C
+00D10:  DATA    56,F4,EA
+00D12:  DATA    65,7A,AE
+00D14:  DATA    08,BA,78
+00D16:  DATA    25,2E,1C
+00D18:  DATA    A6,B4,C6
+00D1A:  DATA    E8,DD,74
+00D1C:  DATA    1F,4B,BD
+00D1E:  DATA    8B,8A,70
+00D20:  DATA    3E,B5,66
+00D22:  DATA    48,03,F6
+00D24:  DATA    0E,61,35
+00D26:  DATA    57,B9,86
+00D28:  DATA    C1,1D,9E
+00D2A:  DATA    E1,F8,98
+00D2C:  DATA    11,69,D9
+00D2E:  DATA    8E,94,9B
+00D30:  DATA    1E,87,E9
+00D32:  DATA    CE,55,28
+00D34:  DATA    DF,8C,A1
+00D36:  DATA    89,0D,BF
+00D38:  DATA    E6,42,68
+00D3A:  DATA    41,99,2D
+00D3C:  DATA    0F,B0,54
+00D3E:  DATA    BB,16,52
+00D40:  DATA    09,6A,D5
+00D42:  DATA    30,36,A5
+00D44:  DATA    38,BF,40
+00D46:  DATA    A3,9E,81
+00D48:  DATA    F3,D7,FB
+00D4A:  DATA    7C,E3,39
+00D4C:  DATA    82,9B,2F
+00D4E:  DATA    FF,87,34
+00D50:  DATA    8E,43,44
+00D52:  DATA    C4,DE,E9
+00D54:  DATA    CB,54,7B
+00D56:  DATA    94,32,A6
+00D58:  DATA    C2,23,3D
+00D5A:  DATA    EE,4C,95
+00D5C:  DATA    0B,42,FA
+00D5E:  DATA    C3,4E,08
+00D60:  DATA    2E,A1,66
+00D62:  DATA    28,D9,24
+00D64:  DATA    B2,76,5B
+00D66:  DATA    A2,49,6D
+00D68:  DATA    8B,D1,25
+00D6A:  DATA    72,F8,F6
+00D6C:  DATA    64,86,68
+00D6E:  DATA    98,16,D4
+00D70:  DATA    A4,5C,CC
+00D72:  DATA    5D,65,B6
+00D74:  DATA    92,6C,70
+00D76:  DATA    48,50,FD
+00D78:  DATA    ED,B9,DA
+00D7A:  DATA    5E,15,46
+00D7C:  DATA    57,A7,8D
+00D7E:  DATA    9D,84,90
+00D80:  DATA    D8,AB,00
+00D82:  DATA    8C,BC,D3
+00D84:  DATA    0A,F7,E4
+00D86:  DATA    58,05,B8
+00D88:  DATA    B3,45,06
+00D8A:  DATA    D0,2C,1E
+00D8C:  DATA    8F,CA,3F
+00D8E:  DATA    0F,02,C1
+00D90:  DATA    AF,BD,03
+00D92:  DATA    01,13,8A
+00D94:  DATA    6B,3A,91
+00D96:  DATA    11,41,4F
+00D98:  DATA    67,DC,EA
+00D9A:  DATA    97,F2,CF
+00D9C:  DATA    CE,F0,B4
+00D9E:  DATA    E6,73,96
+00DA0:  DATA    AC,74,22
+00DA2:  DATA    E7,AD,35
+00DA4:  DATA    85,E2,F9
+00DA6:  DATA    37,E8,1C
+00DA8:  DATA    75,DF,6E
+00DAA:  DATA    47,F1,1A
+00DAC:  DATA    71,1D,29
+00DAE:  DATA    C5,89,6F
+00DB0:  DATA    B7,62,0E
+00DB2:  DATA    AA,18,BE
+00DB4:  DATA    1B,FC,56
+00DB6:  DATA    3E,4B,C6
+00DB8:  DATA    D2,79,20
+00DBA:  DATA    9A,DB,C0
+00DBC:  DATA    FE,78,CD
+00DBE:  DATA    5A,F4,1F
+00DC0:  DATA    DD,A8,33
+00DC2:  DATA    88,07,C7
+00DC4:  DATA    31,B1,12
+00DC6:  DATA    10,59,27
+00DC8:  DATA    80,EC,5F
+00DCA:  DATA    60,51,7F
+00DCC:  DATA    A9,19,B5
+00DCE:  DATA    4A,0D,2D
+00DD0:  DATA    E5,7A,9F
+00DD2:  DATA    93,C9,9C
+00DD4:  DATA    EF,A0,E0
+00DD6:  DATA    3B,4D,AE
+00DD8:  DATA    2A,F5,B0
+00DDA:  DATA    C8,EB,BB
+00DDC:  DATA    3C,83,53
+00DDE:  DATA    99,61,17
+00DE0:  DATA    2B,04,7E
+00DE2:  DATA    BA,77,D6
+00DE4:  DATA    26,E1,69
+00DE6:  DATA    14,63,55
+00DE8:  DATA    21,0C,7D
+00DEA:  DATA    54,41,49
+00DEC:  DATA    52,41,53
+00DEE:  DATA    4E,41,4C
+00DF0:  DATA    45,43,4C
+00DF2:  DATA    48,56,4B
+00DF4:  DATA    4C,00,00
+00DF6:  INC     W2,W2
+00DF8:  CP      W2,#1
+00DFA:  BRA     NZ,E04
+00DFC:  TBLRDL  [W1],W3
+00DFE:  TBLRDH  [W1++],W4
+00E00:  MOV.B   6,W0L
+00E02:  RETURN  
+00E04:  CP      W2,#2
+00E06:  BRA     NZ,E0C
+00E08:  MOV.B   7,W0L
+00E0A:  RETURN  
+00E0C:  MOV.B   8,W0L
+00E0E:  CLR     W2
+00E10:  RETURN  
+00E12:  MOV     #0,W6
+00E14:  MOV     #0,W0
+00E16:  MOV     W0,54
+00E18:  MOV     #C92,W0
+00E1A:  MOV     W0,W1
+00E1C:  CLR     W2
+00E1E:  CALL    DF6
+00E22:  MOV.B   W0L,B
+00E24:  CALL    DF6
+00E28:  MOV.B   W0L,A
+00E2A:  CP0     W5
+00E2C:  BRA     Z,E60
+00E2E:  BTSS    W5.F
+00E30:  BRA     E40
+00E32:  CALL    DF6
+00E36:  MOV.B   W0L,D
+00E38:  CALL    DF6
+00E3C:  MOV.B   W0L,C
+00E3E:  BCLR    W5.F
+00E40:  BTSS    W5.E
+00E42:  BRA     E54
+00E44:  BCLR    W5.E
+00E46:  DEC     W5,W5
+00E48:  CALL    DF6
+00E4C:  MOV.B   W0L,W7L
+00E4E:  REPEAT  W5
+00E50:  MOV.B   W7L,[W6++]
+00E52:  BRA     E1E
+00E54:  CALL    DF6
+00E58:  MOV.B   W0L,[W6++]
+00E5A:  DEC     W5,W5
+00E5C:  BRA     NZ,E54
+00E5E:  BRA     E1E
+.................... { 
+....................  
+....................     for(int i=0;i<128;i++) 
+00E60:  CLR     1388
+00E62:  MOV     1388,W4
+00E64:  MOV     #80,W3
+00E66:  CP      W3,W4
+00E68:  BRA     LE,E7A
+....................        rawArray[i]=i; 
+00E6A:  MOV     #1000,W4
+00E6C:  MOV     1388,W3
+00E6E:  ADD     W3,W4,W5
+00E70:  MOV     1388,W0
+00E72:  MOV.B   W0L,[W5+#0]
+00E74:  INC     1388
+00E76:  GOTO    E62
+....................         
+....................    AESEncrypt(rawArray, 128,encryptedArray);          //For encrypte rawArray **(rawDatas,size,destinationDatas) 
+00E7A:  MOV     #1000,W4
+00E7C:  MOV     W4,138A
+00E7E:  MOV     #80,W4
+00E80:  MOV     W4,138C
+00E82:  MOV     #1080,W4
+00E84:  MOV     W4,138E
+00E86:  CALL    672
+....................    AESDecrypte(encryptedArray,128,decryptedArray);    //For decrypte rawArray **(encryptedDatas,size,destinationDatas) 
+00E8A:  MOV     #1080,W4
+00E8C:  MOV     W4,138A
+00E8E:  MOV     #80,W4
+00E90:  MOV     W4,138C
+00E92:  MOV     #1100,W4
+00E94:  MOV     W4,138E
+00E96:  CALL    B8E
+....................    while(TRUE) 
+....................    { 
+00E9A:  GOTO    E9A
+....................       
+....................    } 
+....................  
+.................... } 
+00E9E:  PWRSAV  #0
+
+Configuration Fuses:
+   Word  3L: 0033   NOWRT NOPROTECT GSSK
+          H: FF00  
+   Word  4L: 0080   FRC IESO
+          H: FF00  
+   Word  5L: 0026   HS NOOSCIO IOL1WAY CKSFSM
+          H: FF00  
+   Word  6L: 007F   WPOSTS16 WPRES128 PLLWAIT WINDIS NOWDT
+          H: FF00  
+   Word  7L: 0037   PUT128 NOBROWNOUT NOALTI2C1 NOALTI2C2
+          H: FF00  
+   Word  8L: 00D7   ICSP1 RESET_PRIMARY NOJTAG NODEBUG
+          H: FF00  
+   Word  9L: 0033   NOAWRT NOAPROTECT APLK
+          H: FF00  

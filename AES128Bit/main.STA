@@ -1,0 +1,71 @@
+
+ROM used:   3744/87552 (2%)
+            3744/87552 (2%) including unused fragments
+
+            1.7 Average locations per line
+            13.9 Average locations per statement
+
+RAM used:   1035/28672 (4%) at main() level
+            1132/28672 (4%) worst case
+
+Stack used: 34 worst case (34 in main + 0 for interrupts)
+Stack size: 128
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   18     6   2  main.c
+   59     0   0  main.h
+ 1533     0   0  C:\Program Files (x86)\PICC\Devices\33EP256MU810.h
+  560   263  98  AES128.c
+----- -----
+ 2170   269 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0    146   2    0    32  1.0  @const999
+0     66   1    1   236  5.0  mul2
+0     54   1    4   176  3.0  mul14
+0     56   1    4   223  4.5  mul13
+0     62   1    3   225  4.3  mul11
+0     44   1    3   178  4.3  mult9
+0     96   1    5   295  4.8  convertDataToState
+0     62   1    7   233  4.0  convertStateToData
+0    110   1    8   284  4.8  Subbytes
+0     78   1    4  1122  2.5  ShiftRows
+0    490   7   34  3265  8.1  mixSubCol
+0     26   0    0    78  2.8  MixColumns
+0    130   2   11   367  5.5  AddRoundKey
+0    296   4   19  1553 10.8  AESEncrypt
+0     68   1    7   235  4.8  ConvertDataToReverseArray
+0     62   1    7   233  4.0  ConvReverseToData
+0    102   1   11   279  5.5  InvAddRoundKey
+0     74   1    4  1087  2.9  ReverseShift
+0    110   1    8   277  4.8  ReverseSubBytes
+0    282   4   25  1253  5.6  miniReverseMix
+0     32   0    3    93  3.3  ReverseMixColumns
+0    192   3   31   920  9.3  AESDecrypte
+0    594   8    3   201  4.5  MAIN
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               23
+    Statements              269
+    Comments                201
+    Volume (V)              21002
+    Difficulty (D)          112.2
+    Effort to implement (E) 2356213
+    Time to implement (T)   36 hours, 22 minutes
+    Est Delivered Bugs (B)  6
+    Cyclomatic Complexity   50
+    Maintainability (MI)    46
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-001FE   508  0  
+00200-0FFFE  3232  61792  
+10000-1FFFE     0  65536  
+20000-2ABFE     0  44032  
+
+
+

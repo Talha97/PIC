@@ -1,0 +1,131 @@
+W0      @SCRATCH
+W0L     _RETURN_
+W0      @PRINTFD16_1020.P1
+W0 -W1  @READ_ROM_MEMORY.P2
+W0L     @SPRINTF.P3
+W0      @delay_ms1.P4
+W0 -W1  @DIV3232B.P5
+W0      @delay_us1.P6
+W1      @SCRATCH
+W1      @READ_PACKED_MEMORY.P1
+W1      @WRITE_PACKED_MEMORY.P2
+W2 -W3  @DIV3232B.P1
+W2      @READ_ROM_MEMORY.P2
+W2      @WRITE_PACKED_MEMORY.P3
+W2      @READ_PACKED_MEMORY.P4
+W3      @READ_ROM_MEMORY.P1
+W3      @READ_PACKED_MEMORY.P2
+W3      @WRITE_PACKED_MEMORY.P3
+W4      @PRINTFD16_1020.P1
+A85.0   C1OUT
+A85.1   C1ENV
+A8D.0   C2OUT
+A8D.1   C2ENV
+A95.0   C3OUT
+A95.1   C3ENV
+1000.0  wifiDataCame
+1001    timeOutWiFi
+1002-2001 wifiData
+2002-2801 messageSend
+2802-2833 wifiID
+2834-2865 wifiPassword
+2866    buffercounter
+2868-286B lenghtofMem
+286C-286F lenghtofMemImage
+2870-28A1 transienBuffer
+28A2-28A3 @sprintf_string
+28A4-28A5 serverMode.selection
+28A4-28A5 connectWifi.username
+28A4-28A5 sendDataviaESP.message
+28A6-28A7 sendDataviaESP.ID
+28A6-28A7 connectWifi.password
+28A6-28A7 serverMode.port
+28A8-28A9 sendDataviaESP.length
+28A8-28F7 connectWifi.connectionBuffer
+28AA-28AB sendDataviaESP.i
+28AC-28AD setTimeout.timeout
+28AC-28AD selectMultipleOrSingle.selection
+28AC-28AD waitAnswer.i
+28AC-28AD selectMode.selection
+28AC-28AD sendDataviaESP.j
+28AE-28AF sendDataviaESP.j
+28AE-28AF waitAnswer.i
+28B6-28B7 writeATCommand.command
+2910-2913 rda_isr.countCycle
+2914-2915 rda_isr.dataCount
+6F80-6FFF Stack
+
+ROM Allocation:
+000200  @const1016.call
+000210  @const1023.call
+000220  @const1026.call
+00023A  @const1035.call
+000254  @const1040.call
+000276  @const1044.call
+00028E  @const1046.call
+0002A0  @const1048.call
+0002B0  @const1050.call
+0002C6  @const1052.call
+0002DA  @const1058.call
+000300  @const1061.call
+00031A  @const1063.call
+000332  @const1067.call
+000352  @const1072.call
+000370  @const1083.call
+000382  @const1084.call
+000396  @const1095.call
+0003BA  rda_isr
+000436  writeATCommand
+000466  connectModule
+000488  waitAnswer
+000514  @SPRINTF
+000526  connectWifi
+0005B0  @PRINTFD16_1020
+0006B6  selectMode
+0006EA  selectMultipleOrSingle
+000722  accessPoint
+0007A4  setSTA
+0007C6  queryTimeout
+0007F6  setTimeout
+00082E  serverMode
+0008BC  connectESP
+000972  @delay_ms1
+00098A  sendDataviaESP
+000A64  MAIN
+000A64  @cinit1
+000AE0  @cinit2
+
+Project Directory:
+    G:\GithubProje\PIC\ESP12S_WiFiModule\
+
+Project Files:
+    main.c                                                  [09-Eki-21 17:16  CRC=F9A71381]
+    main.h                                                  [03-Eyl-21 22:53  CRC=D0CAA13F]
+    C:\Program Files (x86)\PICC\Devices\33EP256MU810.h      [21-Haz-13 16:06  CRC=22D64E91]
+    Wifi_ESP12.c                                            [09-Eki-21 17:19  CRC=00E4913F]
+    C:\Program Files (x86)\PICC\Drivers\stdarg.h            [23-Eki-07 20:33  CRC=8DE680F7]
+
+Source signature=09F9967E
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      DSPIC33EP256MU810
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: SIGNED: 8,16,32
+    Float,Double:   32,64
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

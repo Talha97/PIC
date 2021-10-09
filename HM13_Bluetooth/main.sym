@@ -1,0 +1,121 @@
+W0      @SCRATCH
+W0L     _RETURN_
+W0L     @SPRINTF.P1
+W0 -W1  @READ_ROM_MEMORY.P2
+W0      @delay_us1.P3
+W0      @PRINTFD16_1005.P4
+W0      @delay_ms1.P5
+W0 -W1  @DIV3232B.P6
+W1      @SCRATCH
+W1      @WRITE_PACKED_MEMORY.P1
+W1      @READ_PACKED_MEMORY.P2
+W2 -W3  @DIV3232B.P1
+W2      @READ_ROM_MEMORY.P2
+W2      @WRITE_PACKED_MEMORY.P3
+W2      @READ_PACKED_MEMORY.P4
+W3      @WRITE_PACKED_MEMORY.P1
+W3      @READ_ROM_MEMORY.P2
+W3      @READ_PACKED_MEMORY.P3
+W4      @PRINTFD16_1005.P1
+A85.0   C1OUT
+A85.1   C1ENV
+A8D.0   C2OUT
+A8D.1   C2ENV
+A95.0   C3OUT
+A95.1   C3ENV
+1000.0  BLDataCame
+1002-1041 sendArray
+1042-10A5 BLTReceive
+10A6-10B9 transienBuffer
+10BA-10BB @sprintf_string
+10BC-10BD MAIN.i
+10BE-10BF sendData.message
+10BE-10C4 initBluetooth.BLBufferF
+10C0    sendData.length
+10C2-10C3 sendData.k
+10C6-10CC initBluetooth.BLBufferS
+10CE-10D4 initBluetooth.BLBufferBLEF
+10DC    QuerySet_NameEDRDevice.query
+10DC    QuerySet_NameBLEDevice.query
+10DC    QuerySet_BLEPinCode.query
+10DC    QuerySet_Authentication.query
+10DC    QuerySet_EDRPinCode.query
+10DC    QuerySet_WorkMode.query
+10DD    QuerySet_WorkMode.mode
+10DD    QuerySet_Authentication.Auth
+10DE-10DF QuerySet_NameBLEDevice.name
+10DE-10DF QuerySet_BLEPinCode.password
+10DE-10DF QuerySet_EDRPinCode.password
+10DE-10DF QuerySet_NameEDRDevice.name
+10E2-10E3 writeAT.command
+1104-1107 rda_isr.count
+1108-110B rda_isr.countCycle
+6F80-6FFF Stack
+
+ROM Allocation:
+000200  @const1014.call
+000218  @const1015.call
+000230  @const1041.call
+000248  @const1042.call
+000260  @const1051.call
+000278  @const1052.call
+00028E  @const1056.call
+0002A6  @const1057.call
+0002BC  @const1061.call
+0002D4  @const1062.call
+0002EA  @const1066.call
+000302  @const1067.call
+000318  @const1082.call
+00032C  @const1083.call
+000340  @const1084.call
+000358  rda_isr
+0003C2  @SPRINTF
+0003D0  @PRINTFD16_1005
+0004D6  writeAT
+0004F2  QuerySet_Authentication
+00055E  @delay_ms1
+000576  QuerySet_WorkMode
+0005E2  QuerySet_NameEDRDevice
+00064E  QuerySet_NameBLEDevice
+0006BA  QuerySet_EDRPinCode
+000726  QuerySet_BLEPinCode
+000792  initBluetooth
+00083A  sendData
+000862  @cinit1
+000862  MAIN
+0008C6  @cinit2
+
+Project Directory:
+    G:\GithubProje\PIC\HM13_Bluetooth\
+
+Project Files:
+    main.c                                                  [03-Eyl-21 22:25  CRC=8A75D949]
+    main.h                                                  [03-Eyl-21 22:24  CRC=D0CAA13F]
+    C:\Program Files (x86)\PICC\Devices\33EP256MU810.h      [21-Haz-13 16:06  CRC=22D64E91]
+    HM13.c                                                  [03-Eyl-21 22:22  CRC=D3B157F1]
+    HM13.h                                                  [03-Eyl-21 22:22  CRC=00000000]
+
+Source signature=51C8210A
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      DSPIC33EP256MU810
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: SIGNED: 8,16,32
+    Float,Double:   32,64
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

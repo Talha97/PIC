@@ -1,0 +1,28 @@
+#include <main.h>
+
+#INT_RDA
+void  rda_isr(void) 
+{
+    disable_interrupts(INT_RDA);
+    do
+    {
+    }while(countCycle<65000 && dataCount<2048)
+  
+
+}
+
+
+
+void main()
+{
+
+
+   enable_interrupts(INT_RDA);
+   enable_interrupts(INTR_GLOBAL);
+
+   while(TRUE)
+   {
+      //TODO: User Code
+   }
+
+}

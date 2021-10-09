@@ -1,0 +1,30 @@
+#include <main.h>
+
+#INT_RDA
+void  rda_isr(void) 
+{
+  disable_interrupts(INT_RDA);
+  int32 countCycle=0;
+  int16 count=0;
+  do
+  {
+  
+  }while(count<500 && countCycle<64435)
+
+}
+
+
+
+void main()
+{
+
+
+   enable_interrupts(INT_RDA);
+   enable_interrupts(INTR_GLOBAL);
+
+   while(TRUE)
+   {
+      GPSControl();
+   }
+
+}

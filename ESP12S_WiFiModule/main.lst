@@ -1,0 +1,1500 @@
+CCS PCD C Compiler, Version 5.007, 61971               09-Eki-21 17:19
+
+               Filename:   G:\GithubProje\PIC\ESP12S_WiFiModule\main.lst
+
+               ROM used:   2862 bytes (2%)
+                           Largest free fragment is 65536
+               RAM used:   6435 (22%) at main() level
+                           6548 (23%) worst case
+               Stack used: 38 locations
+               Stack size: 128
+
+*
+00000:  GOTO    A64
+*
+0002A:  DATA    BA,03,00
+.................... #include <main.h> 
+.................... #include <33EP256MU810.h> 
+.................... //////// Standard Header file for the DSPIC33EP256MU810 device //////////////// 
+.................... #device DSPIC33EP256MU810 
+*
+00200:  CLR     54
+00202:  MOV     #20C,W3
+00204:  ADD     W3,W0,W0
+00206:  TBLRDL.B[W0],W0L
+00208:  CLR.B   1
+0020A:  RETURN  
+0020C:  DATA    0D,0A,00
+0020E:  DATA    00,00,00
+00210:  CLR     54
+00212:  MOV     #21C,W3
+00214:  ADD     W3,W0,W0
+00216:  TBLRDL.B[W0],W0L
+00218:  CLR.B   1
+0021A:  RETURN  
+0021C:  DATA    41,54,00
+0021E:  DATA    00,00,00
+00220:  CLR     54
+00222:  MOV     #22C,W3
+00224:  ADD     W3,W0,W0
+00226:  TBLRDL.B[W0],W0L
+00228:  CLR.B   1
+0022A:  RETURN  
+0022C:  DATA    41,54,00
+0022E:  DATA    2B,43,00
+00230:  DATA    57,4D,00
+00232:  DATA    4F,44,00
+00234:  DATA    45,3D,00
+00236:  DATA    25,64,00
+00238:  DATA    00,00,00
+0023A:  CLR     54
+0023C:  MOV     #246,W3
+0023E:  ADD     W3,W0,W0
+00240:  TBLRDL.B[W0],W0L
+00242:  CLR.B   1
+00244:  RETURN  
+00246:  DATA    41,54,00
+00248:  DATA    2B,43,00
+0024A:  DATA    49,50,00
+0024C:  DATA    4D,55,00
+0024E:  DATA    58,3D,00
+00250:  DATA    25,64,00
+00252:  DATA    00,00,00
+00254:  CLR     54
+00256:  MOV     #260,W3
+00258:  ADD     W3,W0,W0
+0025A:  TBLRDL.B[W0],W0L
+0025C:  CLR.B   1
+0025E:  RETURN  
+00260:  DATA    41,54,00
+00262:  DATA    2B,43,00
+00264:  DATA    57,4A,00
+00266:  DATA    41,50,00
+00268:  DATA    3D,22,00
+0026A:  DATA    25,73,00
+0026C:  DATA    22,2C,00
+0026E:  DATA    22,25,00
+00270:  DATA    73,22,00
+00272:  DATA    0D,0A,00
+00274:  DATA    00,00,00
+00276:  CLR     54
+00278:  MOV     #282,W3
+0027A:  ADD     W3,W0,W0
+0027C:  TBLRDL.B[W0],W0L
+0027E:  CLR.B   1
+00280:  RETURN  
+00282:  DATA    41,54,00
+00284:  DATA    2B,43,00
+00286:  DATA    57,53,00
+00288:  DATA    41,50,00
+0028A:  DATA    3D,22,00
+0028C:  DATA    00,00,00
+0028E:  CLR     54
+00290:  MOV     #29A,W3
+00292:  ADD     W3,W0,W0
+00294:  TBLRDL.B[W0],W0L
+00296:  CLR.B   1
+00298:  RETURN  
+0029A:  DATA    54,41,00
+0029C:  DATA    4C,48,00
+0029E:  DATA    41,00,00
+002A0:  CLR     54
+002A2:  MOV     #2AC,W3
+002A4:  ADD     W3,W0,W0
+002A6:  TBLRDL.B[W0],W0L
+002A8:  CLR.B   1
+002AA:  RETURN  
+002AC:  DATA    22,2C,00
+002AE:  DATA    22,00,00
+002B0:  CLR     54
+002B2:  MOV     #2BC,W3
+002B4:  ADD     W3,W0,W0
+002B6:  TBLRDL.B[W0],W0L
+002B8:  CLR.B   1
+002BA:  RETURN  
+002BC:  DATA    31,32,00
+002BE:  DATA    33,34,00
+002C0:  DATA    35,36,00
+002C2:  DATA    37,38,00
+002C4:  DATA    00,00,00
+002C6:  CLR     54
+002C8:  MOV     #2D2,W3
+002CA:  ADD     W3,W0,W0
+002CC:  TBLRDL.B[W0],W0L
+002CE:  CLR.B   1
+002D0:  RETURN  
+002D2:  DATA    22,2C,00
+002D4:  DATA    36,2C,00
+002D6:  DATA    34,0D,00
+002D8:  DATA    0A,00,00
+002DA:  CLR     54
+002DC:  MOV     #2E6,W3
+002DE:  ADD     W3,W0,W0
+002E0:  TBLRDL.B[W0],W0L
+002E2:  CLR.B   1
+002E4:  RETURN  
+002E6:  DATA    41,54,00
+002E8:  DATA    2B,43,00
+002EA:  DATA    49,50,00
+002EC:  DATA    53,54,00
+002EE:  DATA    41,3D,00
+002F0:  DATA    22,31,00
+002F2:  DATA    39,32,00
+002F4:  DATA    2E,31,00
+002F6:  DATA    36,38,00
+002F8:  DATA    2E,30,00
+002FA:  DATA    2E,38,00
+002FC:  DATA    30,22,00
+002FE:  DATA    00,00,00
+00300:  CLR     54
+00302:  MOV     #30C,W3
+00304:  ADD     W3,W0,W0
+00306:  TBLRDL.B[W0],W0L
+00308:  CLR.B   1
+0030A:  RETURN  
+0030C:  DATA    41,54,00
+0030E:  DATA    2B,43,00
+00310:  DATA    49,50,00
+00312:  DATA    53,54,00
+00314:  DATA    4F,3D,00
+00316:  DATA    25,64,00
+00318:  DATA    00,00,00
+0031A:  CLR     54
+0031C:  MOV     #326,W3
+0031E:  ADD     W3,W0,W0
+00320:  TBLRDL.B[W0],W0L
+00322:  CLR.B   1
+00324:  RETURN  
+00326:  DATA    41,54,00
+00328:  DATA    2B,43,00
+0032A:  DATA    49,50,00
+0032C:  DATA    53,54,00
+0032E:  DATA    4F,3F,00
+00330:  DATA    00,00,00
+00332:  CLR     54
+00334:  MOV     #33E,W3
+00336:  ADD     W3,W0,W0
+00338:  TBLRDL.B[W0],W0L
+0033A:  CLR.B   1
+0033C:  RETURN  
+0033E:  DATA    41,54,00
+00340:  DATA    2B,43,00
+00342:  DATA    49,50,00
+00344:  DATA    53,45,00
+00346:  DATA    52,56,00
+00348:  DATA    45,52,00
+0034A:  DATA    3D,25,00
+0034C:  DATA    64,2C,00
+0034E:  DATA    25,64,00
+00350:  DATA    00,00,00
+00352:  CLR     54
+00354:  MOV     #35E,W3
+00356:  ADD     W3,W0,W0
+00358:  TBLRDL.B[W0],W0L
+0035A:  CLR.B   1
+0035C:  RETURN  
+0035E:  DATA    41,54,00
+00360:  DATA    2B,43,00
+00362:  DATA    49,50,00
+00364:  DATA    53,45,00
+00366:  DATA    4E,44,00
+00368:  DATA    3D,25,00
+0036A:  DATA    64,2C,00
+0036C:  DATA    25,64,00
+0036E:  DATA    00,00,00
+00370:  CLR     54
+00372:  MOV     #37C,W3
+00374:  ADD     W3,W0,W0
+00376:  TBLRDL.B[W0],W0L
+00378:  CLR.B   1
+0037A:  RETURN  
+0037C:  DATA    54,61,00
+0037E:  DATA    6C,68,00
+00380:  DATA    61,00,00
+00382:  CLR     54
+00384:  MOV     #38E,W3
+00386:  ADD     W3,W0,W0
+00388:  TBLRDL.B[W0],W0L
+0038A:  CLR.B   1
+0038C:  RETURN  
+0038E:  DATA    31,32,00
+00390:  DATA    33,34,00
+00392:  DATA    35,36,00
+00394:  DATA    00,00,00
+00396:  CLR     54
+00398:  MOV     #3A2,W3
+0039A:  ADD     W3,W0,W0
+0039C:  TBLRDL.B[W0],W0L
+0039E:  CLR.B   1
+003A0:  RETURN  
+003A2:  DATA    57,69,00
+003A4:  DATA    46,69,00
+003A6:  DATA    20,45,00
+003A8:  DATA    53,50,00
+003AA:  DATA    31,32,00
+003AC:  DATA    53,20,00
+003AE:  DATA    4C,69,00
+003B0:  DATA    62,72,00
+003B2:  DATA    61,72,00
+003B4:  DATA    79,2E,00
+003B6:  DATA    2E,2E,00
+003B8:  DATA    00,00,00
+*
+00514:  MOV     W1,[W15++]
+00516:  MOV     28A2,W1
+00518:  MOV.B   W0L,[W1++]
+0051A:  CLR.B   [W1]
+0051C:  MOV     [--W15],W1
+0051E:  MOV     28A2,W0
+00520:  INC     W0,W0
+00522:  MOV     W0,28A2
+00524:  RETURN  
+*
+005B0:  MOV     W5,[W15++]
+005B2:  MOV     #C,W5
+005B4:  REPEAT  #3
+005B6:  MOV     [W5++],[W15++]
+005B8:  BTSS    W0.F
+005BA:  BRA     5D6
+005BC:  NEG     W0,W0
+005BE:  BSET    W4.8
+005C0:  BTSS    W4.F
+005C2:  BRA     5D6
+005C4:  MOV     W0,[W15++]
+005C6:  MOV     #2D,W0
+005C8:  MOV     W0,[W15++]
+005CA:  MOV     [--W15],W0
+005CC:  CALL    514
+005D0:  MOV     [--W15],W0
+005D2:  BCLR    W4.8
+005D4:  DEC.B   0008
+005D6:  CLR     W5
+005D8:  MOV     W0,W7
+005DA:  MOV     W4,W9
+005DC:  BCLR    W4.F
+005DE:  CP0.B   W4L
+005E0:  BRA     NZ,5EE
+005E2:  BTSC    W9.F
+005E4:  BRA     5EA
+005E6:  MOV     #0,W5
+005E8:  BRA     60A
+005EA:  MOV     #0,W5
+005EC:  BRA     60A
+005EE:  SUB.B   W4L,#6,W5L
+005F0:  BRA     NC,608
+005F2:  MOV     #30,W0
+005F4:  BTSS    W9.F
+005F6:  MOV     #20,W0
+005F8:  MOV     W0,[W15++]
+005FA:  MOV     [--W15],W0
+005FC:  CALL    514
+00600:  DEC     W5,W5
+00602:  BRA     NN,5F8
+00604:  MOV     #5,W5
+00606:  BRA     60A
+00608:  MOV     W4,W5
+0060A:  MOV     #6,W4
+0060C:  BTSC    W5.8
+0060E:  INC     W4,W4
+00610:  BSET    W5.E
+00612:  BTSC    W9.F
+00614:  BSET    W5.F
+00616:  MOV     #2710,W8
+00618:  REPEAT  #11
+0061A:  DIV.U   W7,W8
+0061C:  CALL    664
+00620:  MOV     W1,W7
+00622:  MOV     #3E8,W8
+00624:  REPEAT  #11
+00626:  DIV.U   W7,W8
+00628:  CALL    664
+0062C:  MOV     W1,W7
+0062E:  MOV     #64,W8
+00630:  REPEAT  #11
+00632:  DIV.U   W7,W8
+00634:  CALL    664
+00638:  MOV     W1,W7
+0063A:  MOV     #A,W8
+0063C:  REPEAT  #11
+0063E:  DIV.U   W7,W8
+00640:  CALL    664
+00644:  BTSS    W9.8
+00646:  BRA     654
+00648:  MOV     #2D,W0
+0064A:  MOV     W0,[W15++]
+0064C:  MOV     [--W15],W0
+0064E:  CALL    514
+00652:  BCLR    W9.8
+00654:  MOV     #30,W0
+00656:  ADD.B   W1L,W0L,W0L
+00658:  MOV     W0,2A
+0065A:  MOV     W0,[W15++]
+0065C:  MOV     [--W15],W0
+0065E:  CALL    514
+00662:  BRA     6AC
+00664:  MOV     #30,W6
+00666:  CP0     W0
+00668:  BRA     NZ,686
+0066A:  BTSS    W5.E
+0066C:  BRA     69C
+0066E:  DEC     W4,W4
+00670:  CP.B    W4L,W5L
+00672:  BRA     Z,678
+00674:  BTSC.B  42.0
+00676:  RETURN  
+00678:  CP0     W0
+0067A:  BRA     NZ,686
+0067C:  BTSS    W5.E
+0067E:  BRA     69C
+00680:  BTSS    W5.F
+00682:  MOV     #20,W6
+00684:  BRA     69C
+00686:  BCLR    W5.E
+00688:  BTSS    W9.8
+0068A:  BRA     69C
+0068C:  MOV     W0,W10
+0068E:  MOV     #2D,W0
+00690:  MOV     W0,[W15++]
+00692:  MOV     [--W15],W0
+00694:  CALL    514
+00698:  BCLR    W9.8
+0069A:  MOV     W10,W0
+0069C:  ADD.B   W6L,W0L,W0L
+0069E:  MOV     W1,[W15++]
+006A0:  MOV     W0,[W15++]
+006A2:  MOV     [--W15],W0
+006A4:  CALL    514
+006A8:  MOV     [--W15],W1
+006AA:  RETURN  
+006AC:  MOV     #12,W5
+006AE:  REPEAT  #3
+006B0:  MOV     [--W15],[W5--]
+006B2:  MOV     [--W15],W5
+006B4:  RETURN  
+....................  
+.................... #list 
+....................  
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES CKSFSM                   //Clock Switching is enabled, fail Safe clock monitor is enabled 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES NOJTAG                   //JTAG disabled 
+....................  
+.................... #device ICSP=1 
+.................... #use delay(clock=96MHz,crystal=24MHz) 
+*
+00972:  CP0     W0
+00974:  BTSC.B  42.1
+00976:  BRA     988
+00978:  REPEAT  #3B7B
+0097A:  NOP     
+0097C:  REPEAT  #3FFE
+0097E:  NOP     
+00980:  REPEAT  #3FFE
+00982:  NOP     
+00984:  DEC     W0,W0
+00986:  BRA     NZ,978
+00988:  RETURN  
+.................... #pin_select U1TX=PIN_D1 
+.................... #pin_select U1RX=PIN_D13 
+....................  
+.................... #use rs232(UART1, baud=115200, stream=WiFi) 
+....................  
+....................  
+.................... int1 wifiDataCame=0; 
+....................  
+.................... int8 timeOutWiFi=0; 
+.................... int8 wifiData[2048][2]; 
+....................  
+.................... char messageSend[2048]; 
+.................... char wifiID[50]; 
+.................... char wifiPassword[50]; 
+.................... #include "Wifi_ESP12.c" 
+.................... #include<stdarg.h> 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996,2003 Custom Computer Services           //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+....................  
+.................... #ifndef _STDARG 
+....................  
+.................... #define _STDARG 
+....................  
+.................... typedef char * va_list; 
+....................  
+.................... #define va_start(a,b)  a=_VA_LIST 
+.................... #define va_arg(a,b)    *(b *)_va_arg(a) 
+.................... #define va_end 
+.................... #define nargs          _nargs(&_va_list) 
+....................  
+.................... int8 _nargs(int8 * ptr) { 
+....................   int8 n; 
+....................  
+....................   n=0; 
+....................   while(*ptr) { 
+....................     n++; 
+....................     ptr+=*ptr; 
+....................   } 
+....................   return(n); 
+.................... } 
+....................  
+.................... #endif 
+....................  
+.................... int8 buffercounter=0; 
+.................... int32 lenghtofMem=0; 
+.................... int32 lenghtofMemImage=0; 
+....................  
+.................... char transienBuffer[50]; 
+.................... int1 waitAnswer() 
+*
+00488:  MOV     W5,[W15++]
+0048A:  MOV     W6,[W15++]
+0048C:  MOV     W7,[W15++]
+.................... { 
+....................     
+....................    timeOutWiFi=0; 
+0048E:  CLR.B   1001
+....................    while(timeOutWiFi<2) 
+00490:  MOV.B   1001,W0L
+00492:  SE      W0,W0
+00494:  CP      W0,#2
+00496:  BRA     GE,508
+....................    { 
+....................       if(wifiDataCame) 
+00498:  BTSS.B  1000.0
+0049A:  BRA     504
+....................       { 
+....................        
+....................         for(int i=0;i<100;i++) 
+0049C:  MOV     #0,W4
+0049E:  MOV     W4,28AC
+004A0:  MOV     28AC,W0
+004A2:  MOV     #64,W4
+004A4:  CP      W4,W0
+004A6:  BRA     LE,504
+....................         { 
+....................             if(wifiData[i][0]=='O' && wifiData[i+1][0]=='K') 
+004A8:  MOV     28AC,W0
+004AA:  MOV     W0,W4
+004AC:  MUL.UU  W4,#2,W0
+004AE:  MOV     W0,W5
+004B0:  MOV     #1002,W4
+004B2:  ADD     W5,W4,W0
+004B4:  MOV.B   [W0],W4L
+004B6:  XOR.B   #4F,W4L
+004B8:  BRA     NZ,4FA
+004BA:  MOV     28AC,W0
+004BC:  ADD     W0,#1,W0
+004BE:  MOV     W0,W6
+004C0:  MOV     W6,W4
+004C2:  MUL.UU  W4,#2,W6
+004C4:  MOV     #1002,W4
+004C6:  ADD     W6,W4,W0
+004C8:  MOV.B   [W0],W4L
+004CA:  XOR.B   #4B,W4L
+004CC:  BRA     NZ,4FA
+....................              {      
+....................                  
+....................                 for(int i=0;i<100;i++) 
+004CE:  MOV     #0,W4
+004D0:  MOV     W4,28AE
+004D2:  MOV     28AE,W0
+004D4:  MOV     #64,W4
+004D6:  CP      W4,W0
+004D8:  BRA     LE,4F2
+....................                    wifiData[i][0]='\0'; 
+004DA:  MOV     28AE,W0
+004DC:  MOV     W0,W4
+004DE:  MUL.UU  W4,#2,W0
+004E0:  MOV     W0,W5
+004E2:  MOV     #1002,W4
+004E4:  ADD     W5,W4,W6
+004E6:  CLR.B   [W6]
+004E8:  MOV     28AE,W0
+004EA:  INC     W0,W0
+004EC:  MOV     W0,28AE
+004EE:  GOTO    4D2
+....................                 wifiDataCame=0; 
+004F2:  BCLR.B  1000.0
+....................                 return 1; 
+004F4:  MOV.B   #1,W0L
+004F6:  MOV.B   W0L,0
+004F8:  BRA     50C
+....................              } 
+004FA:  MOV     28AC,W0
+004FC:  INC     W0,W0
+004FE:  MOV     W0,28AC
+00500:  GOTO    4A0
+....................         } 
+....................        
+....................       } 
+00504:  GOTO    490
+....................    } 
+....................    wifiDataCame=0; 
+00508:  BCLR.B  1000.0
+....................     
+....................    return 0; 
+0050A:  CLR.B   0
+0050C:  MOV     [--W15],W7
+0050E:  MOV     [--W15],W6
+00510:  MOV     [--W15],W5
+00512:  RETURN  
+.................... } 
+....................  
+.................... void writeATCommand(char *command) 
+*
+00436:  MOV     W5,[W15++]
+.................... { 
+....................  
+....................      fprintf(WiFi,"%s",command); 
+00438:  MOV     28B6,W1
+0043A:  CP0.B   [W1]
+0043C:  BRA     Z,44A
+0043E:  BTSC.B  223.1
+00440:  BRA     43E
+00442:  MOV.B   [W1+#0],W0L
+00444:  MOV.B   W0L,224
+00446:  INC     W1,W1
+00448:  BRA     43A
+....................      fprintf(WiFi,"%s","\r\n"); 
+0044A:  MOV     #0,W5
+0044C:  MOV     W5,W0
+0044E:  CALL    200
+00452:  IOR.B   #0,W0L
+00454:  BTSC.B  42.1
+00456:  BRA     462
+00458:  INC     W5,W5
+0045A:  BTSC.B  223.1
+0045C:  BRA     45A
+0045E:  MOV.B   W0L,224
+00460:  BRA     44C
+00462:  MOV     [--W15],W5
+00464:  RETURN  
+....................  
+.................... } 
+....................  
+.................... int1 resetESP() 
+.................... {        
+....................        sprintf(transienBuffer,"AT+RST"); 
+....................        writeATCommand(transienBuffer); 
+....................        delay_ms(1500); 
+....................        return 1; 
+....................         
+.................... } 
+....................  
+.................... int1 connectModule() 
+.................... { 
+....................    transienBuffer="AT"; 
+00466:  MOV     #0,W2
+00468:  MOV     #2870,W1
+0046A:  MOV     W2,W0
+0046C:  CALL    210
+00470:  MOV.B   W0L,[W1++]
+00472:  INC     W2,W2
+00474:  CP0.B   W0L
+00476:  BTSS.B  42.1
+00478:  BRA     46A
+....................    writeATCommand(transienBuffer); 
+0047A:  MOV     #2870,W4
+0047C:  MOV     W4,28B6
+0047E:  CALL    436
+....................    
+....................    return 1; 
+00482:  MOV.B   #1,W0L
+00484:  MOV.B   W0L,0
+00486:  RETURN  
+....................     
+....................     
+.................... } 
+....................  
+....................  
+.................... void selectMode(int selection) 
+.................... { 
+....................     
+....................    sprintf(transienBuffer,"AT+CWMODE=%d",selection); 
+*
+006B6:  MOV     #2870,W4
+006B8:  MOV     W4,28A2
+006BA:  MOV     #0,W1
+006BC:  MOV     W1,W0
+006BE:  CLR.B   1
+006C0:  CALL    220
+006C4:  INC     W1,W1
+006C6:  MOV     W1,[W15++]
+006C8:  MOV     W0,[W15++]
+006CA:  MOV     [--W15],W0
+006CC:  CALL    514
+006D0:  MOV     [--W15],W1
+006D2:  MOV     #9,W0
+006D4:  CPSGT   W1,W0
+006D6:  BRA     6BC
+006D8:  MOV     28AC,W0
+006DA:  MOV     #0,W4
+006DC:  CALL    5B0
+....................    writeATCommand(transienBuffer); 
+006E0:  MOV     #2870,W4
+006E2:  MOV     W4,28B6
+006E4:  CALL    436
+006E8:  RETURN  
+....................         
+.................... } 
+.................... int1 selectUsage(int selection) 
+.................... { 
+....................       sprintf(transienBuffer,"AT+CIPMODE=%d",selection); 
+....................       writeATCommand(transienBuffer); 
+....................          
+....................       return True; 
+....................  
+.................... } 
+....................  
+.................... int1 selectMultipleOrSingle(int selection) 
+.................... { 
+....................       sprintf(transienBuffer,"AT+CIPMUX=%d",selection); 
+006EA:  MOV     #2870,W4
+006EC:  MOV     W4,28A2
+006EE:  MOV     #0,W1
+006F0:  MOV     W1,W0
+006F2:  CLR.B   1
+006F4:  CALL    23A
+006F8:  INC     W1,W1
+006FA:  MOV     W1,[W15++]
+006FC:  MOV     W0,[W15++]
+006FE:  MOV     [--W15],W0
+00700:  CALL    514
+00704:  MOV     [--W15],W1
+00706:  MOV     #9,W0
+00708:  CPSGT   W1,W0
+0070A:  BRA     6F0
+0070C:  MOV     28AC,W0
+0070E:  MOV     #0,W4
+00710:  CALL    5B0
+....................       writeATCommand(transienBuffer); 
+00714:  MOV     #2870,W4
+00716:  MOV     W4,28B6
+00718:  CALL    436
+....................        
+....................       return True; 
+0071C:  MOV.B   #1,W0L
+0071E:  MOV.B   W0L,0
+00720:  RETURN  
+.................... } 
+....................  
+.................... int1 connectWifi(char *username, char *password) 
+.................... {    
+....................    char connectionBuffer[80];    
+....................  
+....................    sprintf(connectionBuffer,"AT+CWJAP=\"%s\",\"%s\"\r\n",username,password);  //To connect Wi-Fi, write Wi-Fi name and password. 
+*
+00526:  MOV     #28A8,W4
+00528:  MOV     W4,28A2
+0052A:  MOV     #0,W1
+0052C:  MOV     W1,W0
+0052E:  CLR.B   1
+00530:  CALL    254
+00534:  INC     W1,W1
+00536:  MOV     W1,[W15++]
+00538:  MOV     W0,[W15++]
+0053A:  MOV     [--W15],W0
+0053C:  CALL    514
+00540:  MOV     [--W15],W1
+00542:  MOV     #9,W0
+00544:  CPSGT   W1,W0
+00546:  BRA     52C
+00548:  MOV     28A4,W1
+0054A:  CP0.B   [W1]
+0054C:  BRA     Z,55E
+0054E:  MOV     W1,[W15++]
+00550:  MOV     W1,W4
+00552:  MOV.B   [W4],W0L
+00554:  CALL    514
+00558:  MOV     [--W15],W1
+0055A:  INC     W1,W1
+0055C:  BRA     54A
+0055E:  MOV.B   #22,W0L
+00560:  CALL    514
+00564:  MOV.B   #2C,W0L
+00566:  CALL    514
+0056A:  MOV.B   #22,W0L
+0056C:  CALL    514
+00570:  MOV     28A6,W1
+00572:  CP0.B   [W1]
+00574:  BRA     Z,586
+00576:  MOV     W1,[W15++]
+00578:  MOV     W1,W4
+0057A:  MOV.B   [W4],W0L
+0057C:  CALL    514
+00580:  MOV     [--W15],W1
+00582:  INC     W1,W1
+00584:  BRA     572
+00586:  MOV.B   #22,W0L
+00588:  CALL    514
+0058C:  MOV.B   #D,W0L
+0058E:  CALL    514
+00592:  MOV.B   #A,W0L
+00594:  CALL    514
+....................    fprintf(WiFi,"%s",connectionBuffer); 
+00598:  MOV     #28A8,W1
+0059A:  CP0.B   [W1]
+0059C:  BRA     Z,5AA
+0059E:  BTSC.B  223.1
+005A0:  BRA     59E
+005A2:  MOV.B   [W1+#0],W0L
+005A4:  MOV.B   W0L,224
+005A6:  INC     W1,W1
+005A8:  BRA     59A
+....................  
+....................    return True; 
+005AA:  MOV.B   #1,W0L
+005AC:  MOV.B   W0L,0
+005AE:  RETURN  
+....................  
+.................... } 
+....................  
+....................  
+.................... int1 accessPoint() 
+*
+00722:  MOV     W5,[W15++]
+.................... { 
+....................    fprintf(WIFI,"%s","AT+CWSAP=\""); 
+00724:  MOV     #0,W5
+00726:  MOV     W5,W0
+00728:  CALL    276
+0072C:  IOR.B   #0,W0L
+0072E:  BTSC.B  42.1
+00730:  BRA     73C
+00732:  INC     W5,W5
+00734:  BTSC.B  223.1
+00736:  BRA     734
+00738:  MOV.B   W0L,224
+0073A:  BRA     726
+....................    fprintf(WIFI,"%s","TALHA");       //Access Point name. Can changable. 
+0073C:  MOV     #0,W5
+0073E:  MOV     W5,W0
+00740:  CALL    28E
+00744:  IOR.B   #0,W0L
+00746:  BTSC.B  42.1
+00748:  BRA     754
+0074A:  INC     W5,W5
+0074C:  BTSC.B  223.1
+0074E:  BRA     74C
+00750:  MOV.B   W0L,224
+00752:  BRA     73E
+....................    fprintf(WIFI,"%s","\",\"");    
+00754:  MOV     #0,W5
+00756:  MOV     W5,W0
+00758:  CALL    2A0
+0075C:  IOR.B   #0,W0L
+0075E:  BTSC.B  42.1
+00760:  BRA     76C
+00762:  INC     W5,W5
+00764:  BTSC.B  223.1
+00766:  BRA     764
+00768:  MOV.B   W0L,224
+0076A:  BRA     756
+....................    fprintf(WIFI,"%s","12345678");    //Passrowd for access point 
+0076C:  MOV     #0,W5
+0076E:  MOV     W5,W0
+00770:  CALL    2B0
+00774:  IOR.B   #0,W0L
+00776:  BTSC.B  42.1
+00778:  BRA     784
+0077A:  INC     W5,W5
+0077C:  BTSC.B  223.1
+0077E:  BRA     77C
+00780:  MOV.B   W0L,224
+00782:  BRA     76E
+....................    fprintf(WIFI,"%s","\",6,4\r\n"); 
+00784:  MOV     #0,W5
+00786:  MOV     W5,W0
+00788:  CALL    2C6
+0078C:  IOR.B   #0,W0L
+0078E:  BTSC.B  42.1
+00790:  BRA     79C
+00792:  INC     W5,W5
+00794:  BTSC.B  223.1
+00796:  BRA     794
+00798:  MOV.B   W0L,224
+0079A:  BRA     786
+....................      
+....................    return True; 
+0079C:  MOV.B   #1,W0L
+0079E:  MOV.B   W0L,0
+007A0:  MOV     [--W15],W5
+007A2:  RETURN  
+....................        
+.................... } 
+....................  
+.................... int1 enableDHCP(int select1,int select2) 
+.................... { 
+....................       sprintf(transienBuffer,"AT+CWDHCP_CUR=%d,%d",select1,select2); 
+....................       writeATCommand(transienBuffer); 
+....................       
+....................       return True; 
+....................  
+.................... } 
+....................  
+.................... int1 setSTA() 
+.................... { 
+....................  
+....................      transienBuffer="AT+CIPSTA=\"192.168.0.80\""; // Write IP Address whatever you want 
+007A4:  MOV     #0,W2
+007A6:  MOV     #2870,W1
+007A8:  MOV     W2,W0
+007AA:  CALL    2DA
+007AE:  MOV.B   W0L,[W1++]
+007B0:  INC     W2,W2
+007B2:  CP0.B   W0L
+007B4:  BTSS.B  42.1
+007B6:  BRA     7A8
+....................      writeATCommand(transienBuffer); 
+007B8:  MOV     #2870,W4
+007BA:  MOV     W4,28B6
+007BC:  CALL    436
+....................      return 1; 
+007C0:  MOV.B   #1,W0L
+007C2:  MOV.B   W0L,0
+007C4:  RETURN  
+....................  
+.................... } 
+.................... int1 setTimeout(int timeout) 
+.................... { 
+....................  
+....................       sprintf(transienBuffer,"AT+CIPSTO=%d",timeout); 
+*
+007F6:  MOV     #2870,W4
+007F8:  MOV     W4,28A2
+007FA:  MOV     #0,W1
+007FC:  MOV     W1,W0
+007FE:  CLR.B   1
+00800:  CALL    300
+00804:  INC     W1,W1
+00806:  MOV     W1,[W15++]
+00808:  MOV     W0,[W15++]
+0080A:  MOV     [--W15],W0
+0080C:  CALL    514
+00810:  MOV     [--W15],W1
+00812:  MOV     #9,W0
+00814:  CPSGT   W1,W0
+00816:  BRA     7FC
+00818:  MOV     28AC,W0
+0081A:  MOV     #0,W4
+0081C:  CALL    5B0
+....................       writeATCommand(transienBuffer); 
+00820:  MOV     #2870,W4
+00822:  MOV     W4,28B6
+00824:  CALL    436
+....................        
+....................       return True; 
+00828:  MOV.B   #1,W0L
+0082A:  MOV.B   W0L,0
+0082C:  RETURN  
+....................        
+.................... } 
+....................  
+.................... int1 queryTimeout() 
+.................... { 
+....................  
+....................       sprintf(transienBuffer,"AT+CIPSTO?"); 
+*
+007C6:  MOV     #2870,W4
+007C8:  MOV     W4,28A2
+007CA:  MOV     #0,W1
+007CC:  MOV     W1,W0
+007CE:  CLR.B   1
+007D0:  CALL    31A
+007D4:  INC     W1,W1
+007D6:  MOV     W1,[W15++]
+007D8:  MOV     W0,[W15++]
+007DA:  MOV     [--W15],W0
+007DC:  CALL    514
+007E0:  MOV     [--W15],W1
+007E2:  MOV     #9,W0
+007E4:  CPSGT   W1,W0
+007E6:  BRA     7CC
+....................       writeATCommand(transienBuffer); 
+007E8:  MOV     #2870,W4
+007EA:  MOV     W4,28B6
+007EC:  CALL    436
+....................         
+....................       return True; 
+007F0:  MOV.B   #1,W0L
+007F2:  MOV.B   W0L,0
+007F4:  RETURN  
+....................        
+.................... } 
+....................  
+....................  
+.................... int1 serverMode(int selection,int port) 
+.................... { 
+....................       selectMode(3); //1->Station 2->Access Point 3-> Both 
+*
+0082E:  MOV     #3,W4
+00830:  MOV     W4,28AC
+00832:  CALL    6B6
+....................       if(!waitAnswer()) return 0; 
+00836:  CALL    488
+0083A:  CP0.B   W0L
+0083C:  BRA     NZ,842
+0083E:  CLR.B   0
+00840:  BRA     8BA
+....................        
+....................       selectMultipleOrSingle(1);//0->Single 1->Multiple 
+00842:  MOV     #1,W4
+00844:  MOV     W4,28AC
+00846:  CALL    6EA
+....................       if(!waitAnswer()) return 0; 
+0084A:  CALL    488
+0084E:  CP0.B   W0L
+00850:  BRA     NZ,856
+00852:  CLR.B   0
+00854:  BRA     8BA
+....................        
+....................       sprintf(transienBuffer,"AT+CIPSERVER=%d,%d",1,1234); 
+00856:  MOV     #2870,W4
+00858:  MOV     W4,28A2
+0085A:  MOV     #0,W1
+0085C:  MOV     W1,W0
+0085E:  CLR.B   1
+00860:  CALL    332
+00864:  INC     W1,W1
+00866:  MOV     W1,[W15++]
+00868:  MOV     W0,[W15++]
+0086A:  MOV     [--W15],W0
+0086C:  CALL    514
+00870:  MOV     [--W15],W1
+00872:  MOV     #C,W0
+00874:  CPSGT   W1,W0
+00876:  BRA     85C
+00878:  MOV     #1,W0
+0087A:  MOV     #0,W4
+0087C:  CALL    5B0
+00880:  MOV.B   #2C,W0L
+00882:  CALL    514
+00886:  MOV     #4D2,W0
+00888:  MOV     #0,W4
+0088A:  CALL    5B0
+....................       writeATCommand(transienBuffer); 
+0088E:  MOV     #2870,W4
+00890:  MOV     W4,28B6
+00892:  CALL    436
+....................       if(!waitAnswer()) return 0; 
+00896:  CALL    488
+0089A:  CP0.B   W0L
+0089C:  BRA     NZ,8A2
+0089E:  CLR.B   0
+008A0:  BRA     8BA
+....................       
+....................       setTimeout(180); 
+008A2:  MOV     #B4,W4
+008A4:  MOV     W4,28AC
+008A6:  CALL    7F6
+....................       if(!waitAnswer()) return 0; 
+008AA:  CALL    488
+008AE:  CP0.B   W0L
+008B0:  BRA     NZ,8B6
+008B2:  CLR.B   0
+008B4:  BRA     8BA
+....................           
+....................       return 1; 
+008B6:  MOV.B   #1,W0L
+008B8:  MOV.B   W0L,0
+008BA:  RETURN  
+....................  
+.................... } 
+....................  
+....................  
+.................... int1 sendDataviaESP(int8 *message,int ID,int length) 
+*
+0098A:  MOV     W5,[W15++]
+0098C:  MOV     W6,[W15++]
+.................... {        
+....................       sprintf(transienBuffer,"AT+CIPSEND=%d,%d",ID,length); 
+0098E:  MOV     #2870,W4
+00990:  MOV     W4,28A2
+00992:  MOV     #0,W1
+00994:  MOV     W1,W0
+00996:  CLR.B   1
+00998:  CALL    352
+0099C:  INC     W1,W1
+0099E:  MOV     W1,[W15++]
+009A0:  MOV     W0,[W15++]
+009A2:  MOV     [--W15],W0
+009A4:  CALL    514
+009A8:  MOV     [--W15],W1
+009AA:  MOV     #A,W0
+009AC:  CPSGT   W1,W0
+009AE:  BRA     994
+009B0:  MOV     28A6,W0
+009B2:  MOV     #0,W4
+009B4:  CALL    5B0
+009B8:  MOV.B   #2C,W0L
+009BA:  CALL    514
+009BE:  MOV     28A8,W0
+009C0:  MOV     #0,W4
+009C2:  CALL    5B0
+....................       writeATCommand(transienBuffer); 
+009C6:  MOV     #2870,W4
+009C8:  MOV     W4,28B6
+009CA:  CALL    436
+....................       delay_ms(1); 
+009CE:  REPEAT  #3B7E
+009D0:  NOP     
+009D2:  REPEAT  #3FFF
+009D4:  NOP     
+009D6:  REPEAT  #3FFF
+009D8:  NOP     
+....................       if(length==2048) 
+009DA:  MOV     28A8,W0
+009DC:  MOV     #800,W4
+009DE:  CP      W4,W0
+009E0:  BRA     NZ,A32
+....................       { 
+....................          for(int i=0;i<4;i++) 
+009E2:  MOV     #0,W4
+009E4:  MOV     W4,28AA
+009E6:  MOV     28AA,W0
+009E8:  CP      W0,#4
+009EA:  BRA     GE,A2E
+....................          { 
+....................            for(int j=0;j<512;j++) 
+009EC:  MOV     #0,W4
+009EE:  MOV     W4,28AC
+009F0:  MOV     28AC,W0
+009F2:  MOV     #200,W4
+009F4:  CP      W4,W0
+009F6:  BRA     LE,A1E
+....................            { 
+....................               fprintf(WIFI,"%c",message[512*i+j]); 
+009F8:  MOV     #200,W4
+009FA:  MOV     28AA,W0
+009FC:  MUL.SS  W4,W0,W0
+009FE:  MOV     W0,W5
+00A00:  MOV     28AC,W0
+00A02:  ADD     W5,W0,W5
+00A04:  MOV     28A4,W0
+00A06:  ADD     W5,W0,W0
+00A08:  MOV.B   [W0],W6L
+00A0A:  BTSC.B  223.1
+00A0C:  BRA     A0A
+00A0E:  PUSH    224
+00A10:  MOV.B   W6L,[W15-#2]
+00A12:  POP     224
+00A14:  MOV     28AC,W0
+00A16:  INC     W0,W0
+00A18:  MOV     W0,28AC
+00A1A:  GOTO    9F0
+....................             
+....................            } 
+....................            delay_ms(2); 
+00A1E:  MOV     #2,W0
+00A20:  CALL    972
+00A24:  MOV     28AA,W0
+00A26:  INC     W0,W0
+00A28:  MOV     W0,28AA
+00A2A:  GOTO    9E6
+....................     
+....................          } 
+....................       } 
+00A2E:  GOTO    A5A
+....................        
+....................       else 
+....................       { 
+....................            for(int j=0;j<length;j++) 
+00A32:  MOV     #0,W4
+00A34:  MOV     W4,28AE
+00A36:  MOV     28AE,W0
+00A38:  MOV     28A8,W4
+00A3A:  CP      W4,W0
+00A3C:  BRA     LE,A5A
+....................            { 
+....................               fprintf(WIFI,"%c",message[j]); 
+00A3E:  MOV     28AE,W0
+00A40:  MOV     28A4,W4
+00A42:  ADD     W0,W4,W0
+00A44:  MOV.B   [W0],W5L
+00A46:  BTSC.B  223.1
+00A48:  BRA     A46
+00A4A:  PUSH    224
+00A4C:  MOV.B   W5L,[W15-#2]
+00A4E:  POP     224
+00A50:  MOV     28AE,W0
+00A52:  INC     W0,W0
+00A54:  MOV     W0,28AE
+00A56:  GOTO    A36
+....................             
+....................            }      
+....................        
+....................       } 
+....................                
+....................       return 1; 
+00A5A:  MOV.B   #1,W0L
+00A5C:  MOV.B   W0L,0
+00A5E:  MOV     [--W15],W6
+00A60:  MOV     [--W15],W5
+00A62:  RETURN  
+.................... } 
+....................  
+....................  
+.................... void nullSend() 
+.................... { 
+....................       sprintf(transienBuffer,"AT+CIPSEND=%d,%d",0,64); 
+....................       writeATCommand(transienBuffer); 
+....................       delay_ms(1); 
+....................        
+....................       for(int i=0;i<64;i++) 
+....................       { 
+....................          fprintf(WiFi,"%c",131); 
+....................       } 
+....................  
+.................... } 
+....................  
+....................  
+.................... int1 connectESP() 
+.................... { 
+....................  
+....................     
+....................    connectModule(); 
+*
+008BC:  CALL    466
+....................    if(!waitAnswer()) return 0; 
+008C0:  CALL    488
+008C4:  CP0.B   W0L
+008C6:  BRA     NZ,8CC
+008C8:  CLR.B   0
+008CA:  BRA     970
+....................     
+....................    wifiID="Talha"; 
+008CC:  MOV     #0,W2
+008CE:  MOV     #2802,W1
+008D0:  MOV     W2,W0
+008D2:  CALL    370
+008D6:  MOV.B   W0L,[W1++]
+008D8:  INC     W2,W2
+008DA:  CP0.B   W0L
+008DC:  BTSS.B  42.1
+008DE:  BRA     8D0
+....................    wifiPassword="123456"; 
+008E0:  MOV     #0,W2
+008E2:  MOV     #2834,W1
+008E4:  MOV     W2,W0
+008E6:  CALL    382
+008EA:  MOV.B   W0L,[W1++]
+008EC:  INC     W2,W2
+008EE:  CP0.B   W0L
+008F0:  BTSS.B  42.1
+008F2:  BRA     8E4
+....................    connectWifi(wifiID,wifiPassword); 
+008F4:  MOV     #2802,W4
+008F6:  MOV     W4,28A4
+008F8:  MOV     #2834,W4
+008FA:  MOV     W4,28A6
+008FC:  CALL    526
+....................     
+....................    selectMode(3);                //1->Station 2->Access Point 3-> Both 
+00900:  MOV     #3,W4
+00902:  MOV     W4,28AC
+00904:  CALL    6B6
+....................    if(!waitAnswer()) return 0; 
+00908:  CALL    488
+0090C:  CP0.B   W0L
+0090E:  BRA     NZ,914
+00910:  CLR.B   0
+00912:  BRA     970
+....................    selectMultipleOrSingle(1);    //0->Single 1->Multiple 
+00914:  MOV     #1,W4
+00916:  MOV     W4,28AC
+00918:  CALL    6EA
+....................    if(!waitAnswer()) return 0;     
+0091C:  CALL    488
+00920:  CP0.B   W0L
+00922:  BRA     NZ,928
+00924:  CLR.B   0
+00926:  BRA     970
+....................    accessPoint(); 
+00928:  CALL    722
+....................    if(!waitAnswer()) return 0; 
+0092C:  CALL    488
+00930:  CP0.B   W0L
+00932:  BRA     NZ,938
+00934:  CLR.B   0
+00936:  BRA     970
+....................    setSTA(); 
+00938:  CALL    7A4
+....................    if(!waitAnswer()) return 0; 
+0093C:  CALL    488
+00940:  CP0.B   W0L
+00942:  BRA     NZ,948
+00944:  CLR.B   0
+00946:  BRA     970
+....................    queryTimeout(); 
+00948:  CALL    7C6
+....................    if(!waitAnswer()) return 0; 
+0094C:  CALL    488
+00950:  CP0.B   W0L
+00952:  BRA     NZ,958
+00954:  CLR.B   0
+00956:  BRA     970
+....................    if(!serverMode(1,1234)) return 0; 
+00958:  MOV     #1,W4
+0095A:  MOV     W4,28A4
+0095C:  MOV     #4D2,W4
+0095E:  MOV     W4,28A6
+00960:  CALL    82E
+00964:  CP0.B   W0L
+00966:  BRA     NZ,96C
+00968:  CLR.B   0
+0096A:  BRA     970
+....................  
+....................    return 1; 
+0096C:  MOV.B   #1,W0L
+0096E:  MOV.B   W0L,0
+00970:  RETURN  
+.................... } 
+....................  
+.................... void listAll() 
+.................... { 
+....................       transienBuffer="AT+CWLAP"; 
+....................       writeATCommand(transienBuffer); 
+....................  
+.................... } 
+....................  
+....................  
+.................... int1 closeWiFiConnection() 
+.................... { 
+....................     transienBuffer="AT+CWQAP"; 
+....................     writeATCommand(transienBuffer); 
+....................     if(!waitAnswer()) return False; 
+....................     return True; 
+....................      
+.................... } 
+....................  
+....................  
+....................  
+....................  
+.................... #INT_RDA 
+.................... void  rda_isr(void)  
+*
+003BA:  PUSH    42
+003BC:  PUSH    36
+003BE:  PUSH    54
+003C0:  MOV     W0,[W15++]
+003C2:  MOV     #2,W0
+003C4:  REPEAT  #C
+003C6:  MOV     [W0++],[W15++]
+003C8:  MOV     #0,W4
+003CA:  MOV     W4,2910
+003CC:  MOV     #0,W4
+003CE:  MOV     W4,2912
+003D0:  MOV     #0,W4
+003D2:  MOV     W4,2914
+.................... { 
+....................     int32 countCycle=0; 
+....................     int16 dataCount=0; 
+....................     disable_interrupts(INT_RDA); 
+003D4:  BCLR.B  821.3
+....................     do 
+....................     { 
+....................        if(kbhit(WiFi)) 
+003D6:  BTSS.B  222.0
+003D8:  BRA     408
+....................        { 
+....................         
+....................          wifiData[dataCount++][0]=getc(WiFi); 
+003DA:  MOV     2914,W0
+003DC:  MOV     W0,[W15++]
+003DE:  INC     W0,W0
+003E0:  MOV     W0,2914
+003E2:  MOV     [--W15],W0
+003E4:  MOV     W0,W5
+003E6:  MOV     W5,W4
+003E8:  MUL.UU  W4,#2,W0
+003EA:  MOV     W0,W5
+003EC:  MOV     #1002,W4
+003EE:  ADD     W5,W4,W6
+003F0:  BTSS.B  222.0
+003F2:  BRA     3F0
+003F4:  MOV     226,W0
+003F6:  MOV.B   W0L,[W6]
+....................          countCycle++; 
+003F8:  MOV     2910,W0
+003FA:  MOV     2912,W1
+003FC:  INC     W0,W0
+003FE:  MOV     W0,2910
+00400:  MOV     2912,W0
+00402:  BTSC.B  42.1
+00404:  INC     W0,W0
+00406:  MOV     W0,2912
+....................           
+....................        } 
+....................       
+....................     }while(countCycle<65000 && dataCount<2048); 
+00408:  MOV     2912,W0
+0040A:  CP      W0,#0
+0040C:  BRA     GT,420
+0040E:  BRA     LT,418
+00410:  MOV     2910,W0
+00412:  MOV     #FDE8,W4
+00414:  CP      W4,W0
+00416:  BRA     LEU,420
+00418:  MOV     2914,W0
+0041A:  MOV     #800,W4
+0041C:  CP      W4,W0
+0041E:  BRA     GT,3D6
+....................    
+....................     wifiDataCame=1; 
+00420:  BSET.B  1000.0
+....................     enable_interrupts(INT_RDA); 
+00422:  BSET.B  821.3
+00424:  BCLR.B  801.3
+00426:  MOV     #1A,W0
+00428:  REPEAT  #C
+0042A:  MOV     [--W15],[W0--]
+0042C:  MOV     [--W15],W0
+0042E:  POP     54
+00430:  POP     36
+00432:  POP     42
+00434:  RETFIE  
+.................... } 
+....................  
+....................  
+....................  
+.................... void main() 
+*
+00A64:  MOV     #4444,W0
+00A66:  MOV     W0,844
+00A68:  BSET.B  8C1.7
+00A6A:  MOV     #46,W0
+00A6C:  MOV.B   W0L,742
+00A6E:  MOV     #57,W0
+00A70:  MOV.B   W0L,742
+00A72:  BCLR.B  742.6
+00A74:  MOV     #4D,W0
+00A76:  MOV     W0,6C4
+00A78:  MOV     #100,W0
+00A7A:  MOV     W0,680
+00A7C:  MOV     #46,W0
+00A7E:  MOV.B   W0L,742
+00A80:  MOV     #57,W0
+00A82:  MOV.B   W0L,742
+00A84:  BSET.B  742.6
+00A86:  MOV     #1,W4
+00A88:  MOV     W4,744
+00A8A:  MOV     #16,W4
+00A8C:  MOV     W4,746
+00A8E:  DISI    #E
+00A90:  MOV     #103,W0
+00A92:  MOV     #743,W1
+00A94:  MOV     #78,W2
+00A96:  MOV     #9A,W3
+00A98:  MOV.B   W2L,[W1]
+00A9A:  MOV.B   W3L,[W1]
+00A9C:  MOV.B   W0L,743
+00A9E:  LSR     W0,#8,W0
+00AA0:  MOV     #742,W1
+00AA2:  MOV     #46,W2
+00AA4:  MOV     #57,W3
+00AA6:  MOV.B   W2L,[W1]
+00AA8:  MOV.B   W3L,[W1]
+00AAA:  MOV.B   W0L,[W1]
+00AAC:  MOV     #8000,W4
+00AAE:  MOV     W4,220
+00AB0:  MOV     #400,W4
+00AB2:  MOV     W4,222
+00AB4:  MOV     #19,W4
+00AB6:  MOV     W4,228
+00AB8:  BCLR.B  1000.0
+00ABA:  CLR.B   1001
+00ABC:  MOV     2866,W0
+00ABE:  MOV.B   #0,W0L
+00AC0:  MOV     W0,2866
+00AC2:  MOV     #0,W4
+00AC4:  MOV     W4,2868
+00AC6:  MOV     #0,W4
+00AC8:  MOV     W4,286A
+00ACA:  MOV     #0,W4
+00ACC:  MOV     W4,286C
+00ACE:  MOV     #0,W4
+00AD0:  MOV     W4,286E
+00AD2:  CLR     E0E
+00AD4:  CLR     E1E
+00AD6:  CLR     E2E
+00AD8:  CLR     E3E
+00ADA:  CLR     E4E
+00ADC:  CLR     E5E
+00ADE:  CLR     E6E
+00AE0:  MOV     #6F80,W15
+00AE2:  MOV     #6FFF,W0
+00AE4:  MOV     W0,20
+00AE6:  NOP     
+00AE8:  MOV     #6F80,W15
+00AEA:  MOV     #6FFF,W0
+00AEC:  MOV     W0,20
+00AEE:  NOP     
+.................... { 
+....................  
+....................  
+....................    enable_interrupts(INT_RDA); 
+00AF0:  BSET.B  821.3
+....................    enable_interrupts(INTR_GLOBAL); 
+00AF2:  BSET.B  8C3.7
+....................  
+....................    connectESP();  //Configuration function. You have to change this settings according to your settings. 
+00AF4:  CALL    8BC
+....................    messageSend="WiFi ESP12S Library..."; 
+00AF8:  MOV     #0,W2
+00AFA:  MOV     #2002,W1
+00AFC:  MOV     W2,W0
+00AFE:  CALL    396
+00B02:  MOV.B   W0L,[W1++]
+00B04:  INC     W2,W2
+00B06:  CP0.B   W0L
+00B08:  BTSS.B  42.1
+00B0A:  BRA     AFC
+....................    while(TRUE) 
+....................    { 
+....................       sendDataviaESP(messageSend,0,50); 
+00B0C:  MOV     #2002,W4
+00B0E:  MOV     W4,28A4
+00B10:  MOV     #0,W4
+00B12:  MOV     W4,28A6
+00B14:  MOV     #32,W4
+00B16:  MOV     W4,28A8
+00B18:  CALL    98A
+....................       if(wifiDataCame) 
+00B1C:  BTSS.B  1000.0
+00B1E:  BRA     B22
+....................       { 
+....................          wifiDataCame=0; 
+00B20:  BCLR.B  1000.0
+....................          //Do what you want after data received via ESP. 
+....................        
+....................       } 
+....................       delay_ms(1000); 
+00B22:  MOV     #3E8,W0
+00B24:  CALL    972
+00B28:  GOTO    B0C
+....................    } 
+....................  
+.................... } 
+00B2C:  PWRSAV  #0
+
+Configuration Fuses:
+   Word  3L: 0033   NOWRT NOPROTECT GSSK
+          H: FF00  
+   Word  4L: 0080   FRC IESO
+          H: FF00  
+   Word  5L: 0026   HS NOOSCIO IOL1WAY CKSFSM
+          H: FF00  
+   Word  6L: 007F   WPOSTS16 WPRES128 PLLWAIT WINDIS NOWDT
+          H: FF00  
+   Word  7L: 0037   PUT128 NOBROWNOUT NOALTI2C1 NOALTI2C2
+          H: FF00  
+   Word  8L: 00D7   ICSP1 RESET_PRIMARY NOJTAG NODEBUG
+          H: FF00  
+   Word  9L: 0033   NOAWRT NOAPROTECT APLK
+          H: FF00  
