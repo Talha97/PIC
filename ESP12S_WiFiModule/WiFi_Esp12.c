@@ -60,11 +60,12 @@ int1 connectModule()
 }
 
 
-void selectMode(int selection)
+int1 selectMode(int selection)
 {
    
    sprintf(transienBuffer,"AT+CWMODE=%d",selection);
    writeATCommand(transienBuffer);
+   return waitAnswer();
        
 }
 int1 selectUsage(int selection)
@@ -148,18 +149,18 @@ int1 queryTimeout()
 
 int1 serverMode(int selection,int port)
 {
-      selectMode(3); //1->Station 2->Access Point 3-> Both
-      if(!waitAnswer()) return 0;
+       
+      if(!selectMode(3)) return 0;  //1->Station 2->Access Point 3-> Both
       
-      selectMultipleOrSingle(1);//0->Single 1->Multiple
-      if(!waitAnswer()) return 0;
+      
+      if(!selectMultipleOrSingle(1)) return 0;  //0->Single 1->Multiple
       
       sprintf(transienBuffer,"AT+CIPSERVER=%d,%d",1,1234);
       writeATCommand(transienBuffer);
       if(!waitAnswer()) return 0;
      
-      setTimeout(180);
-      if(!waitAnswer()) return 0;
+      
+      if(!setTimeout(180)) return 0;
          
       return 1;
 
