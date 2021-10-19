@@ -1,5 +1,18 @@
 #include <main.h>
 
+
+#INT_TIMER1
+void  timer1_isr(void) 
+{
+    ms256++;
+    if(ms256 == 4)
+    {    
+        timeOutWiFi++;
+        ms256=0;
+    
+    }
+}
+
 #INT_RDA
 void  rda_isr(void) 
 {
@@ -27,8 +40,9 @@ void  rda_isr(void)
 void main()
 {
 
-
+   setup_timer1(TMR_INTERNAL | TMR_DIV_BY_256, 47999);
    enable_interrupts(INT_RDA);
+   enable_interrupts(INT_TIMER1);
    enable_interrupts(INTR_GLOBAL);
 
    connectESP();  //Configuration function. You have to change this settings according to your settings.
