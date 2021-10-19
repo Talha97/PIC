@@ -1,3 +1,6 @@
+/*
+   AUTHOR: TALHA SEVİNÇ
+*/
 
 char Hours[11];
 
