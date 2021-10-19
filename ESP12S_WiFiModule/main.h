@@ -14,7 +14,7 @@
 
 
 int1 wifiDataCame=0;
-
+int8 ms256=0;
 int8 timeOutWiFi=0;
 int8 wifiData[2048][2];
 
