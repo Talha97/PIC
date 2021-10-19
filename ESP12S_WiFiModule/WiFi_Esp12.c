@@ -45,7 +45,7 @@ int1 resetESP()
        sprintf(transienBuffer,"AT+RST");
        writeATCommand(transienBuffer);
        delay_ms(1500);
-       return 1;
+       return waitAnswer();
        
 }
 
@@ -54,7 +54,7 @@ int1 connectModule()
    transienBuffer="AT";
    writeATCommand(transienBuffer);
   
-   return 1;
+   return waitAnswer();
    
    
 }
@@ -72,7 +72,7 @@ int1 selectUsage(int selection)
       sprintf(transienBuffer,"AT+CIPMODE=%d",selection);
       writeATCommand(transienBuffer);
         
-      return True;
+      return waitAnswer();
 
 }
 
@@ -81,7 +81,7 @@ int1 selectMultipleOrSingle(int selection)
       sprintf(transienBuffer,"AT+CIPMUX=%d",selection);
       writeATCommand(transienBuffer);
       
-      return True;
+      return waitAnswer();
 }
 
 int1 connectWifi(char *username, char *password)
@@ -91,7 +91,7 @@ int1 connectWifi(char *username, char *password)
    sprintf(connectionBuffer,"AT+CWJAP=\"%s\",\"%s\"\r\n",username,password);  //To connect Wi-Fi, write Wi-Fi name and password.
    fprintf(WiFi,"%s",connectionBuffer);
 
-   return True;
+   return waitAnswer();
 
 }
 
@@ -104,7 +104,7 @@ int1 accessPoint()
    fprintf(WIFI,"%s","12345678");    //Passrowd for access point
    fprintf(WIFI,"%s","\",6,4\r\n");
     
-   return True;
+   return waitAnswer();
       
 }
 
@@ -113,7 +113,7 @@ int1 enableDHCP(int select1,int select2)
       sprintf(transienBuffer,"AT+CWDHCP_CUR=%d,%d",select1,select2);
       writeATCommand(transienBuffer);
      
-      return True;
+      return waitAnswer();
 
 }
 
@@ -122,7 +122,7 @@ int1 setSTA()
 
      transienBuffer="AT+CIPSTA=\"192.168.0.80\""; // Write IP Address whatever you want
      writeATCommand(transienBuffer);
-     return 1;
+     return waitAnswer();
 
 }
 int1 setTimeout(int timeout)
@@ -131,7 +131,7 @@ int1 setTimeout(int timeout)
       sprintf(transienBuffer,"AT+CIPSTO=%d",timeout);
       writeATCommand(transienBuffer);
       
-      return True;
+      return waitAnswer();
       
 }
 
@@ -141,7 +141,7 @@ int1 queryTimeout()
       sprintf(transienBuffer,"AT+CIPSTO?");
       writeATCommand(transienBuffer);
        
-      return True;
+      return waitAnswer();
       
 }
 
@@ -223,17 +223,17 @@ int1 connectESP()
    wifiID="Talha";
    wifiPassword="123456";
    connectWifi(wifiID,wifiPassword);
+              
+   if(!selectMode(3)) return 0;   //1->Station 2->Access Point 3-> Both
+     
+   if(!selectMultipleOrSingle(1)) return 0;      //0->Single 1->Multiple
    
-   selectMode(3);                //1->Station 2->Access Point 3-> Both
-   if(!waitAnswer()) return 0;
-   selectMultipleOrSingle(1);    //0->Single 1->Multiple
-   if(!waitAnswer()) return 0;    
-   accessPoint();
-   if(!waitAnswer()) return 0;
-   setSTA();
-   if(!waitAnswer()) return 0;
+   if(!accessPoint()) return 0;
+   
+   if(!setSTA()) return 0;
+   
    queryTimeout();
-   if(!waitAnswer()) return 0;
+
    if(!serverMode(1,1234)) return 0;
 
    return 1;
