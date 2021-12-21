@@ -19,6 +19,7 @@ void  rda_isr(void)
    }while(count<100 && countCycle<65000);
    
    BLDataCame=1;
+   enable_interrupts(INT_RDA);
 }
 
 
