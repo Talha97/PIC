@@ -10,11 +10,9 @@ void  rda_isr(void)
    do
    {
       if(kbhit(BT))
-      {
-         
          BLTReceive[count++]=getc(BT);
       
-      }
+      countCycle++;
    
    }while(count<100 && countCycle<65000);
    
