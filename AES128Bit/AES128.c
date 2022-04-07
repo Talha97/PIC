@@ -1,6 +1,6 @@
 /*
   Date:03.05.2021
-  AUTHOR:TALHA SEVÝNÇ
+  AUTHOR:TALHA SEVINC
 
 */
 
